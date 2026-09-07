@@ -2,314 +2,363 @@
 <title>Турбосметчик в кармане</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 :root{
-  --ground:#F3F4F0; --surface:#FFFFFF; --surface-2:#EAEBE4; --sunk:#E3E5DD;
-  --ink:#15191A; --ink-2:#4D5653; --ink-3:#7C8683;
-  --line:#D6DAD2; --line-strong:#B7BEB5;
-  --amber:#DE8F10; --amber-ink:#8A5606; --amber-soft:#FBEDD3;
-  --slate:#356480; --slate-soft:#DEEAF1;
-  --ok:#2E7A55; --crit:#A6332F;
-  --shadow: 0 1px 2px rgba(20,26,24,.06), 0 12px 28px -14px rgba(20,26,24,.22);
-  --shadow-lift: 0 2px 4px rgba(20,26,24,.08), 0 34px 60px -26px rgba(20,26,24,.42);
-  --f-disp:'Oswald','Golos Text',system-ui,sans-serif;
-  --f-body:'Golos Text','Segoe UI',system-ui,sans-serif;
-  --f-mono:'IBM Plex Mono','SFMono-Regular',ui-monospace,monospace;
+  --ground:#E8ECF1; --sheet:#FFFFFF; --surface:#FFFFFF; --surface-2:#F1F4F8;
+  --chrome:#DCE2EA; --chrome-2:#CED6E0; --sunk:#D2D9E2;
+  --ink:#151A21; --ink-2:#485363; --ink-3:#7A8593;
+  --line:#C7CFDA; --line-2:#DFE4EB; --line-strong:#A8B3C1;
+  --sel:#22528F; --sel-2:#3A75BE; --sel-soft:#D9E5F6; --sel-edge:#9CBBE4;
+  --warn:#B2661A; --warn-soft:#F8E9D5; --ok:#26714E; --crit:#9E2F2C;
+  --shadow:0 1px 2px rgba(18,26,38,.07), 0 10px 24px -14px rgba(18,26,38,.28);
+  --shadow-lift:0 2px 5px rgba(18,26,38,.10), 0 32px 60px -28px rgba(18,26,38,.48);
+  --f-ui:'Golos Text','Segoe UI',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono','SFMono-Regular',ui-monospace,'Consolas',monospace;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-  --ground:#111516; --surface:#1A2022; --surface-2:#222A2C; --sunk:#151A1B;
-  --ink:#E9ECE6; --ink-2:#A6AFAB; --ink-3:#7A8481;
-  --line:#2A3234; --line-strong:#3D4749;
-  --amber:#F0A62B; --amber-ink:#F4C371; --amber-soft:#3A2B12;
-  --slate:#84B3CE; --slate-soft:#1D2C34;
-  --ok:#5EB185; --crit:#E07872;
-  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 28px -14px rgba(0,0,0,.7);
-  --shadow-lift: 0 2px 4px rgba(0,0,0,.5), 0 34px 60px -26px rgba(0,0,0,.85);
+    --ground:#11151A; --sheet:#161B21; --surface:#161B21; --surface-2:#1C222A;
+    --chrome:#1A2027; --chrome-2:#222A33; --sunk:#0D1115;
+    --ink:#E6EBF1; --ink-2:#A2ADBB; --ink-3:#76818E;
+    --line:#29313A; --line-2:#232A32; --line-strong:#3A444F;
+    --sel:#7BAEEC; --sel-2:#5C93D8; --sel-soft:#1A2A3F; --sel-edge:#2F4A6B;
+    --warn:#DFA043; --warn-soft:#33260F; --ok:#4FA37B; --crit:#DC7570;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 24px -14px rgba(0,0,0,.75);
+    --shadow-lift:0 2px 5px rgba(0,0,0,.55), 0 32px 60px -28px rgba(0,0,0,.9);
   }
 }
 :root[data-theme="dark"]{
-  --ground:#111516; --surface:#1A2022; --surface-2:#222A2C; --sunk:#151A1B;
-  --ink:#E9ECE6; --ink-2:#A6AFAB; --ink-3:#7A8481;
-  --line:#2A3234; --line-strong:#3D4749;
-  --amber:#F0A62B; --amber-ink:#F4C371; --amber-soft:#3A2B12;
-  --slate:#84B3CE; --slate-soft:#1D2C34;
-  --ok:#5EB185; --crit:#E07872;
-  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 28px -14px rgba(0,0,0,.7);
-  --shadow-lift: 0 2px 4px rgba(0,0,0,.5), 0 34px 60px -26px rgba(0,0,0,.85);
+  --ground:#11151A; --sheet:#161B21; --surface:#161B21; --surface-2:#1C222A;
+  --chrome:#1A2027; --chrome-2:#222A33; --sunk:#0D1115;
+  --ink:#E6EBF1; --ink-2:#A2ADBB; --ink-3:#76818E;
+  --line:#29313A; --line-2:#232A32; --line-strong:#3A444F;
+  --sel:#7BAEEC; --sel-2:#5C93D8; --sel-soft:#1A2A3F; --sel-edge:#2F4A6B;
+  --warn:#DFA043; --warn-soft:#33260F; --ok:#4FA37B; --crit:#DC7570;
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 24px -14px rgba(0,0,0,.75);
+  --shadow-lift:0 2px 5px rgba(0,0,0,.55), 0 32px 60px -28px rgba(0,0,0,.9);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth; scroll-snap-type:y proximity}
-body{margin:0; background:var(--ground); color:var(--ink);
-  font-family:var(--f-body); font-size:16px; line-height:1.6;
-  -webkit-font-smoothing:antialiased;}
-h1,h2,h3{margin:0; font-family:var(--f-disp); font-weight:500; text-wrap:balance; letter-spacing:.005em}
+body{margin:0; background:var(--ground); color:var(--ink); font-family:var(--f-ui);
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0; font-weight:600; text-wrap:balance}
 p{margin:0}
-a{color:inherit}
 button{font:inherit; color:inherit; cursor:pointer}
-:focus-visible{outline:2px solid var(--amber); outline-offset:3px; border-radius:4px}
+:focus-visible{outline:2px solid var(--sel-2); outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important} html{scroll-behavior:auto}}
 
-/* ---------- deck chrome ---------- */
-.progress{position:fixed; inset:0 0 auto 0; height:2px; background:transparent; z-index:60}
-.progress i{display:block; height:100%; width:0; background:var(--amber)}
-.rail{position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:55;
-  display:flex; flex-direction:column; gap:15px}
+.progress{position:fixed; inset:0 0 auto 0; height:2px; z-index:60}
+.progress i{display:block; height:100%; width:0; background:var(--sel-2)}
+.rail{position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:55; display:flex; flex-direction:column; gap:15px}
 .rail a{display:flex; align-items:center; justify-content:flex-end; gap:9px; text-decoration:none}
 .rail .lab{font-size:11.5px; color:var(--ink-3); opacity:0; transform:translateX(4px);
-  transition:opacity .22s ease, transform .22s ease; white-space:nowrap}
-.rail .num{font-family:var(--f-mono); font-size:10px; color:var(--ink-3); letter-spacing:.06em}
-.rail .tick{width:16px; height:2px; background:var(--line-strong); transition:width .24s ease, background .24s ease}
+  transition:opacity .22s, transform .22s; white-space:nowrap}
+.rail .num{font-family:var(--f-mono); font-size:10px; color:var(--ink-3)}
+.rail .tick{width:16px; height:2px; background:var(--line-strong); transition:width .24s, background .24s}
 .rail a:hover .lab, .rail a.on .lab{opacity:1; transform:none}
-.rail a.on .tick{width:32px; background:var(--amber)}
-.rail a.on .num{color:var(--amber-ink)}
+.rail a.on .tick{width:32px; background:var(--sel-2)}
+.rail a.on .num{color:var(--sel)}
 @media (max-width:1339px){.rail{display:none}}
-@media (min-width:1340px){main{padding-right:70px}}
+@media (min-width:1340px){main{padding-right:104px}}
 
 .slide{min-height:100svh; scroll-snap-align:start; display:flex; align-items:center;
-  padding:clamp(48px,6vh,84px) clamp(20px,5vw,72px)}
+  padding:clamp(44px,5.5vh,80px) clamp(18px,4.5vw,64px)}
 .slide-in{width:100%; max-width:1180px; margin:0 auto}
-@media (max-width:860px){html{scroll-snap-type:none}}
+@media (max-width:900px){html{scroll-snap-type:none}}
 
-.eyebrow{font-family:var(--f-mono); font-size:11px; letter-spacing:.17em; text-transform:uppercase;
+.eyebrow{font-family:var(--f-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
   color:var(--ink-3); display:flex; align-items:center; gap:10px}
 .eyebrow::before{content:''; width:22px; height:1px; background:var(--line-strong)}
-.eyebrow b{font-weight:500; color:var(--amber-ink)}
-.h2{font-size:clamp(1.65rem,3.1vw,2.5rem); line-height:1.06; margin-top:14px}
-.lede{color:var(--ink-2); max-width:62ch; margin-top:14px; font-size:clamp(1rem,1.15vw,1.075rem)}
+.eyebrow b{font-weight:600; color:var(--sel)}
+.h2{font-size:clamp(1.6rem,2.9vw,2.35rem); line-height:1.12; margin-top:13px; letter-spacing:-.015em}
+.lede{color:var(--ink-2); max-width:64ch; margin-top:13px; font-size:clamp(.98rem,1.1vw,1.06rem)}
 
-/* ---------- slide 1: hero + prototype ---------- */
-.hero{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:clamp(28px,4.5vw,64px); align-items:center}
-.masthead h1{font-size:clamp(2.5rem,5.1vw,4.15rem); line-height:.96; font-weight:600; margin-top:16px}
-.masthead h1 em{font-style:normal; color:var(--amber-ink); display:block}
-.thesis{margin-top:20px; font-size:clamp(1.02rem,1.3vw,1.16rem); color:var(--ink-2); max-width:46ch}
-.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:22px}
-.chip{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.03em; padding:6px 11px;
-  border:1px solid var(--line); border-radius:999px; background:var(--surface); color:var(--ink-2)}
-.chip.hot{border-color:var(--amber); background:var(--amber-soft); color:var(--amber-ink)}
-.steps{list-style:none; margin:30px 0 0; padding:0; display:flex; flex-direction:column; gap:2px;
-  border-top:1px solid var(--line); max-width:470px}
+/* ---- hero ---- */
+.hero{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:clamp(26px,4vw,60px); align-items:center}
+.masthead h1{font-size:clamp(2.2rem,4.4vw,3.5rem); line-height:1.02; font-weight:700;
+  letter-spacing:-.028em; margin-top:15px}
+.masthead h1 em{font-style:normal; color:var(--sel); display:block}
+.thesis{margin-top:18px; font-size:clamp(1rem,1.2vw,1.11rem); color:var(--ink-2); max-width:47ch}
+.chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:20px}
+.chip{font-family:var(--f-mono); font-size:11px; padding:5px 10px; border:1px solid var(--line);
+  border-radius:4px; background:var(--surface); color:var(--ink-2)}
+.chip.hot{border-color:var(--sel-edge); background:var(--sel-soft); color:var(--sel)}
+.steps{list-style:none; margin:26px 0 0; padding:0; border-top:1px solid var(--line); max-width:470px}
 .steps li{border-bottom:1px solid var(--line)}
-.steps button{display:grid; grid-template-columns:26px 1fr; gap:12px; align-items:baseline;
-  width:100%; text-align:left; background:none; border:0; padding:13px 4px; transition:background .18s}
+.steps button{display:grid; grid-template-columns:24px 1fr; gap:11px; align-items:baseline;
+  width:100%; text-align:left; background:none; border:0; padding:12px 4px; transition:background .16s}
 .steps button:hover{background:var(--surface-2)}
 .steps .sn{font-family:var(--f-mono); font-size:11px; color:var(--ink-3)}
-.steps .st{font-weight:600; font-size:.95rem}
-.steps .sd{display:block; font-weight:400; color:var(--ink-3); font-size:.855rem; margin-top:2px; line-height:1.45}
-.steps li.on button{background:var(--amber-soft)}
-.steps li.on .sn{color:var(--amber-ink)}
-.hint{margin-top:16px; font-family:var(--f-mono); font-size:11px; color:var(--ink-3); letter-spacing:.04em}
-@media (max-width:980px){.hero{grid-template-columns:1fr; justify-items:center}
-  .masthead{max-width:640px}}
+.steps .st{font-weight:600; font-size:.94rem}
+.steps .sd{display:block; font-weight:400; color:var(--ink-3); font-size:.845rem; margin-top:2px; line-height:1.45}
+.steps li.on button{background:var(--sel-soft)}
+.steps li.on .sn{color:var(--sel)}
+.hint{margin-top:14px; font-family:var(--f-mono); font-size:11px; color:var(--ink-3)}
+@media (max-width:1000px){.hero{grid-template-columns:1fr; justify-items:center} .masthead{max-width:640px}}
 
-/* ---------- phone ---------- */
-.phone-wrap{display:flex; flex-direction:column; align-items:center; gap:12px}
-.phone{width:352px; max-width:92vw; height:min(716px,80svh); min-height:560px;
-  background:var(--surface); border:1px solid var(--line-strong); border-radius:38px;
-  box-shadow:var(--shadow-lift); padding:9px; display:flex; position:relative}
+/* ---- phone ---- */
+.phone-wrap{display:flex; flex-direction:column; align-items:center; gap:10px}
+.phone{width:360px; max-width:94vw; height:min(730px,80svh); min-height:566px; background:var(--chrome-2);
+  border:1px solid var(--line-strong); border-radius:34px; box-shadow:var(--shadow-lift); padding:9px; display:flex; position:relative}
 .phone::before{content:''; position:absolute; top:15px; left:50%; transform:translateX(-50%);
-  width:88px; height:5px; border-radius:3px; background:var(--sunk)}
-.scr{flex:1; background:var(--ground); border-radius:30px; overflow:hidden; display:flex; flex-direction:column; position:relative}
-.statusbar{display:flex; align-items:center; justify-content:space-between; padding:14px 20px 6px;
-  font-family:var(--f-mono); font-size:10.5px; color:var(--ink-3); letter-spacing:.02em}
-.offline{display:inline-flex; align-items:center; gap:5px; color:var(--amber-ink);
-  background:var(--amber-soft); border-radius:999px; padding:2px 8px; font-size:9.5px; letter-spacing:.08em}
-.offline i{width:5px; height:5px; border-radius:50%; background:var(--amber); display:block}
-.appbar{padding:8px 18px 12px; border-bottom:1px solid var(--line); background:var(--surface)}
-.appbar .obj{font-family:var(--f-disp); font-size:1.06rem; font-weight:500; line-height:1.15}
-.appbar .addr{font-size:11px; color:var(--ink-3); margin-top:2px}
-.body{flex:1; overflow-y:auto; overscroll-behavior:contain; background:var(--ground)}
-.body::-webkit-scrollbar{width:5px}
+  width:84px; height:5px; border-radius:3px; background:var(--sunk)}
+.scr{flex:1; background:var(--ground); border-radius:26px; overflow:hidden; display:flex; flex-direction:column; position:relative}
+.statusbar{display:flex; align-items:center; justify-content:space-between; padding:13px 18px 5px;
+  font-family:var(--f-mono); font-size:10px; color:var(--ink-3)}
+.offline{display:inline-flex; align-items:center; gap:5px; color:var(--warn); background:var(--warn-soft);
+  border-radius:3px; padding:2px 7px; font-size:9px; letter-spacing:.07em}
+.offline i{width:5px; height:5px; border-radius:50%; background:var(--warn)}
+.appbar{padding:6px 14px 8px; border-bottom:1px solid var(--line); background:var(--chrome)}
+.appbar .obj{font-size:.95rem; font-weight:600; line-height:1.2}
+.appbar .addr{font-family:var(--f-mono); font-size:9.5px; color:var(--ink-3); margin-top:2px}
+.toolbar{display:flex; gap:4px; padding:6px 8px; background:var(--chrome); border-bottom:1px solid var(--line);
+  overflow-x:auto; scrollbar-width:none}
+.toolbar::-webkit-scrollbar{display:none}
+.tbtn{display:flex; align-items:center; gap:4px; white-space:nowrap; border:1px solid var(--line);
+  background:var(--surface); border-radius:4px; padding:5px 8px; font-family:var(--f-mono); font-size:10px; color:var(--ink-2)}
+.tbtn:hover{border-color:var(--sel-edge); color:var(--sel)}
+.tbtn:disabled{opacity:.42; cursor:default}
+.tbtn.pri{background:var(--sel); border-color:var(--sel); color:#fff}
+.tbtn.pri:hover{color:#fff}
+.insert-into{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:5px 12px;
+  background:var(--surface-2); border-bottom:1px solid var(--line-2); font-family:var(--f-mono);
+  font-size:9.5px; color:var(--ink-3); white-space:nowrap}
+.insert-into .l{overflow:hidden; text-overflow:ellipsis}
+.insert-into .sum{color:var(--sel); font-weight:500; font-variant-numeric:tabular-nums}
+.insert-into b{color:var(--sel); font-weight:500}
+.body{flex:1; overflow:auto; overscroll-behavior:contain; background:var(--sheet)}
+.body::-webkit-scrollbar{width:6px; height:6px}
 .body::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:3px}
-.tabbar{display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); background:var(--surface)}
-.tabbar button{display:flex; flex-direction:column; align-items:center; gap:3px; padding:9px 0 12px;
-  border:0; background:none; font-size:9.5px; color:var(--ink-3); letter-spacing:.02em}
-.tabbar button svg{width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.6;
-  stroke-linecap:round; stroke-linejoin:round}
-.tabbar button.on{color:var(--amber-ink)}
-.tabbar button.on svg{stroke:var(--amber)}
-.caption{font-family:var(--f-mono); font-size:10.5px; color:var(--ink-3); letter-spacing:.04em; text-align:center}
+.tabbar{display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); background:var(--chrome)}
+.tabbar button{display:flex; flex-direction:column; align-items:center; gap:3px; padding:8px 0 11px;
+  border:0; background:none; font-size:9px; color:var(--ink-3); font-family:var(--f-mono)}
+.tabbar button svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round}
+.tabbar button.on{color:var(--sel)}
+.caption{font-family:var(--f-mono); font-size:10px; color:var(--ink-3); text-align:center; max-width:360px; line-height:1.6}
 
-/* app internals */
-.sticky-sum{position:sticky; top:0; z-index:3; display:flex; align-items:baseline;
-  justify-content:space-between; gap:10px; padding:9px 16px; background:var(--surface);
-  border-bottom:1px solid var(--line); box-shadow:0 6px 12px -10px rgba(20,26,24,.5)}
-.sticky-sum span{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.13em;
-  text-transform:uppercase; color:var(--ink-3)}
-.sticky-sum b{font-family:var(--f-disp); font-weight:500; font-size:1.02rem; color:var(--amber-ink);
-  font-variant-numeric:tabular-nums; white-space:nowrap}
-.sec-h{display:flex; align-items:baseline; justify-content:space-between; padding:15px 16px 6px;
-  font-family:var(--f-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
-.row{display:grid; grid-template-columns:1fr auto; gap:4px 10px; padding:11px 16px;
-  background:var(--surface); border-bottom:1px solid var(--line); position:relative}
-.row.new{animation:flash 1.4s ease}
-@keyframes flash{0%{background:var(--amber-soft)}100%{background:var(--surface)}}
-.row .code{font-family:var(--f-mono); font-size:9.5px; color:var(--ink-3); letter-spacing:.02em}
-.row .nm{font-size:12.5px; line-height:1.35; grid-column:1; padding-right:6px}
-.row .mt{grid-column:1; display:flex; flex-wrap:wrap; gap:8px; font-family:var(--f-mono);
-  font-size:10px; color:var(--ink-3); margin-top:3px}
-.row .kf{color:var(--amber-ink); background:var(--amber-soft); border-radius:3px; padding:0 4px}
-.row .sm{grid-row:1/3; grid-column:2; align-self:center; text-align:right; font-family:var(--f-mono);
-  font-size:12.5px; font-variant-numeric:tabular-nums; white-space:nowrap}
-.row .del{position:absolute; right:6px; bottom:6px; border:0; background:none; color:var(--ink-3);
-  font-size:14px; line-height:1; padding:4px 6px; opacity:.55}
-.row .del:hover{opacity:1; color:var(--crit)}
-.totals{background:var(--surface); border-top:2px solid var(--amber); padding:12px 16px 14px}
-.tl{display:flex; justify-content:space-between; font-size:11.5px; color:var(--ink-2); padding:2.5px 0;
+/* ---- сметная таблица (общая для телефона и ПК) ---- */
+.gridwrap{overflow-x:auto; background:var(--sheet)}
+.gridwrap::-webkit-scrollbar{height:7px}
+.gridwrap::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:4px}
+table.smeta{border-collapse:separate; border-spacing:0; width:100%; font-family:var(--f-mono);
+  font-variant-numeric:tabular-nums; background:var(--sheet)}
+table.smeta th{position:sticky; top:0; z-index:3; background:var(--chrome); color:var(--ink-2);
+  font-weight:500; font-size:9.5px; letter-spacing:.03em; text-align:left; padding:6px 6px;
+  border-bottom:1px solid var(--line); border-right:1px solid var(--line-2); white-space:nowrap; line-height:1.25}
+table.smeta td{padding:5px 6px; white-space:nowrap; border-bottom:1px solid var(--line-2); border-right:1px solid var(--line-2);
+  vertical-align:top; line-height:1.3}
+table.smeta .r{text-align:right}
+table.smeta tr.pos td{background:var(--sheet)}
+table.smeta tr.pos:hover td{background:var(--surface-2)}
+table.smeta tr.pos.sel td{background:var(--sel-soft); box-shadow:inset 0 -1px 0 var(--sel-edge), inset 0 1px 0 var(--sel-edge)}
+table.smeta tr.pos.new td{animation:flash 1.5s ease}
+@keyframes flash{0%{background:var(--sel-soft)}100%{background:var(--sheet)}}
+table.smeta tr.sect td{background:var(--chrome-2); font-weight:600; color:var(--ink);
+  border-bottom:1px solid var(--line); padding:6px 8px; cursor:pointer}
+table.smeta tr.sect.cur td{box-shadow:inset 3px 0 0 var(--sel-2)}
+table.smeta tr.sub td{background:var(--surface-2); color:var(--ink-2); border-bottom:1px solid var(--line)}
+table.smeta .nm{font-family:var(--f-ui); white-space:normal; word-break:normal}
+table.smeta.mob{font-size:10.5px}
+table.smeta.mob .nm{font-size:11px}
+table.smeta.pc{font-size:11px}
+table.smeta.pc .nm{font-size:12.5px}
+table.smeta tr.sect td, table.smeta tr.sub td{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+table.smeta .cell-ed{cursor:text}
+table.smeta .cell-ed:hover{outline:1px solid var(--sel-edge); outline-offset:-1px}
+table.smeta input.ce{width:100%; border:1px solid var(--sel-2); border-radius:2px; padding:2px 4px;
+  font:inherit; font-size:inherit; text-align:right; background:var(--surface); color:var(--ink);
   font-variant-numeric:tabular-nums}
-.tl b{font-family:var(--f-mono); font-weight:400; color:var(--ink)}
-.tl.grand{border-top:1px solid var(--line); margin-top:7px; padding-top:9px; font-size:14px; color:var(--ink)}
-.tl.grand b{font-family:var(--f-disp); font-size:1.22rem; font-weight:500; color:var(--amber-ink)}
-.fab{position:absolute; right:16px; bottom:74px; width:50px; height:50px; border-radius:50%;
-  border:0; background:var(--amber); color:#1a1305; font-size:26px; line-height:1;
-  box-shadow:0 8px 20px -6px rgba(190,120,10,.7); display:grid; place-items:center}
-.search{padding:12px 14px; background:var(--surface); border-bottom:1px solid var(--line)}
-.search input{width:100%; padding:10px 12px; border:1px solid var(--line-strong); border-radius:9px;
-  background:var(--ground); color:var(--ink); font:inherit; font-size:13px}
-.search input::placeholder{color:var(--ink-3)}
-.cat{display:block; width:100%; text-align:left; background:var(--surface); border:0;
-  border-bottom:1px solid var(--line); padding:11px 16px}
-.cat:hover{background:var(--surface-2)}
-.cat .code{font-family:var(--f-mono); font-size:9.5px; color:var(--ink-3)}
-.cat .nm{font-size:12.5px; line-height:1.35; margin-top:2px}
-.cat .pr{font-family:var(--f-mono); font-size:10.5px; color:var(--ink-2); margin-top:4px}
-.pad{padding:16px}
-.field{margin-bottom:14px}
-.field label{display:block; font-family:var(--f-mono); font-size:9.5px; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--ink-3); margin-bottom:6px}
-.field input{width:100%; padding:11px 12px; border:1px solid var(--line-strong); border-radius:9px;
-  background:var(--surface); color:var(--ink); font-family:var(--f-mono); font-size:16px;
-  font-variant-numeric:tabular-nums}
-.quick{display:flex; gap:6px; margin-top:8px; flex-wrap:wrap}
-.quick button{border:1px solid var(--line-strong); background:var(--surface); border-radius:7px;
-  padding:6px 11px; font-family:var(--f-mono); font-size:11px}
-.quick button:hover{border-color:var(--amber); color:var(--amber-ink)}
-.pills{display:flex; gap:6px; flex-wrap:wrap}
-.pill{border:1px solid var(--line-strong); background:var(--surface); border-radius:999px;
-  padding:6px 12px; font-size:11.5px}
-.pill.on{border-color:var(--amber); background:var(--amber-soft); color:var(--amber-ink); font-weight:600}
-.cta{width:100%; border:0; border-radius:11px; background:var(--amber); color:#1a1305;
-  padding:14px; font-weight:700; font-size:14px; display:flex; justify-content:space-between; align-items:center}
-.cta span{font-family:var(--f-mono); font-weight:500}
-.cta.ghost{background:var(--surface); color:var(--ink); border:1px solid var(--line-strong); font-weight:600}
-.calc{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:13px 14px; margin-bottom:12px}
-.calc h4{margin:0 0 9px; font-family:var(--f-mono); font-size:9.5px; letter-spacing:.12em;
+table.smeta .kbad{color:var(--warn)}
+table.smeta .stub{position:sticky; left:0; z-index:2; background:var(--chrome); border-right:1px solid var(--line)}
+table.smeta tr.pos .stub{background:var(--surface-2); color:var(--ink-3)}
+table.smeta tr.pos.sel .stub{background:var(--sel-soft)}
+
+/* итоги */
+.itogi{background:var(--surface-2); border-top:2px solid var(--sel-2); padding:9px 12px}
+.itogi .il{display:flex; justify-content:space-between; gap:12px; font-family:var(--f-mono);
+  font-size:10.5px; color:var(--ink-2); padding:2px 0; font-variant-numeric:tabular-nums}
+.itogi .il b{color:var(--ink); font-weight:500}
+.itogi .il.g{border-top:1px solid var(--line); margin-top:6px; padding-top:7px; font-size:12px; color:var(--ink)}
+.itogi .il.g b{font-family:var(--f-ui); font-size:1.03rem; font-weight:700; color:var(--sel)}
+
+/* ---- прочие экраны телефона ---- */
+.sec-h{display:flex; justify-content:space-between; padding:11px 12px 5px; background:var(--sheet);
+  font-family:var(--f-mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
+.search{padding:9px 10px; background:var(--chrome); border-bottom:1px solid var(--line)}
+.search input{width:100%; padding:8px 10px; border:1px solid var(--line-strong); border-radius:4px;
+  background:var(--surface); color:var(--ink); font-family:var(--f-mono); font-size:12px}
+.cat{display:block; width:100%; text-align:left; background:var(--sheet); border:0;
+  border-bottom:1px solid var(--line-2); padding:8px 12px}
+.cat:hover{background:var(--sel-soft)}
+.cat .code{font-family:var(--f-mono); font-size:9.5px; color:var(--sel)}
+.cat .nm{font-size:12px; line-height:1.35; margin-top:2px}
+.cat .pr{font-family:var(--f-mono); font-size:10px; color:var(--ink-3); margin-top:3px}
+.pad{padding:12px}
+.field{margin-bottom:11px}
+.field label{display:block; font-family:var(--f-mono); font-size:9px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:5px}
+.field input{width:100%; padding:8px 10px; border:1px solid var(--line-strong); border-radius:4px;
+  background:var(--surface); color:var(--ink); font-family:var(--f-mono); font-size:15px; font-variant-numeric:tabular-nums}
+.grid3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px}
+.calc{background:var(--surface); border:1px solid var(--line); border-radius:5px; padding:10px 11px; margin-bottom:11px}
+.calc h4{margin:0 0 7px; font-family:var(--f-mono); font-size:9px; letter-spacing:.1em;
   text-transform:uppercase; color:var(--ink-3); font-weight:400}
-.calc .cl{display:flex; justify-content:space-between; align-items:center; padding:6px 0;
-  border-bottom:1px dashed var(--line); font-size:12.5px}
+.calc .cl{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:5px 0;
+  border-bottom:1px dashed var(--line-2); font-size:12px}
 .calc .cl:last-child{border-bottom:0}
 .calc .cl b{font-family:var(--f-mono); font-weight:500; font-variant-numeric:tabular-nums}
-.calc .cl button{border:1px solid var(--amber); color:var(--amber-ink); background:transparent;
-  border-radius:6px; padding:3px 8px; font-size:10px; font-family:var(--f-mono)}
-.grid3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px}
+.calc .cl button{border:1px solid var(--sel-edge); color:var(--sel); background:transparent;
+  border-radius:3px; padding:3px 7px; font-size:9.5px; font-family:var(--f-mono); white-space:nowrap}
+.cta{width:100%; border:1px solid var(--sel); border-radius:4px; background:var(--sel); color:#fff;
+  padding:11px; font-weight:600; font-size:13px; display:flex; justify-content:space-between; align-items:center}
+.cta span{font-family:var(--f-mono); font-weight:400}
+.cta.ghost{background:var(--surface); color:var(--ink); border-color:var(--line-strong); justify-content:center}
 .note{font-size:11px; color:var(--ink-3); line-height:1.5}
-.qbox{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin-bottom:12px}
-.qbox .qh{display:flex; justify-content:space-between; align-items:center; font-size:12.5px; font-weight:600}
-.qbox .ql{font-family:var(--f-mono); font-size:10.5px; color:var(--ink-3); margin-top:6px; line-height:1.7}
-.badge{font-family:var(--f-mono); font-size:9.5px; padding:2px 7px; border-radius:999px}
-.badge.warn{background:var(--amber-soft); color:var(--amber-ink)}
-.badge.ok{background:var(--slate-soft); color:var(--slate)}
-.bar{height:5px; border-radius:3px; background:var(--sunk); overflow:hidden; margin:10px 0 4px}
-.bar i{display:block; height:100%; width:0; background:var(--amber); transition:width .35s linear}
-.toast{position:absolute; left:16px; right:16px; bottom:74px; background:var(--ink); color:var(--ground);
-  border-radius:10px; padding:11px 14px; font-size:12px; box-shadow:var(--shadow-lift);
-  opacity:0; transform:translateY(8px); transition:opacity .22s, transform .22s; pointer-events:none}
+.qbox{background:var(--surface); border:1px solid var(--line); border-radius:5px; padding:10px 11px; margin-bottom:11px}
+.qbox .qh{display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:12px; font-weight:600}
+.qbox .ql{font-family:var(--f-mono); font-size:10px; color:var(--ink-3); margin-top:5px; line-height:1.7}
+.badge{font-family:var(--f-mono); font-size:9px; padding:2px 6px; border-radius:3px; white-space:nowrap}
+.badge.warn{background:var(--warn-soft); color:var(--warn)}
+.badge.ok{background:var(--sel-soft); color:var(--sel)}
+.pills{display:flex; gap:5px; flex-wrap:wrap}
+.pill{border:1px solid var(--line-strong); background:var(--surface); border-radius:4px; padding:5px 10px; font-size:11px}
+.pill.on{border-color:var(--sel); background:var(--sel-soft); color:var(--sel); font-weight:600}
+.bar{height:5px; border-radius:2px; background:var(--sunk); overflow:hidden; margin:9px 0 4px}
+.bar i{display:block; height:100%; width:0; background:var(--sel-2); transition:width .3s linear}
+.objrow{display:grid; grid-template-columns:1fr auto; gap:2px 10px; width:100%; text-align:left;
+  background:var(--sheet); border:0; border-bottom:1px solid var(--line-2); padding:10px 12px}
+.objrow:hover{background:var(--surface-2)}
+.objrow .t{font-weight:600; font-size:12.5px}
+.objrow .a{font-family:var(--f-mono); font-size:9.5px; color:var(--ink-3)}
+.objrow .s{grid-row:1/3; grid-column:2; align-self:center; text-align:right; font-family:var(--f-mono);
+  font-size:11.5px; font-variant-numeric:tabular-nums}
+.objrow.act{box-shadow:inset 3px 0 0 var(--sel-2)}
+.toast{position:absolute; left:12px; right:12px; bottom:66px; background:var(--ink); color:var(--ground);
+  border-radius:4px; padding:9px 12px; font-size:11.5px; box-shadow:var(--shadow-lift);
+  opacity:0; transform:translateY(6px); transition:opacity .2s, transform .2s; pointer-events:none; z-index:9}
 .toast.show{opacity:1; transform:none}
-.objcard{background:var(--surface); border-bottom:1px solid var(--line); padding:14px 16px;
-  display:grid; grid-template-columns:1fr auto; gap:3px 10px; text-align:left; width:100%; border-left:0; border-right:0; border-top:0}
-.objcard .t{font-weight:600; font-size:13.5px}
-.objcard .a{font-size:11px; color:var(--ink-3)}
-.objcard .s{grid-row:1/3; grid-column:2; align-self:center; text-align:right;
-  font-family:var(--f-mono); font-size:12.5px; font-variant-numeric:tabular-nums}
-.objcard.act{border-left:3px solid var(--amber); padding-left:13px}
 
-/* ---------- generic slide furniture ---------- */
-.cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(232px,1fr)); gap:clamp(16px,2.2vw,26px); margin-top:36px}
-.card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:20px; box-shadow:var(--shadow)}
-.card h3{font-size:1.06rem; margin-bottom:8px}
-.card p{font-size:.9rem; color:var(--ink-2); line-height:1.55}
-.card .k{font-family:var(--f-mono); font-size:10px; letter-spacing:.13em; text-transform:uppercase;
-  color:var(--amber-ink); display:block; margin-bottom:10px}
-.plain{border:0; background:none; box-shadow:none; padding:0; border-left:2px solid var(--line); padding-left:18px}
-.plain .k{color:var(--ink-3)}
+/* ---- окно ПК-версии ---- */
+.win{border:1px solid var(--line-strong); border-radius:7px; overflow:hidden; background:var(--chrome);
+  box-shadow:var(--shadow-lift); display:flex; flex-direction:column; min-width:0}
+.win-title{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:7px 11px;
+  background:var(--chrome-2); border-bottom:1px solid var(--line)}
+.win-title .t{font-family:var(--f-mono); font-size:11px; color:var(--ink-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.win-title .wb{display:flex; gap:6px}
+.win-title .wb i{width:11px; height:11px; border-radius:50%; background:var(--line-strong); display:block}
+.win-menu{display:flex; gap:2px; padding:3px 6px; background:var(--chrome); border-bottom:1px solid var(--line-2);
+  font-size:11.5px; color:var(--ink-2); overflow-x:auto; scrollbar-width:none}
+.win-menu::-webkit-scrollbar{display:none}
+.win-menu span{padding:3px 8px; border-radius:3px; white-space:nowrap}
+.win-menu span:hover{background:var(--sel-soft); color:var(--sel)}
+.win-tools{display:flex; gap:4px; padding:6px 8px; background:var(--chrome); border-bottom:1px solid var(--line);
+  overflow-x:auto; scrollbar-width:none}
+.win-tools::-webkit-scrollbar{display:none}
+.win-main{display:grid; grid-template-columns:158px minmax(0,1fr); background:var(--sheet)}
+.tree{border-right:1px solid var(--line); padding:8px 0; background:var(--surface-2); font-size:11.5px}
+.tree .th{font-family:var(--f-mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-3); padding:0 11px 7px}
+.tree button{display:block; width:100%; text-align:left; border:0; background:none; padding:4px 11px 4px 22px;
+  font-size:11.5px; color:var(--ink-2); position:relative}
+.tree button.root{padding-left:11px; font-weight:600; color:var(--ink)}
+.tree button:hover{background:var(--sel-soft); color:var(--sel)}
+.tree button.cur{background:var(--sel-soft); color:var(--sel); font-weight:600; box-shadow:inset 3px 0 0 var(--sel-2)}
+.tree button .cnt{float:right; font-family:var(--f-mono); font-size:9.5px; color:var(--ink-3)}
+.win-status{display:flex; gap:14px; flex-wrap:wrap; padding:5px 11px; background:var(--chrome);
+  border-top:1px solid var(--line); font-family:var(--f-mono); font-size:9.5px; color:var(--ink-3)}
+.win-status b{color:var(--ink-2); font-weight:500}
+.win-grid{max-height:min(400px,50svh); overflow:auto}
+.win-grid::-webkit-scrollbar{width:8px; height:8px}
+.win-grid::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:4px}
+@media (max-width:760px){.win-main{grid-template-columns:1fr} .tree{display:none}}
 
-/* flow */
-.flow{display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:stretch; margin-top:34px}
-.node{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:20px; box-shadow:var(--shadow)}
-.node h3{font-size:1.15rem}
-.node p{font-size:.875rem; color:var(--ink-2); margin-top:7px; line-height:1.5}
-.node ul{margin:12px 0 0; padding-left:16px; font-size:.83rem; color:var(--ink-3); line-height:1.75}
-.node .k{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:8px}
-.node--pc{border-color:var(--slate); box-shadow:0 0 0 1px var(--slate) inset, var(--shadow)}
-.node--pc .k{color:var(--slate)}
+.pair{display:grid; grid-template-columns:minmax(0,1fr) minmax(250px,300px); gap:clamp(20px,3vw,38px); align-items:start; margin-top:30px}
+@media (max-width:1120px){.pair{grid-template-columns:1fr}}
+.link-notes{list-style:none; margin:18px 0 0; padding:0; display:grid; gap:9px}
+.link-notes li{display:grid; grid-template-columns:auto 1fr; gap:10px; font-size:.875rem; color:var(--ink-2); line-height:1.5}
+.link-notes b{font-family:var(--f-mono); font-size:10px; color:var(--sel); padding-top:3px}
+.mini{width:270px; max-width:100%}
+.mini .phone{width:270px; height:auto; min-height:0; border-radius:26px; padding:7px}
+.mini .scr{border-radius:20px}
+
+/* ---- общие блоки слайдов ---- */
+.cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:clamp(14px,2vw,22px); margin-top:32px}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:18px; box-shadow:var(--shadow)}
+.card h3{font-size:1.02rem; margin-bottom:7px}
+.card p{font-size:.88rem; color:var(--ink-2); line-height:1.55}
+.card .k{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--sel); display:block; margin-bottom:9px}
+.flow{display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:stretch; margin-top:30px}
+.node{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:18px; box-shadow:var(--shadow)}
+.node h3{font-size:1.08rem}
+.node p{font-size:.86rem; color:var(--ink-2); margin-top:6px; line-height:1.5}
+.node ul{margin:11px 0 0; padding-left:16px; font-size:.82rem; color:var(--ink-3); line-height:1.75}
+.node .k{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-3); display:block; margin-bottom:7px}
+.node--pc{border-color:var(--sel-edge); box-shadow:0 0 0 1px var(--sel-edge) inset, var(--shadow)}
+.node--pc .k{color:var(--sel)}
 .node--quiet{background:transparent; box-shadow:none; border-style:dashed}
-.link{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:0 14px; min-width:96px}
-.link-line{width:100%; height:2px; background:linear-gradient(90deg,var(--line-strong),var(--amber)); position:relative}
+.link{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; padding:0 12px; min-width:92px}
+.link-line{width:100%; height:2px; background:linear-gradient(90deg,var(--line-strong),var(--sel-2)); position:relative}
 .link-line::after{content:''; position:absolute; right:0; top:50%; width:7px; height:7px;
-  border-top:2px solid var(--amber); border-right:2px solid var(--amber); transform:translateY(-50%) rotate(45deg)}
-.link-label{font-family:var(--f-mono); font-size:10px; color:var(--ink-3); letter-spacing:.05em; text-align:center}
-@media (max-width:860px){
+  border-top:2px solid var(--sel-2); border-right:2px solid var(--sel-2); transform:translateY(-50%) rotate(45deg)}
+.link-label{font-family:var(--f-mono); font-size:9.5px; color:var(--ink-3); text-align:center; line-height:1.5}
+@media (max-width:900px){
   .flow{grid-template-columns:1fr}
-  .link{flex-direction:row; padding:14px 0; min-height:56px}
-  .link-line{width:2px; height:38px; background:linear-gradient(180deg,var(--line-strong),var(--amber))}
+  .link{flex-direction:row; padding:12px 0; min-height:52px}
+  .link-line{width:2px; height:34px; background:linear-gradient(180deg,var(--line-strong),var(--sel-2))}
   .link-line::after{right:auto; left:50%; top:auto; bottom:0; transform:translateX(-50%) rotate(135deg)}
 }
-.opts{display:grid; grid-template-columns:repeat(auto-fit,minmax(216px,1fr)); gap:14px; margin-top:26px}
-.opt{border:1px solid var(--line); border-radius:12px; padding:15px 16px; background:var(--surface)}
-.opt.pick{border-color:var(--amber); background:var(--amber-soft)}
-.opt h4{margin:0 0 6px; font-family:var(--f-disp); font-weight:500; font-size:1rem}
-.opt p{font-size:.83rem; color:var(--ink-2); line-height:1.5}
-.opt .tag{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase;
-  color:var(--amber-ink); display:block; margin-bottom:7px}
-
-/* scope table */
-.scope{display:grid; grid-template-columns:1.55fr 1fr; gap:clamp(20px,3vw,44px); margin-top:34px; align-items:start}
+.opts{display:grid; grid-template-columns:repeat(auto-fit,minmax(214px,1fr)); gap:12px; margin-top:22px}
+.opt{border:1px solid var(--line); border-radius:6px; padding:14px 15px; background:var(--surface)}
+.opt.pick{border-color:var(--sel-edge); background:var(--sel-soft)}
+.opt h4{margin:0 0 5px; font-size:.98rem}
+.opt p{font-size:.82rem; color:var(--ink-2); line-height:1.5}
+.opt .tag{font-family:var(--f-mono); font-size:9px; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--sel); display:block; margin-bottom:6px}
+.scope{display:grid; grid-template-columns:1.55fr 1fr; gap:clamp(18px,3vw,40px); margin-top:30px; align-items:start}
 .slist{list-style:none; margin:0; padding:0; border-top:1px solid var(--line)}
-.slist li{display:grid; grid-template-columns:auto 1fr; gap:14px; padding:14px 0; border-bottom:1px solid var(--line)}
+.slist li{display:grid; grid-template-columns:auto 1fr; gap:13px; padding:13px 0; border-bottom:1px solid var(--line)}
 .slist .n{font-family:var(--f-mono); font-size:10px; color:var(--ink-3); padding-top:4px}
-.slist h3{font-size:1rem}
-.slist p{font-size:.865rem; color:var(--ink-2); margin-top:4px; line-height:1.5}
-.out{border:1px dashed var(--line-strong); border-radius:12px; padding:18px}
-.out h3{font-size:.98rem; margin-bottom:10px}
-.out ul{margin:0; padding-left:17px; color:var(--ink-3); font-size:.86rem; line-height:1.85}
-@media (max-width:860px){.scope{grid-template-columns:1fr}}
-
-/* stages with ruler */
-.ruler{height:22px; margin-top:32px; border-top:2px solid var(--line-strong);
+.slist h3{font-size:.98rem}
+.slist p{font-size:.85rem; color:var(--ink-2); margin-top:3px; line-height:1.5}
+.out{border:1px dashed var(--line-strong); border-radius:6px; padding:16px}
+.out h3{font-size:.96rem; margin-bottom:9px}
+.out ul{margin:0; padding-left:17px; color:var(--ink-3); font-size:.85rem; line-height:1.85}
+@media (max-width:900px){.scope{grid-template-columns:1fr}}
+.ruler{height:20px; margin-top:28px; border-top:2px solid var(--line-strong);
   background-image:repeating-linear-gradient(90deg,var(--line-strong) 0 1px,transparent 1px 24px);
-  background-size:100% 8px; background-repeat:no-repeat}
-.stages{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(206px,1fr)); gap:clamp(14px,2vw,26px)}
-.stages li{padding-top:16px; position:relative}
-.stages li::before{content:''; position:absolute; top:-24px; left:0; width:2px; height:22px; background:var(--amber)}
-.stages .n{font-family:var(--f-mono); font-size:10px; letter-spacing:.14em; color:var(--amber-ink)}
-.stages h3{font-size:1.02rem; margin-top:7px}
-.stages p{font-size:.86rem; color:var(--ink-2); margin-top:7px; line-height:1.5}
-.stages .dl{display:block; margin-top:10px; font-size:.79rem; color:var(--ink-3);
-  border-top:1px solid var(--line); padding-top:8px}
-
-/* asks */
-.asks{list-style:none; margin:34px 0 0; padding:0; display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(244px,1fr)); gap:14px}
-.asks li{background:var(--surface); border:1px solid var(--line); border-radius:13px; padding:18px; box-shadow:var(--shadow)}
-.asks .q{font-family:var(--f-disp); font-size:1.02rem; font-weight:500; display:flex; gap:9px; align-items:baseline}
-.asks .q i{font-family:var(--f-mono); font-style:normal; font-size:10px; color:var(--amber-ink)}
-.asks p{font-size:.85rem; color:var(--ink-2); margin-top:9px; line-height:1.5}
-.asks .vars{font-family:var(--f-mono); font-size:10.5px; color:var(--ink-3); margin-top:10px;
-  border-top:1px dashed var(--line); padding-top:9px; line-height:1.7}
-.foot{margin-top:38px; padding-top:18px; border-top:1px solid var(--line);
-  font-family:var(--f-mono); font-size:10.5px; color:var(--ink-3); letter-spacing:.04em; line-height:1.8}
+  background-size:100% 7px; background-repeat:no-repeat}
+.stages{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(202px,1fr)); gap:clamp(13px,2vw,24px)}
+.stages li{padding-top:14px; position:relative}
+.stages li::before{content:''; position:absolute; top:-22px; left:0; width:2px; height:20px; background:var(--sel-2)}
+.stages .n{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.13em; color:var(--sel)}
+.stages h3{font-size:1rem; margin-top:6px}
+.stages p{font-size:.85rem; color:var(--ink-2); margin-top:6px; line-height:1.5}
+.stages .dl{display:block; margin-top:9px; font-size:.78rem; color:var(--ink-3); border-top:1px solid var(--line); padding-top:7px}
+.asks{list-style:none; margin:30px 0 0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px}
+.asks li{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:16px; box-shadow:var(--shadow)}
+.asks li.first{border-color:var(--sel-edge); background:var(--sel-soft)}
+.asks .q{font-size:1rem; font-weight:600; display:flex; gap:8px; align-items:baseline}
+.asks .q i{font-family:var(--f-mono); font-style:normal; font-size:10px; color:var(--sel)}
+.asks p{font-size:.845rem; color:var(--ink-2); margin-top:8px; line-height:1.5}
+.asks .vars{font-family:var(--f-mono); font-size:10px; color:var(--ink-3); margin-top:9px;
+  border-top:1px dashed var(--line); padding-top:8px; line-height:1.7}
+.foot{margin-top:32px; padding-top:16px; border-top:1px solid var(--line);
+  font-family:var(--f-mono); font-size:10px; color:var(--ink-3); line-height:1.8}
 </style>
 
 <div class="progress"><i id="prog"></i></div>
 
 <nav class="rail" aria-label="Разделы">
   <a href="#s1" class="on"><span class="lab">Прототип</span><span class="num">01</span><span class="tick"></span></a>
-  <a href="#s2"><span class="lab">Зачем</span><span class="num">02</span><span class="tick"></span></a>
-  <a href="#s3"><span class="lab">Связь с ПК</span><span class="num">03</span><span class="tick"></span></a>
-  <a href="#s4"><span class="lab">Состав MVP</span><span class="num">04</span><span class="tick"></span></a>
-  <a href="#s5"><span class="lab">Порядок работ</span><span class="num">05</span><span class="tick"></span></a>
-  <a href="#s6"><span class="lab">Что нужно</span><span class="num">06</span><span class="tick"></span></a>
+  <a href="#s2"><span class="lab">Одна смета</span><span class="num">02</span><span class="tick"></span></a>
+  <a href="#s3"><span class="lab">Зачем</span><span class="num">03</span><span class="tick"></span></a>
+  <a href="#s4"><span class="lab">Связь с ПК</span><span class="num">04</span><span class="tick"></span></a>
+  <a href="#s5"><span class="lab">Состав MVP</span><span class="num">05</span><span class="tick"></span></a>
+  <a href="#s6"><span class="lab">Этапы</span><span class="num">06</span><span class="tick"></span></a>
+  <a href="#s7"><span class="lab">Что нужно</span><span class="num">07</span><span class="tick"></span></a>
 </nav>
 
 <main>
@@ -318,101 +367,133 @@ button{font:inherit; color:inherit; cursor:pointer}
   <div class="masthead">
     <div class="eyebrow"><b>01</b> Прототип · предложение</div>
     <h1>Турбосметчик<em>в кармане</em></h1>
-    <p class="thesis">Смета набивается там, где вы стоите: на объекте, у заказчика, в машине. Без сети, без ноутбука. ПК-версия остаётся тем, чем и была — местом, где смета доводится до печати.</p>
+    <p class="thesis">Та же смета, та же таблица, тот же порядок набора — только на телефоне и без сети. ПК-версия остаётся тем, чем и была: местом, где смета доводится до печати.</p>
     <div class="chips">
-      <span class="chip hot">работает офлайн</span>
-      <span class="chip">справочник на устройстве</span>
+      <span class="chip hot">табличный набор, как на ПК</span>
+      <span class="chip">работает офлайн</span>
+      <span class="chip">ввод прямо в ячейку</span>
       <span class="chip">выгрузка файла на ПК</span>
-      <span class="chip">замеры → объёмы</span>
     </div>
     <ol class="steps" id="steps">
-      <li class="on"><button data-goto="objects"><span class="sn">01</span><span class="st">Открыть объект<span class="sd">Список смет лежит на телефоне и открывается без интернета</span></span></button></li>
-      <li><button data-goto="add"><span class="sn">02</span><span class="st">Найти расценку<span class="sd">Поиск по коду или названию в локальном справочнике</span></span></button></li>
-      <li><button data-goto="measure"><span class="sn">03</span><span class="st">Снять замер<span class="sd">Длина × ширина × высота — объёмы считаются сами</span></span></button></li>
-      <li><button data-goto="smeta"><span class="sn">04</span><span class="st">Увидеть итог<span class="sd">Прямые затраты, НР, СП и НДС пересчитываются на каждой позиции</span></span></button></li>
+      <li><button data-goto="objects"><span class="sn">01</span><span class="st">Открыть смету<span class="sd">Список объектов лежит на телефоне и открывается без интернета</span></span></button></li>
+      <li><button data-goto="add"><span class="sn">02</span><span class="st">Справочник расценок<span class="sd">Поиск по обоснованию или названию — строка встаёт в текущий раздел</span></span></button></li>
+      <li class="on"><button data-goto="smeta"><span class="sn">03</span><span class="st">Набор в таблице<span class="sd">Нажмите на «Кол-во», «К» или «Цена» — правится прямо в ячейке</span></span></button></li>
+      <li><button data-goto="measure"><span class="sn">04</span><span class="st">Замеры<span class="sd">Длина × ширина × высота — объём уходит в ячейку «Кол-во»</span></span></button></li>
       <li><button data-goto="sync"><span class="sn">05</span><span class="st">Отдать на ПК<span class="sd">Один файл — и смета открывается в десктопной версии</span></span></button></li>
     </ol>
-    <p class="hint">↓ прототип справа рабочий — нажимайте</p>
+    <p class="hint">↓ прототип рабочий — правьте количества, смотрите итог</p>
   </div>
 
   <div class="phone-wrap">
     <div class="phone"><div class="scr">
-      <div class="statusbar">
-        <span>14:32</span>
-        <span class="offline"><i></i>ОФЛАЙН · СЕТИ НЕТ</span>
-        <span>76 %</span>
-      </div>
+      <div class="statusbar"><span>14:32</span><span class="offline"><i></i>ОФЛАЙН · СЕТИ НЕТ</span><span>76 %</span></div>
       <div class="appbar">
-        <div class="obj" id="appObj">Ремонт кв. 74</div>
-        <div class="addr" id="appAddr">ЖК «Северный», корп. 3 · черновая отделка</div>
+        <div class="obj">Ремонт кв. 74</div>
+        <div class="addr">ЛСР-02-01 · ЖК «Северный», корп. 3</div>
       </div>
+      <div class="toolbar" id="toolbar"></div>
       <div class="body" id="body"></div>
       <div class="toast" id="toast"></div>
       <div class="tabbar" id="tabs">
-        <button data-goto="objects"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/></svg>Объекты</button>
-        <button data-goto="smeta" class="on"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h8M9 16h8M9 8h4"/></svg>Смета</button>
-        <button data-goto="measure"><svg viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="8" rx="1.5"/><path d="M7 8v3M11 8v4M15 8v3M19 8v4"/></svg>Замеры</button>
+        <button data-goto="objects"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/></svg>Объекты</button>
+        <button data-goto="smeta" class="on"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M9 9v11M15 9v11"/></svg>Смета</button>
+        <button data-goto="measure"><svg viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M7 8v3M11 8v4M15 8v3M19 8v4"/></svg>Замеры</button>
         <button data-goto="sync"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.6-5.7L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-13.6 5.7L4 16"/><path d="M4 20v-4h4"/></svg>Обмен</button>
       </div>
     </div></div>
-    <p class="caption">рабочий прототип · расценки и цены демонстрационные</p>
+    <p class="caption">рабочий прототип · обоснования, цены и нормативы условные</p>
   </div>
 </div></section>
 
 <!-- ===== 02 ===== -->
 <section class="slide" id="s2"><div class="slide-in">
-  <div class="eyebrow"><b>02</b> Зачем это нужно</div>
-  <h2 class="h2">Программа есть. Минус ровно один — она привязана к столу.</h2>
-  <p class="lede">Мобильная версия не заменяет «Турбосметчик», а закрывает те часы, когда до компьютера не дотянуться. Отсюда четыре принципа, на которых стоит весь прототип.</p>
-  <div class="cols">
-    <article class="card"><span class="k">Принцип 01</span><h3>Офлайн — это не режим</h3>
-      <p>Справочник расценок и все сметы физически лежат на телефоне. В подвале, на этаже без связи, в лифте — приложение работает одинаково. Сеть нужна ровно один раз: чтобы отдать готовое.</p></article>
-    <article class="card"><span class="k">Принцип 02</span><h3>Телефон набивает — ПК оформляет</h3>
-      <p>Никаких попыток ужать десктопный интерфейс в 6 дюймов. На телефоне — ввод, поиск, замеры, прикидка суммы. Печатные формы, нормативные проверки и сдача заказчику остаются на ПК.</p></article>
-    <article class="card"><span class="k">Принцип 03</span><h3>Позиция за четыре касания</h3>
-      <p>Поиск → расценка → объём → раздел. Всё, что можно посчитать за вас — площадь пола, стен, периметр — считается из замеров, а не набивается вручную на калькуляторе.</p></article>
-    <article class="card"><span class="k">Принцип 04</span><h3>Один формат на двоих</h3>
-      <p>Телефон и ПК читают одну и ту же структуру сметы. Не «экспорт в чужой формат с потерями», а тот же документ, просто открытый на другом устройстве.</p></article>
+  <div class="eyebrow"><b>02</b> Одна смета — два экрана</div>
+  <h2 class="h2">Ниже — та же самая смета в оконном виде</h2>
+  <p class="lede">Это не второй документ и не «экспорт». Обе таблицы читают одни и те же строки: измените количество на телефоне выше — цифры здесь пересчитаются сразу. Так и должно работать между телефоном и ПК-версией.</p>
+  <div class="pair">
+    <div class="win" id="pcwin">
+      <div class="win-title"><span class="t">Турбосметчик — [Ремонт кв. 74 · ЛСР-02-01]</span><span class="wb"><i></i><i></i><i></i></span></div>
+      <div class="win-menu"><span>Файл</span><span>Правка</span><span>Вид</span><span>Смета</span><span>Справочники</span><span>Расчёт</span><span>Сервис</span><span>Окно</span><span>Справка</span></div>
+      <div class="win-tools">
+        <button class="tbtn" type="button" data-pcadd>+ Позиция · Ins</button>
+        <button class="tbtn" type="button" data-pcdel>Удалить · Del</button>
+        <button class="tbtn" type="button" data-toastpc="В прототипе разделы фиксированные — на ПК здесь открывается диалог создания раздела">Раздел</button>
+        <button class="tbtn" type="button" data-toastpc="Коэффициент правится прямо в колонке «К» — попробуйте нажать на ячейку">Коэффициенты</button>
+        <button class="tbtn" type="button" data-toastpc="Смета пересчитывается на каждое изменение — отдельная команда не нужна">Пересчитать · F9</button>
+        <button class="tbtn" type="button" data-toastpc="Печатные формы остаются за ПК-версией — в первую версию мобильного они не входят">Печать</button>
+      </div>
+      <div class="win-main">
+        <nav class="tree" id="pctree"></nav>
+        <div class="win-grid" id="pcgrid"></div>
+      </div>
+      <div class="win-status" id="pcstatus"></div>
+    </div>
+    <div>
+      <ul class="link-notes">
+        <li><b>01</b><span>Колонки те же, что в локальном сметном расчёте: обоснование, наименование, единица, количество, коэффициент, цена, стоимость.</span></li>
+        <li><b>02</b><span>Разделы, итоги по разделу и итоговый блок с накладными, сметной прибылью и НДС совпадают построчно.</span></li>
+        <li><b>03</b><span>Набор одинаковый: выбрал раздел → вставил позицию из справочника → вписал количество в ячейку. Ничего нового заучивать не нужно.</span></li>
+        <li><b>04</b><span>На телефоне таблица прокручивается вбок, а колонка «№» остаётся на месте — иначе восемь колонок не помещаются в ладонь.</span></li>
+      </ul>
+      <p class="caption" style="text-align:left; margin-top:16px">Окно ПК-версии нарисовано по типовому виду сметной программы. Пришлите скриншот вашей — приведу к ней один в один.</p>
+    </div>
   </div>
 </div></section>
 
 <!-- ===== 03 ===== -->
 <section class="slide" id="s3"><div class="slide-in">
-  <div class="eyebrow"><b>03</b> Как это живёт рядом с ПК-версией</div>
+  <div class="eyebrow"><b>03</b> Зачем это нужно</div>
+  <h2 class="h2">Программа есть. Минус ровно один — она привязана к столу.</h2>
+  <p class="lede">Мобильная версия не заменяет «Турбосметчик», а закрывает те часы, когда до компьютера не дотянуться. Отсюда четыре принципа, на которых стоит весь прототип.</p>
+  <div class="cols">
+    <article class="card"><span class="k">Принцип 01</span><h3>Офлайн — это не режим</h3>
+      <p>Справочник расценок и все сметы лежат на телефоне. В подвале, на этаже без связи, в лифте — приложение работает одинаково. Сеть нужна один раз: отдать готовое.</p></article>
+    <article class="card"><span class="k">Принцип 02</span><h3>Тот же набор, что на ПК</h3>
+      <p>Таблица, разделы, ввод в ячейку, коэффициенты. Не «мобильная упрощённая версия», а привычный способ работы, ужатый до размеров экрана без потери колонок.</p></article>
+    <article class="card"><span class="k">Принцип 03</span><h3>Телефон набивает — ПК оформляет</h3>
+      <p>На телефоне ввод, поиск, замеры и прикидка суммы. Печатные формы, нормативные проверки и сдача заказчику остаются там, где они уже работают.</p></article>
+    <article class="card"><span class="k">Принцип 04</span><h3>Один формат на двоих</h3>
+      <p>Телефон и ПК читают одну структуру сметы. Не экспорт в чужой формат с потерями, а тот же документ, открытый на другом устройстве.</p></article>
+  </div>
+</div></section>
+
+<!-- ===== 04 ===== -->
+<section class="slide" id="s4"><div class="slide-in">
+  <div class="eyebrow"><b>04</b> Как это живёт рядом с ПК-версией</div>
   <h2 class="h2">Телефон — вход, компьютер — выход</h2>
   <p class="lede">Смета рождается в поле и дозревает на ПК. Между ними — один файл, который переносится любым удобным способом.</p>
   <div class="flow">
     <article class="node"><span class="k">Где вы сейчас</span><h3>Телефон</h3>
       <p>Локальная база: справочник расценок и сметы. Интернет не участвует.</p>
-      <ul><li>набивка позиций</li><li>замеры и фотофиксация</li><li>предварительный итог с НДС</li></ul></article>
+      <ul><li>набор позиций в таблице</li><li>замеры и фотофиксация</li><li>предварительный итог с НДС</li></ul></article>
     <div class="link"><span class="link-line"></span><span class="link-label">файл сметы<br>мессенджер · почта · облако</span></div>
     <article class="node node--pc"><span class="k">Где вы обычно</span><h3>ПК «Турбосметчик»</h3>
       <p>Открывает тот же документ: разделы, объёмы, коэффициенты — на местах.</p>
       <ul><li>нормативные проверки</li><li>накладные и сметная прибыль</li><li>печатные формы</li></ul></article>
     <div class="link"><span class="link-line"></span><span class="link-label">XLSX · PDF</span></div>
     <article class="node node--quiet"><span class="k">Кому</span><h3>Заказчик</h3>
-      <p>Готовая смета в привычном виде — так же, как и сейчас. Для него ничего не меняется, кроме скорости.</p></article>
+      <p>Готовая смета в привычном виде — так же, как и сейчас. Для него меняется только скорость.</p></article>
   </div>
   <div class="opts">
     <div class="opt pick"><span class="tag">Рекомендую начать с этого</span><h4>Обмен файлом</h4>
       <p>Смета выгружается одним файлом и уходит на ПК как угодно. Нет сервера — нет расходов, нет простоя, нет чужих данных на стороне.</p></div>
     <div class="opt"><span class="tag">Шаг второй</span><h4>Свой сервер синхронизации</h4>
-      <p>Телефон и ПК сами подтягивают изменения. Удобнее в ежедневной работе, но сервер нужно где-то держать и обслуживать.</p></div>
+      <p>Телефон и ПК сами подтягивают изменения. Удобнее в работе, но сервер нужно где-то держать и обслуживать.</p></div>
     <div class="opt"><span class="tag">Если ПК рядом</span><h4>Локальная сеть</h4>
-      <p>Прямая передача по Wi-Fi между телефоном и компьютером. Без интернета и без посредников — но только когда оба в одной сети.</p></div>
+      <p>Прямая передача по Wi-Fi между телефоном и компьютером. Без интернета и посредников — но только когда оба в одной сети.</p></div>
   </div>
 </div></section>
 
-<!-- ===== 04 ===== -->
-<section class="slide" id="s4"><div class="slide-in">
-  <div class="eyebrow"><b>04</b> Состав первой версии</div>
+<!-- ===== 05 ===== -->
+<section class="slide" id="s5"><div class="slide-in">
+  <div class="eyebrow"><b>05</b> Состав первой версии</div>
   <h2 class="h2">Пять экранов, которые закрывают работу в поле</h2>
   <div class="scope">
     <ol class="slist">
       <li><span class="n">01</span><div><h3>Объекты</h3><p>Список смет с суммами и отметкой, что ещё не отдано на ПК. Открывается мгновенно, потому что всё локально.</p></div></li>
-      <li><span class="n">02</span><div><h3>Смета</h3><p>Позиции по разделам: код расценки, объём, единица, цена, коэффициент. Внизу — живой итог: прямые затраты, НР, СП, НДС.</p></div></li>
-      <li><span class="n">03</span><div><h3>Справочник и добавление</h3><p>Поиск по коду и названию, ввод объёма с быстрыми кнопками, коэффициент на стеснённые условия, выбор раздела.</p></div></li>
-      <li><span class="n">04</span><div><h3>Замеры</h3><p>Габариты помещения превращаются в площадь пола, потолка, стен и периметр — с вычетом проёмов. Любое значение уходит в смету одним нажатием.</p></div></li>
+      <li><span class="n">02</span><div><h3>Смета — таблица</h3><p>Полная сметная таблица с разделами, коэффициентами, итогами по разделу и итоговым блоком. Правка прямо в ячейке.</p></div></li>
+      <li><span class="n">03</span><div><h3>Справочник расценок</h3><p>Поиск по обоснованию и названию, вставка строки в текущий раздел — как по F3 в десктопной программе.</p></div></li>
+      <li><span class="n">04</span><div><h3>Замеры</h3><p>Габариты помещения превращаются в площадь пола, потолка, стен и периметр с вычетом проёмов. Значение уходит прямо в «Кол-во».</p></div></li>
       <li><span class="n">05</span><div><h3>Обмен</h3><p>Очередь несинхронизированных изменений и выгрузка файла для ПК, XLSX или PDF прямо с телефона.</p></div></li>
     </ol>
     <aside class="out">
@@ -423,24 +504,24 @@ button{font:inherit; color:inherit; cursor:pointer}
         <li>совместная работа нескольких сметчиков над одной сметой</li>
         <li>автоматическое обновление сборников расценок</li>
       </ul>
-      <p class="note" style="margin-top:14px">Каждый пункт — это отдельный крупный блок. Разумнее сначала получить работающую набивку в поле, а потом решать, что из этого действительно нужно на телефоне.</p>
+      <p class="note" style="margin-top:13px">Каждый пункт — отдельный крупный блок. Разумнее сначала получить работающий набор в поле, а потом решать, что из этого действительно нужно на телефоне.</p>
     </aside>
   </div>
 </div></section>
 
-<!-- ===== 05 ===== -->
-<section class="slide" id="s5"><div class="slide-in">
-  <div class="eyebrow"><b>05</b> Порядок работ</div>
+<!-- ===== 06 ===== -->
+<section class="slide" id="s6"><div class="slide-in">
+  <div class="eyebrow"><b>06</b> Порядок работ</div>
   <h2 class="h2">Четыре этапа, каждый заканчивается тем, что можно потрогать</h2>
   <p class="lede">Это последовательность, а не сроки: сколько займёт каждый этап, станет понятно после ответов на вопросы со следующего экрана.</p>
   <div class="ruler"></div>
   <ol class="stages">
     <li><span class="n">ЭТАП 01</span><h3>Формат данных и ядро расчёта</h3>
       <p>Структура сметы, единая для телефона и ПК. Расчёт прямых затрат, накладных, сметной прибыли и НДС, покрытый тестами.</p>
-      <span class="dl">на выходе: смета считается правильно и одинаково на обоих устройствах</span></li>
-    <li><span class="n">ЭТАП 02</span><h3>Смета и справочник</h3>
-      <p>Экраны объектов, сметы и добавления позиции. Локальная база расценок с поиском, работающая без сети.</p>
-      <span class="dl">на выходе: смету уже можно набить с телефона целиком</span></li>
+      <span class="dl">на выходе: смета считается одинаково на обоих устройствах</span></li>
+    <li><span class="n">ЭТАП 02</span><h3>Таблица и справочник</h3>
+      <p>Сметная таблица с разделами и правкой в ячейке, локальная база расценок с поиском, работа без сети.</p>
+      <span class="dl">на выходе: смету можно набрать с телефона целиком</span></li>
     <li><span class="n">ЭТАП 03</span><h3>Замеры и выгрузка</h3>
       <p>Расчёт объёмов из габаритов помещения, фотофиксация, экспорт в XLSX и PDF прямо с устройства.</p>
       <span class="dl">на выходе: с объекта можно уехать с готовым документом</span></li>
@@ -450,62 +531,70 @@ button{font:inherit; color:inherit; cursor:pointer}
   </ol>
 </div></section>
 
-<!-- ===== 06 ===== -->
-<section class="slide" id="s6"><div class="slide-in">
-  <div class="eyebrow"><b>06</b> Что нужно от тебя, чтобы начать</div>
-  <h2 class="h2">Прототип — это гипотеза. Четыре ответа превращают её в план.</h2>
-  <p class="lede">Репозиторий сейчас пустой, так что мобильную часть пишем с нуля. Чем точнее ответы, тем меньше придётся переделывать на третьем этапе.</p>
+<!-- ===== 07 ===== -->
+<section class="slide" id="s7"><div class="slide-in">
+  <div class="eyebrow"><b>07</b> Что нужно от тебя, чтобы начать</div>
+  <h2 class="h2">Прототип — это гипотеза. Пять ответов превращают её в план.</h2>
+  <p class="lede">Первый вопрос сейчас важнее остальных: без него «в стиле Турбосметчика» я делаю по типовому виду сметной программы, а не по вашей.</p>
   <ol class="asks">
-    <li><div class="q"><i>01</i>Что такое ПК-версия внутри?</div>
-      <p>Язык и среда, в которой она написана, и то, в каком виде она хранит сметы и справочники. От этого зависит, сможем ли мы читать её файлы напрямую или понадобится конвертер.</p>
-      <span class="vars">файлы · локальная БД · сервер · пока только прототип</span></li>
-    <li><div class="q"><i>02</i>Под что делаем?</div>
-      <p>Веб-приложение ставится на телефон без магазина и обновляется мгновенно — самый быстрый путь к рабочей версии. Нативное Android даёт файлы, камеру и работу без браузера.</p>
+    <li class="first"><div class="q"><i>01</i>Скриншоты ПК-версии</div>
+      <p>Главное окно со сметой, справочник расценок и диалог добавления позиции. По ним приведу цвета, шрифты, колонки, панели и порядок кнопок к вашей программе, а не к обобщённому виду.</p>
+      <span class="vars">2–3 картинки закрывают весь вопрос стиля</span></li>
+    <li><div class="q"><i>02</i>Что такое ПК-версия внутри?</div>
+      <p>Язык, среда и то, в каком виде она хранит сметы и справочники. От этого зависит, читаем её файлы напрямую или пишем конвертер.</p>
+      <span class="vars">файлы · локальная БД · сервер · пока прототип</span></li>
+    <li><div class="q"><i>03</i>Под что делаем?</div>
+      <p>Веб-приложение ставится на телефон без магазина и обновляется мгновенно — быстрый путь к рабочей версии. Нативное Android даёт файлы, камеру и работу без браузера.</p>
       <span class="vars">веб-приложение · Android · Android + iOS</span></li>
-    <li><div class="q"><i>03</i>Как переносим сметы?</div>
+    <li><div class="q"><i>04</i>Как переносим сметы?</div>
       <p>Файлом, своим сервером или напрямую по локальной сети. Первый вариант запускается быстрее всего и ничего не стоит в обслуживании.</p>
       <span class="vars">файл · сервер · Wi-Fi · только телефон</span></li>
-    <li><div class="q"><i>04</i>Что обязательно в первой версии?</div>
-      <p>Если из пяти экранов какой-то не нужен — уберём и сэкономим этап. Если чего-то не хватает, лучше узнать это сейчас, а не после ядра расчёта.</p>
-      <span class="vars">позиции · справочник · замеры · экспорт</span></li>
+    <li><div class="q"><i>05</i>Какие колонки обязательны?</div>
+      <p>В прототипе восемь. Если у вас в таблице есть ещё — трудозатраты, машины, материалы, зимние коэффициенты — скажите, добавлю до начала работы, а не после.</p>
+      <span class="vars">№ · обоснование · наименование · ед. · кол-во · К · цена · стоимость</span></li>
   </ol>
-  <p class="foot">Прототип на этой странице — интерактивный макет, а не рабочая программа.<br>
-  Коды расценок, цены, нормативы накладных расходов и сметной прибыли взяты условными, чтобы показать логику расчёта.</p>
+  <p class="foot">Прототип на этой странице — интерактивный макет, а не рабочая программа: данные живут в памяти вкладки и сбрасываются при перезагрузке.<br>
+  Обоснования, цены и нормативы накладных расходов и сметной прибыли взяты условными, чтобы показать логику расчёта.</p>
 </div></section>
 </main>
 
 <script>
 (function(){
   "use strict";
-  /* ---------- данные (демонстрационные) ---------- */
   var CATALOG = [
-    {c:'ФЕР46-04-013-02', n:'Разборка покрытий полов из керамических плиток', u:'м²', p:296, f:.80, g:'Демонтаж'},
-    {c:'ФЕР46-04-001-01', n:'Разборка кирпичных перегородок', u:'м³', p:1480, f:.72, g:'Демонтаж'},
-    {c:'ФЕР46-03-008-04', n:'Демонтаж штукатурки со стен вручную', u:'м²', p:214, f:.86, g:'Демонтаж'},
-    {c:'ФЕР08-02-001-01', n:'Кладка перегородок из газобетонных блоков', u:'м³', p:5620, f:.50, g:'Стены'},
-    {c:'ФЕР15-02-016-03', n:'Штукатурка стен по маякам улучшенная', u:'м²', p:487, f:.62, g:'Стены'},
-    {c:'ФЕР15-04-005-04', n:'Окраска водоэмульсионными составами в два слоя', u:'м²', p:162, f:.55, g:'Стены'},
-    {c:'ФЕР15-01-019-02', n:'Облицовка стен керамической плиткой на клею', u:'м²', p:1385, f:.48, g:'Стены'},
-    {c:'ФЕР11-01-011-01', n:'Устройство стяжек цементных толщиной 40 мм', u:'м²', p:398, f:.38, g:'Полы'},
-    {c:'ФЕР11-01-036-01', n:'Устройство покрытий из керамогранита', u:'м²', p:1240, f:.46, g:'Полы'},
-    {c:'ФЕР11-01-027-03', n:'Устройство покрытий из ламината с подложкой', u:'м²', p:615, f:.40, g:'Полы'},
-    {c:'ФЕР15-01-047-11', n:'Устройство подвесных потолков из ГКЛ по каркасу', u:'м²', p:934, f:.52, g:'Потолки'},
-    {c:'ТЕР10-01-039-01', n:'Установка блоков дверных внутренних', u:'шт', p:2340, f:.60, g:'Проёмы'},
-    {c:'ФЕР08-02-395-01', n:'Прокладка кабеля в гофрированной трубе', u:'п.м.', p:118, f:.58, g:'Инженерия'},
-    {c:'ФЕР20-06-018-04', n:'Прокладка трубопроводов отопления', u:'п.м.', p:742, f:.55, g:'Инженерия'},
-    {c:'ФЕР17-01-005-02', n:'Установка смесителей', u:'шт', p:690, f:.66, g:'Инженерия'}
+    {c:'ФЕР46-04-013-02', n:'Разборка покрытий полов из керамических плиток', u:'м²', p:296, f:.80, g:1},
+    {c:'ФЕР46-04-001-01', n:'Разборка кирпичных перегородок', u:'м³', p:1480, f:.72, g:1},
+    {c:'ФЕР46-03-008-04', n:'Демонтаж штукатурки со стен вручную', u:'м²', p:214, f:.86, g:1},
+    {c:'ФЕР08-02-001-01', n:'Кладка перегородок из газобетонных блоков', u:'м³', p:5620, f:.50, g:2},
+    {c:'ФЕР15-02-016-03', n:'Штукатурка стен по маякам улучшенная', u:'м²', p:487, f:.62, g:2},
+    {c:'ФЕР15-04-005-04', n:'Окраска водоэмульсионными составами в два слоя', u:'м²', p:162, f:.55, g:2},
+    {c:'ФЕР15-01-019-02', n:'Облицовка стен керамической плиткой на клею', u:'м²', p:1385, f:.48, g:2},
+    {c:'ФЕР11-01-011-01', n:'Устройство стяжек цементных толщиной 40 мм', u:'м²', p:398, f:.38, g:3},
+    {c:'ФЕР11-01-036-01', n:'Устройство покрытий из керамогранита', u:'м²', p:1240, f:.46, g:3},
+    {c:'ФЕР11-01-027-03', n:'Устройство покрытий из ламината с подложкой', u:'м²', p:615, f:.40, g:3},
+    {c:'ФЕР15-01-047-11', n:'Устройство подвесных потолков из ГКЛ по каркасу', u:'м²', p:934, f:.52, g:4},
+    {c:'ТЕР10-01-039-01', n:'Установка блоков дверных внутренних', u:'шт', p:2340, f:.60, g:4},
+    {c:'ФЕР08-02-395-01', n:'Прокладка кабеля в гофрированной трубе', u:'п.м.', p:118, f:.58, g:5},
+    {c:'ФЕР20-06-018-04', n:'Прокладка трубопроводов отопления', u:'п.м.', p:742, f:.55, g:5},
+    {c:'ФЕР17-01-005-02', n:'Установка смесителей', u:'шт', p:690, f:.66, g:5}
   ];
-  var ORDER = ['Демонтаж','Стены','Полы','Потолки','Проёмы','Инженерия'];
-  var NR = .89, SP = .65, NDS = .20, KOEF = 1.15;
+  var SECT = [
+    {id:1, t:'Раздел 1. Демонтажные работы'},
+    {id:2, t:'Раздел 2. Стены и перегородки'},
+    {id:3, t:'Раздел 3. Полы'},
+    {id:4, t:'Раздел 4. Потолки и проёмы'},
+    {id:5, t:'Раздел 5. Инженерные сети'}
+  ];
+  var NR = .89, SP = .65, NDS = .20;
   var uid = 0;
   function mk(code, qty, k){
-    var s = null, i;
-    for(i=0;i<CATALOG.length;i++){ if(CATALOG[i].c===code){ s=CATALOG[i]; break; } }
-    return {id:++uid, c:s.c, n:s.n, u:s.u, p:s.p, f:s.f, g:s.g, qty:qty, k:k||1};
+    var s, i;
+    for(i=0;i<CATALOG.length;i++) if(CATALOG[i].c === code) s = CATALOG[i];
+    return {id:++uid, c:s.c, n:s.n, u:s.u, p:s.p, f:s.f, g:s.g, qty:qty, k:k || 1};
   }
   var items = [
     mk('ФЕР46-04-013-02', 18.4), mk('ФЕР46-04-001-01', 2.6),
-    mk('ФЕР15-02-016-03', 96.2, KOEF), mk('ФЕР15-04-005-04', 96.2),
+    mk('ФЕР15-02-016-03', 96.2, 1.15), mk('ФЕР15-04-005-04', 96.2),
     mk('ФЕР11-01-011-01', 42.8), mk('ФЕР11-01-036-01', 18.4)
   ];
   var log = [
@@ -513,297 +602,378 @@ button{font:inherit; color:inherit; cursor:pointer}
     {t:'Окраска водоэмульсионная', d:'сегодня, 14:09'},
     {t:'Замер: Гостиная 5,2 × 3,8', d:'сегодня, 14:21'}
   ];
+  var selId = null, curSect = 2, screen = 'smeta', query = '', pending = null;
 
-  /* ---------- утилиты ---------- */
   function money(n){ return n.toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2}); }
   function num(n){ return n.toLocaleString('ru-RU',{maximumFractionDigits:3}); }
-  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-  function totals(){
-    var pz=0, fot=0, i, v;
-    for(i=0;i<items.length;i++){ v = items[i].qty*items[i].p*items[i].k; pz+=v; fot+=v*items[i].f; }
-    var nr=fot*NR, sp=fot*SP, itg=pz+nr+sp, nds=itg*NDS;
-    return {pz:pz, fot:fot, nr:nr, sp:sp, itg:itg, nds:nds, all:itg+nds};
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function pnum(s){ var v = parseFloat(String(s).replace(',','.').replace(/[^\d.]/g,'')); return isNaN(v) ? 0 : v; }
+  function sum(it){ return it.qty * it.p * it.k; }
+  function totals(list){
+    var pz = 0, fot = 0, i, v;
+    list = list || items;
+    for(i=0;i<list.length;i++){ v = sum(list[i]); pz += v; fot += v * list[i].f; }
+    var nr = fot * NR, sp = fot * SP, itg = pz + nr + sp, nds = itg * NDS;
+    return {pz:pz, fot:fot, nr:nr, sp:sp, itg:itg, nds:nds, all:itg + nds};
   }
+  function inSect(id){ var r = [], i; for(i=0;i<items.length;i++) if(items[i].g === id) r.push(items[i]); return r; }
+  function sectTitle(id){ for(var i=0;i<SECT.length;i++) if(SECT[i].id === id) return SECT[i].t; return ''; }
 
   var body = document.getElementById('body');
+  var toolbar = document.getElementById('toolbar');
   var toastEl = document.getElementById('toast');
   var tabs = document.getElementById('tabs');
   var stepsEl = document.getElementById('steps');
-  var screen = 'smeta';
-  var draft = null;
-  var toastTimer = null;
+  var toastT = null;
+  function toast(m){
+    toastEl.textContent = m; toastEl.classList.add('show');
+    if(toastT) clearTimeout(toastT);
+    toastT = setTimeout(function(){ toastEl.classList.remove('show'); }, 2600);
+  }
 
-  function toast(msg){
-    toastEl.textContent = msg;
-    toastEl.classList.add('show');
-    if(toastTimer) clearTimeout(toastTimer);
-    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2400);
+  /* ---------- сметная таблица ---------- */
+  function tableHTML(mode){
+    var wide = mode === 'pc';
+    var h = '<table class="smeta ' + (wide ? 'pc' : 'mob') + '" style="min-width:' + (wide ? '620px' : '640px') + '">' +
+      '<colgroup><col style="width:' + (wide?'34px':'32px') + '"><col style="width:' + (wide?'116px':'110px') + '">' +
+      '<col style="width:' + (wide?'auto':'190px') + '"><col style="width:' + (wide?'52px':'50px') + '">' +
+      '<col style="width:' + (wide?'68px':'64px') + '"><col style="width:' + (wide?'42px':'40px') + '">' +
+      '<col style="width:' + (wide?'82px':'78px') + '"><col style="width:' + (wide?'94px':'90px') + '"></colgroup>' +
+      '<thead><tr><th class="stub">№</th><th>Обоснование</th><th>Наименование работ и затрат</th>' +
+      '<th>Ед. изм.</th><th class="r">Кол-во</th><th class="r">К</th><th class="r">Цена ед., ₽</th>' +
+      '<th class="r">Стоимость, ₽</th></tr></thead><tbody>';
+    var n = 0, si, i, list, st;
+    for(si=0; si<SECT.length; si++){
+      list = inSect(SECT[si].id);
+      if(!list.length && SECT[si].id !== curSect) continue;
+      h += '<tr class="sect' + (SECT[si].id === curSect ? ' cur' : '') + '" data-sect="' + SECT[si].id + '">' +
+        '<td colspan="8">' + esc(SECT[si].t) + '</td></tr>';
+      if(!list.length){
+        h += '<tr class="pos"><td class="stub"></td><td colspan="7" style="color:var(--ink-3)">' +
+          '— раздел пуст, вставьте позицию из справочника —</td></tr>';
+        continue;
+      }
+      st = 0;
+      for(i=0;i<list.length;i++){
+        n++; st += sum(list[i]);
+        h += '<tr class="pos' + (list[i].id === selId ? ' sel' : '') + (list[i].fresh ? ' new' : '') + '" data-row="' + list[i].id + '">' +
+          '<td class="stub r">' + n + '</td>' +
+          '<td style="color:var(--sel)">' + esc(list[i].c) + '</td>' +
+          '<td class="nm">' + esc(list[i].n) + '</td>' +
+          '<td>' + esc(list[i].u) + '</td>' +
+          '<td class="r cell-ed" data-ed="qty" data-id="' + list[i].id + '">' + num(list[i].qty) + '</td>' +
+          '<td class="r cell-ed' + (list[i].k !== 1 ? ' kbad' : '') + '" data-ed="k" data-id="' + list[i].id + '">' + num(list[i].k) + '</td>' +
+          '<td class="r cell-ed" data-ed="p" data-id="' + list[i].id + '">' + money(list[i].p) + '</td>' +
+          '<td class="r">' + money(sum(list[i])) + '</td></tr>';
+        list[i].fresh = false;
+      }
+      h += '<tr class="sub"><td class="stub"></td><td colspan="6">Итого по разделу ' + SECT[si].id + '</td>' +
+        '<td class="r">' + money(st) + '</td></tr>';
+    }
+    h += '</tbody></table>';
+    return h;
+  }
+  function itogiHTML(){
+    var t = totals();
+    return '<div class="itogi">' +
+      '<div class="il"><span>Прямые затраты</span><b>' + money(t.pz) + '</b></div>' +
+      '<div class="il"><span>в том числе оплата труда</span><b>' + money(t.fot) + '</b></div>' +
+      '<div class="il"><span>Накладные расходы · 89 % от ФОТ</span><b>' + money(t.nr) + '</b></div>' +
+      '<div class="il"><span>Сметная прибыль · 65 % от ФОТ</span><b>' + money(t.sp) + '</b></div>' +
+      '<div class="il"><span>Итого по смете</span><b>' + money(t.itg) + '</b></div>' +
+      '<div class="il"><span>НДС 20 %</span><b>' + money(t.nds) + '</b></div>' +
+      '<div class="il g"><span>Всего по смете</span><b>' + money(t.all) + ' ₽</b></div></div>';
   }
 
   /* ---------- экраны ---------- */
+  function viewSmeta(){
+    return '<div class="insert-into"><span class="l">Вставка в: <b>' + esc(sectTitle(curSect)) +
+      '</b></span><span class="sum">Всего: ' + money(totals().all) + ' ₽</span></div>' +
+      '<div class="gridwrap">' + tableHTML('mob') + '</div>' + itogiHTML() +
+      '<div class="pad"><p class="note">Нажмите на заголовок раздела, чтобы сменить текущий. Ячейки «Кол-во», «К» и «Цена ед.» правятся нажатием — как в десктопной таблице. Итоги пересчитываются сразу, отдельная команда пересчёта не нужна.</p></div>';
+  }
   function viewObjects(){
     var t = totals();
-    return '<div class="sec-h"><span>Мои объекты</span><span>3</span></div>' +
-      '<button class="objcard act" data-goto="smeta"><span class="t">Ремонт кв. 74</span>' +
-      '<span class="a">ЖК «Северный», корп. 3 · ' + items.length + ' позиций · не отдано на ПК</span>' +
-      '<span class="s">' + money(t.all) + ' ₽</span></button>' +
-      '<button class="objcard" data-toastonly="Демонстрационный объект — открыт только «Ремонт кв. 74»">' +
-      '<span class="t">Офис на Гагарина, 2 этаж</span><span class="a">перепланировка · 24 позиции · отдано на ПК</span>' +
-      '<span class="s">1 284 610,00 ₽</span></button>' +
-      '<button class="objcard" data-toastonly="Демонстрационный объект — открыт только «Ремонт кв. 74»">' +
-      '<span class="t">Склад, кровля</span><span class="a">черновой расчёт · 9 позиций · отдано на ПК</span>' +
-      '<span class="s">612 340,00 ₽</span></button>' +
-      '<div class="pad"><p class="note">Список хранится на устройстве. Открывается и редактируется без интернета — сеть нужна только на экране «Обмен».</p></div>';
+    return '<div class="sec-h"><span>Мои сметы</span><span>3</span></div>' +
+      '<button class="objrow act" data-goto="smeta"><span class="t">Ремонт кв. 74</span>' +
+      '<span class="a">ЛСР-02-01 · ' + items.length + ' поз. · не отдано на ПК</span>' +
+      '<span class="s">' + money(t.all) + '</span></button>' +
+      '<button class="objrow" data-msg="Демонстрационная строка — в прототипе открыта только смета «Ремонт кв. 74»">' +
+      '<span class="t">Офис на Гагарина, 2 этаж</span><span class="a">ЛСР-05-03 · 24 поз. · отдано на ПК</span>' +
+      '<span class="s">1 284 610,00</span></button>' +
+      '<button class="objrow" data-msg="Демонстрационная строка — в прототипе открыта только смета «Ремонт кв. 74»">' +
+      '<span class="t">Склад, кровля</span><span class="a">ЛСР-01-02 · 9 поз. · отдано на ПК</span>' +
+      '<span class="s">612 340,00</span></button>' +
+      '<div class="pad"><p class="note">Список хранится на устройстве и открывается без интернета. Сеть нужна только на вкладке «Обмен».</p></div>';
   }
-
-  function viewSmeta(){
-    var h = '', i, it, g, gi, group, any;
-    var head = totals();
-    h += '<div class="sticky-sum"><span>Всего с НДС · ' + items.length + ' поз.</span><b>' +
-      money(head.all) + ' ₽</b></div>';
-    if(!items.length){
-      h += '<div class="pad"><p class="note">В смете пока пусто. Нажмите «+», чтобы добавить первую позицию из справочника.</p></div>';
-    }
-    for(gi=0; gi<ORDER.length; gi++){
-      g = ORDER[gi]; group = []; any = 0;
-      for(i=0;i<items.length;i++){ if(items[i].g===g){ group.push(items[i]); any += items[i].qty*items[i].p*items[i].k; } }
-      if(!group.length) continue;
-      h += '<div class="sec-h"><span>' + esc(g) + '</span><span>' + money(any) + ' ₽</span></div>';
-      for(i=0;i<group.length;i++){
-        it = group[i];
-        h += '<div class="row' + (it.fresh ? ' new' : '') + '">' +
-          '<div class="code">' + esc(it.c) + '</div>' +
-          '<div class="nm">' + esc(it.n) + '</div>' +
-          '<div class="mt"><span>' + num(it.qty) + ' ' + esc(it.u) + '</span><span>× ' + money(it.p) + ' ₽</span>' +
-          (it.k !== 1 ? '<span class="kf">К ' + num(it.k) + ' стеснённые условия</span>' : '') + '</div>' +
-          '<div class="sm">' + money(it.qty*it.p*it.k) + ' ₽</div>' +
-          '<button class="del" data-del="' + it.id + '" aria-label="Удалить позицию">✕</button></div>';
-        it.fresh = false;
-      }
-    }
-    var t = totals();
-    h += '<div class="totals">' +
-      '<div class="tl"><span>Прямые затраты</span><b>' + money(t.pz) + ' ₽</b></div>' +
-      '<div class="tl"><span>в т. ч. оплата труда</span><b>' + money(t.fot) + ' ₽</b></div>' +
-      '<div class="tl"><span>Накладные расходы · 89 % от ФОТ</span><b>' + money(t.nr) + ' ₽</b></div>' +
-      '<div class="tl"><span>Сметная прибыль · 65 % от ФОТ</span><b>' + money(t.sp) + ' ₽</b></div>' +
-      '<div class="tl"><span>Итого по смете</span><b>' + money(t.itg) + ' ₽</b></div>' +
-      '<div class="tl"><span>НДС 20 %</span><b>' + money(t.nds) + ' ₽</b></div>' +
-      '<div class="tl grand"><span>Всего к оплате</span><b>' + money(t.all) + ' ₽</b></div></div>';
-    return h;
-  }
-
-  function viewAdd(q){
-    q = (q || '').trim().toLowerCase();
-    var h = '<div class="search"><input id="q" type="search" placeholder="Код или название расценки" value="' + esc(q) + '" autocomplete="off"></div>';
+  function viewAdd(){
+    var q = query.trim().toLowerCase();
+    var h = '<div class="insert-into"><span class="l">Вставка в: <b>' + esc(sectTitle(curSect)) + '</b></span>' +
+      (pending !== null ? '<span class="sum">объём: ' + num(pending) + '</span>' : '') + '</div>' +
+      '<div class="search"><input id="q" type="search" placeholder="Обоснование или название расценки" value="' + esc(query) + '" autocomplete="off"></div>';
     var found = 0, i, s;
     for(i=0;i<CATALOG.length;i++){
       s = CATALOG[i];
       if(q && s.c.toLowerCase().indexOf(q) < 0 && s.n.toLowerCase().indexOf(q) < 0) continue;
       found++;
-      h += '<button class="cat" data-pick="' + s.c + '"><span class="code">' + esc(s.c) + '</span>' +
+      h += '<button class="cat" data-pick="' + esc(s.c) + '"><span class="code">' + esc(s.c) + '</span>' +
         '<span class="nm">' + esc(s.n) + '</span>' +
-        '<span class="pr">' + money(s.p) + ' ₽ / ' + esc(s.u) + ' · ' + esc(s.g) + '</span></button>';
+        '<span class="pr">' + money(s.p) + ' ₽ / ' + esc(s.u) + '</span></button>';
     }
-    if(!found) h += '<div class="pad"><p class="note">По запросу «' + esc(q) + '» ничего не найдено. Попробуйте часть названия — например, «стяж» или «окрас».</p></div>';
-    else h += '<div class="pad"><p class="note">Справочник хранится на устройстве: ' + CATALOG.length + ' демонстрационных расценок. В рабочей версии сюда загружается ваш сборник.</p></div>';
+    if(!found) h += '<div class="pad"><p class="note">По запросу «' + esc(query) + '» ничего не найдено. Попробуйте часть слова — «стяж», «окрас», «ФЕР15».</p></div>';
+    else h += '<div class="pad"><p class="note">Справочник на устройстве: ' + CATALOG.length + ' демонстрационных расценок. Выбранная строка встаёт в текущий раздел, курсор — в «Кол-во».</p></div>';
     return h;
   }
-
-  function viewDraft(){
-    var d = draft, sum = d.qty * d.p * (d.k || 1), i, g;
-    var h = '<div class="pad">' +
-      '<div class="calc"><h4>Расценка</h4>' +
-      '<div class="cl"><span style="font-family:var(--f-mono);font-size:11px">' + esc(d.c) + '</span></div>' +
-      '<div class="cl" style="display:block;font-size:12.5px;line-height:1.4">' + esc(d.n) + '</div>' +
-      '<div class="cl"><span>Цена за ' + esc(d.u) + '</span><b>' + money(d.p) + ' ₽</b></div></div>' +
-      '<div class="field"><label>Объём, ' + esc(d.u) + '</label>' +
-      '<input id="qty" type="text" inputmode="decimal" value="' + num(d.qty) + '">' +
-      '<div class="quick"><button data-q="+1">+1</button><button data-q="+5">+5</button>' +
-      '<button data-q="+10">+10</button><button data-q="c">сброс</button></div></div>' +
-      '<div class="field"><label>Коэффициент</label><div class="pills">' +
-      '<button class="pill' + (d.k === 1 ? ' on' : '') + '" data-k="1">без коэффициента</button>' +
-      '<button class="pill' + (d.k !== 1 ? ' on' : '') + '" data-k="' + KOEF + '">К ' + num(KOEF) + ' · стеснённые условия</button>' +
-      '</div></div><div class="field"><label>Раздел сметы</label><div class="pills">';
-    for(i=0;i<ORDER.length;i++){ g = ORDER[i];
-      h += '<button class="pill' + (d.g === g ? ' on' : '') + '" data-g="' + esc(g) + '">' + esc(g) + '</button>';
-    }
-    h += '</div></div><button class="cta" id="addBtn">Добавить в смету <span>' + money(sum) + ' ₽</span></button>' +
-      '<button class="cta ghost" id="backBtn" style="margin-top:9px;justify-content:center">Назад к поиску</button></div>';
-    return h;
-  }
-
   function viewMeasure(){
     var m = viewMeasure.m || (viewMeasure.m = {name:'Гостиная', l:5.2, w:3.8, hgt:2.7, op:3.4});
     var floor = m.l * m.w, walls = 2 * (m.l + m.w) * m.hgt - m.op, per = 2 * (m.l + m.w);
+    var r2 = function(v){ return Math.round(v * 100) / 100; };
     return '<div class="pad">' +
-      '<div class="field"><label>Помещение</label><input id="mname" type="text" value="' + esc(m.name) + '" style="font-family:var(--f-body);font-size:14px"></div>' +
+      '<div class="field"><label>Помещение</label><input id="mname" type="text" value="' + esc(m.name) + '" style="font-family:var(--f-ui);font-size:13px"></div>' +
       '<div class="grid3">' +
       '<div class="field"><label>Длина, м</label><input id="ml" type="text" inputmode="decimal" value="' + num(m.l) + '"></div>' +
       '<div class="field"><label>Ширина, м</label><input id="mw" type="text" inputmode="decimal" value="' + num(m.w) + '"></div>' +
       '<div class="field"><label>Высота, м</label><input id="mh" type="text" inputmode="decimal" value="' + num(m.hgt) + '"></div></div>' +
       '<div class="field"><label>Вычесть проёмы, м²</label><input id="mo" type="text" inputmode="decimal" value="' + num(m.op) + '"></div>' +
       '<div class="calc"><h4>Посчитано по замерам</h4>' +
-      '<div class="cl"><span>Пол</span><b>' + num(Math.round(floor*100)/100) + ' м²</b><button data-take="' + floor + '">в смету</button></div>' +
-      '<div class="cl"><span>Потолок</span><b>' + num(Math.round(floor*100)/100) + ' м²</b><button data-take="' + floor + '">в смету</button></div>' +
-      '<div class="cl"><span>Стены за вычетом проёмов</span><b>' + num(Math.round(walls*100)/100) + ' м²</b><button data-take="' + walls + '">в смету</button></div>' +
-      '<div class="cl"><span>Периметр</span><b>' + num(Math.round(per*100)/100) + ' м</b><button data-take="' + per + '">в смету</button></div></div>' +
-      '<p class="note">Меняйте габариты — объёмы пересчитываются сразу. «В смету» открывает справочник с уже подставленным объёмом, чтобы не переписывать цифру с калькулятора.</p></div>';
+      '<div class="cl"><span>Пол</span><b>' + num(r2(floor)) + ' м²</b><button data-take="' + floor + '">в «Кол-во»</button></div>' +
+      '<div class="cl"><span>Потолок</span><b>' + num(r2(floor)) + ' м²</b><button data-take="' + floor + '">в «Кол-во»</button></div>' +
+      '<div class="cl"><span>Стены за вычетом проёмов</span><b>' + num(r2(walls)) + ' м²</b><button data-take="' + walls + '">в «Кол-во»</button></div>' +
+      '<div class="cl"><span>Периметр</span><b>' + num(r2(per)) + ' м</b><button data-take="' + per + '">в «Кол-во»</button></div></div>' +
+      '<p class="note">Меняйте габариты — объёмы пересчитываются сразу. «В «Кол-во»» открывает справочник с уже подставленным объёмом, чтобы не переписывать цифру с калькулятора.</p></div>';
   }
-
   function viewSync(){
-    var t = totals();
+    var t = totals(), i, s = {}, ns = 0;
+    for(i=0;i<items.length;i++) if(!s[items[i].g]){ s[items[i].g] = 1; ns++; }
     var h = '<div class="pad">' +
-      '<div class="qbox"><div class="qh"><span>Не отдано на ПК</span><span class="badge warn">' + log.length + ' изменения</span></div>' +
-      '<div class="ql">';
-    for(var i=0;i<log.length;i++) h += '· ' + esc(log[i].t) + ' — ' + esc(log[i].d) + '<br>';
+      '<div class="qbox"><div class="qh"><span>Не отдано на ПК</span><span class="badge warn">' + log.length + ' изм.</span></div><div class="ql">';
+    for(i=0;i<log.length;i++) h += '· ' + esc(log[i].t) + ' — ' + esc(log[i].d) + '<br>';
+    if(!log.length) h += 'изменений нет — всё отдано на ПК<br>';
     h += '</div></div>' +
       '<div class="field"><label>Формат выгрузки</label><div class="pills">' +
-      '<button class="pill on" data-fmt="tsm">Файл сметы для ПК</button>' +
-      '<button class="pill" data-fmt="xlsx">XLSX</button>' +
-      '<button class="pill" data-fmt="pdf">PDF</button></div></div>' +
+      '<button class="pill on" data-fmt="smt">Файл сметы для ПК</button>' +
+      '<button class="pill" data-fmt="xlsx">XLSX</button><button class="pill" data-fmt="pdf">PDF</button></div></div>' +
       '<div class="calc"><h4>Что уйдёт в файл</h4>' +
       '<div class="cl"><span>Позиций</span><b>' + items.length + '</b></div>' +
-      '<div class="cl"><span>Разделов</span><b>' + (function(){var s={},n=0,j;for(j=0;j<items.length;j++){if(!s[items[j].g]){s[items[j].g]=1;n++;}}return n;})() + '</b></div>' +
-      '<div class="cl"><span>Сумма с НДС</span><b>' + money(t.all) + ' ₽</b></div></div>' +
+      '<div class="cl"><span>Разделов</span><b>' + ns + '</b></div>' +
+      '<div class="cl"><span>Всего по смете</span><b>' + money(t.all) + ' ₽</b></div></div>' +
       '<div class="bar"><i id="bar"></i></div>' +
-      '<button class="cta" id="expBtn">Сформировать файл <span id="expFmt">.tsm</span></button>' +
-      '<div id="expRes"></div>' +
-      '<p class="note" style="margin-top:14px">Интернет нужен только чтобы отправить готовый файл. Сам файл собирается на устройстве и остаётся у вас, даже если сети нет.</p></div>';
+      '<button class="cta" id="expBtn">Сформировать файл <span id="expFmt">.smt</span></button><div id="expRes"></div>' +
+      '<p class="note" style="margin-top:12px">Файл собирается на устройстве. Интернет нужен только чтобы его отправить — если сети нет, файл просто ждёт в очереди.</p></div>';
     return h;
   }
 
-  /* ---------- рендер и события ---------- */
-  function render(keepFocus){
-    var v;
-    if(screen === 'objects') v = viewObjects();
-    else if(screen === 'smeta') v = viewSmeta();
-    else if(screen === 'add') v = viewAdd(render.q);
-    else if(screen === 'draft') v = viewDraft();
-    else if(screen === 'measure') v = viewMeasure();
-    else v = viewSync();
-    body.innerHTML = v;
-    if(screen === 'smeta'){
-      var fab = document.createElement('button');
-      fab.className = 'fab'; fab.type = 'button'; fab.setAttribute('aria-label','Добавить позицию');
-      fab.textContent = '+';
-      fab.addEventListener('click', function(){ render.q = ''; go('add'); });
-      body.parentNode.insertBefore(fab, toastEl);
-      var old = body.parentNode.querySelectorAll('.fab');
-      for(var i=0;i<old.length-1;i++) old[i].parentNode.removeChild(old[i]);
-    } else {
-      var f = body.parentNode.querySelectorAll('.fab');
-      for(var j=0;j<f.length;j++) f[j].parentNode.removeChild(f[j]);
-    }
-    var tb = tabs.children, map = {objects:0, smeta:1, add:1, draft:1, measure:2, sync:3};
-    for(var k=0;k<tb.length;k++) tb[k].classList.toggle('on', k === map[screen]);
-    var st = stepsEl.children, smap = {objects:0, add:1, draft:1, measure:2, smeta:3, sync:4};
-    for(var m=0;m<st.length;m++) st[m].classList.toggle('on', m === smap[screen]);
-    if(keepFocus){ var q = document.getElementById('q'); if(q){ q.focus(); q.setSelectionRange(q.value.length, q.value.length); } }
-    bind();
+  /* ---------- панель кнопок телефона ---------- */
+  function toolbarHTML(){
+    if(screen === 'smeta')
+      return '<button class="tbtn pri" data-act="add">+ Позиция</button>' +
+        '<button class="tbtn" data-act="del"' + (selId ? '' : ' disabled') + '>Удалить</button>' +
+        '<button class="tbtn" data-act="k115"' + (selId ? '' : ' disabled') + '>К 1,15</button>' +
+        '<button class="tbtn" data-act="measure">Замеры</button>' +
+        '<button class="tbtn" data-act="sync">Выгрузить</button>';
+    if(screen === 'add')
+      return '<button class="tbtn" data-act="smeta">← В смету</button>' +
+        '<button class="tbtn" data-act="sect">Сменить раздел</button>';
+    if(screen === 'measure')
+      return '<button class="tbtn" data-act="smeta">← В смету</button>' +
+        '<button class="tbtn" data-act="add">Справочник</button>';
+    if(screen === 'sync')
+      return '<button class="tbtn" data-act="smeta">← В смету</button>';
+    return '<button class="tbtn" data-act="smeta">← В смету</button>';
   }
-  function go(s){ screen = s; body.scrollTop = 0; render(); }
 
-  function parseNum(s){ var v = parseFloat(String(s).replace(',', '.').replace(/[^\d.\-]/g,'')); return isNaN(v) ? 0 : v; }
+  /* ---------- рендер ---------- */
+  function renderPhone(keepFocus){
+    var v = screen === 'objects' ? viewObjects() : screen === 'add' ? viewAdd() :
+            screen === 'measure' ? viewMeasure() : screen === 'sync' ? viewSync() : viewSmeta();
+    body.innerHTML = v;
+    toolbar.innerHTML = toolbarHTML();
+    var map = {objects:0, smeta:1, add:1, measure:2, sync:3}, tb = tabs.children, i;
+    for(i=0;i<tb.length;i++) tb[i].classList.toggle('on', i === map[screen]);
+    var smap = {objects:0, add:1, smeta:2, measure:3, sync:4}, st = stepsEl.children;
+    for(i=0;i<st.length;i++) st[i].classList.toggle('on', i === smap[screen]);
+    if(keepFocus){ var q = document.getElementById('q'); if(q){ q.focus(); q.setSelectionRange(q.value.length, q.value.length); } }
+    bindPhone();
+  }
+  function renderPC(){
+    var grid = document.getElementById('pcgrid'), tree = document.getElementById('pctree'), stat = document.getElementById('pcstatus');
+    grid.innerHTML = '<div class="gridwrap">' + tableHTML('pc') + '</div>' + itogiHTML();
+    var h = '<div class="th">Структура сметы</div><button class="root" type="button">Ремонт кв. 74</button>', i, c;
+    for(i=0;i<SECT.length;i++){
+      c = inSect(SECT[i].id).length;
+      h += '<button type="button" class="' + (SECT[i].id === curSect ? 'cur' : '') + '" data-sect="' + SECT[i].id + '">' +
+        esc(SECT[i].t.replace(/^Раздел \d+\. /, '')) + '<span class="cnt">' + c + '</span></button>';
+    }
+    tree.innerHTML = h;
+    var t = totals(), s = {}, ns = 0;
+    for(i=0;i<items.length;i++) if(!s[items[i].g]){ s[items[i].g] = 1; ns++; }
+    stat.innerHTML = '<span>Позиций: <b>' + items.length + '</b></span><span>Разделов: <b>' + ns + '</b></span>' +
+      '<span>Всего по смете: <b>' + money(t.all) + ' ₽</b></span>' +
+      '<span>' + (log.length ? 'Изменено · не сохранено' : 'Сохранено') + '</span>';
+    bindPC();
+  }
+  function renderAll(keepFocus){ renderPhone(keepFocus); renderPC(); }
+  function go(s){ screen = s; body.scrollTop = 0; renderPhone(); }
 
-  function bind(){
+  /* ---------- правка ячейки ---------- */
+  function editCell(td){
+    if(td.querySelector('input')) return;
+    var id = +td.getAttribute('data-id'), field = td.getAttribute('data-ed'), it, i;
+    for(i=0;i<items.length;i++) if(items[i].id === id) it = items[i];
+    if(!it) return;
+    selId = id;
+    var cur = field === 'qty' ? it.qty : field === 'k' ? it.k : it.p;
+    td.innerHTML = '<input class="ce" type="text" inputmode="decimal" value="' + num(cur) + '">';
+    var inp = td.firstChild;
+    inp.focus(); inp.select();
+    var done = false;
+    function commit(){
+      if(done) return; done = true;
+      var v = pnum(inp.value);
+      if(field === 'qty') it.qty = v;
+      else if(field === 'k') it.k = v > 0 ? v : 1;
+      else it.p = v;
+      renderAll();
+    }
+    inp.addEventListener('blur', commit);
+    inp.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); commit(); }
+      else if(e.key === 'Escape'){ done = true; renderAll(); }
+    });
+  }
+  function bindTable(root){
+    var els = root.querySelectorAll('.cell-ed'), i;
+    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(e){ e.stopPropagation(); editCell(this); });
+    els = root.querySelectorAll('tr.pos[data-row]');
+    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
+      selId = +this.getAttribute('data-row');
+      for(var j=0;j<items.length;j++) if(items[j].id === selId) curSect = items[j].g;
+      renderAll();
+    });
+    els = root.querySelectorAll('tr.sect[data-sect]');
+    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
+      curSect = +this.getAttribute('data-sect'); renderAll();
+      toast('Текущий раздел: ' + sectTitle(curSect));
+    });
+  }
+
+  function addPosition(code){
+    var s, i;
+    for(i=0;i<CATALOG.length;i++) if(CATALOG[i].c === code) s = CATALOG[i];
+    var it = {id:++uid, c:s.c, n:s.n, u:s.u, p:s.p, f:s.f, g:curSect,
+      qty: pending !== null ? Math.round(pending * 100) / 100 : 0, k:1, fresh:true};
+    items.push(it);
+    log.push({t:s.n, d:'сейчас'});
+    selId = it.id; pending = null; query = '';
+    go('smeta');
+    renderPC();
+    setTimeout(function(){
+      var td = body.querySelector('.cell-ed[data-ed="qty"][data-id="' + it.id + '"]');
+      if(td){ td.scrollIntoView({block:'center'}); editCell(td); }
+    }, 60);
+    toast('Строка вставлена в «' + sectTitle(curSect).replace(/^Раздел \d+\. /,'') + '» — введите количество');
+  }
+
+  /* ---------- события ---------- */
+  function bindPhone(){
     var i, els;
+    bindTable(body);
     els = body.querySelectorAll('[data-goto]');
     for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ go(this.getAttribute('data-goto')); });
-    els = body.querySelectorAll('[data-toastonly]');
-    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ toast(this.getAttribute('data-toastonly')); });
-    els = body.querySelectorAll('[data-del]');
-    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
-      var id = +this.getAttribute('data-del'), k;
-      for(k=0;k<items.length;k++) if(items[k].id === id){ toast('Позиция удалена: ' + items[k].n); items.splice(k,1); break; }
-      render();
-    });
-    var q = document.getElementById('q');
-    if(q) q.addEventListener('input', function(){ render.q = this.value; render(true); });
+    els = body.querySelectorAll('[data-msg]');
+    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ toast(this.getAttribute('data-msg')); });
     els = body.querySelectorAll('[data-pick]');
+    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ addPosition(this.getAttribute('data-pick')); });
+    var q = document.getElementById('q');
+    if(q) q.addEventListener('input', function(){ query = this.value; renderPhone(true); });
+    els = body.querySelectorAll('[data-take]');
     for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
-      var code = this.getAttribute('data-pick'), s = null, k;
-      for(k=0;k<CATALOG.length;k++) if(CATALOG[k].c === code) s = CATALOG[k];
-      draft = {c:s.c, n:s.n, u:s.u, p:s.p, f:s.f, g:s.g, k:1, qty: draft && draft.pending ? draft.pending : 10};
-      go('draft');
+      pending = Math.round(pnum(this.getAttribute('data-take')) * 100) / 100;
+      query = ''; go('add');
+      toast('Объём ' + num(pending) + ' подставится в «Кол-во» — выберите расценку');
     });
-    var qty = document.getElementById('qty');
-    if(qty) qty.addEventListener('input', function(){ draft.qty = parseNum(this.value); refreshSum(); });
-    els = body.querySelectorAll('[data-q]');
-    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
-      var a = this.getAttribute('data-q');
-      draft.qty = a === 'c' ? 0 : Math.round((draft.qty + parseNum(a)) * 1000) / 1000;
-      document.getElementById('qty').value = num(draft.qty); refreshSum();
-    });
-    els = body.querySelectorAll('[data-k]');
-    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ draft.k = parseNum(this.getAttribute('data-k')); render(); });
-    els = body.querySelectorAll('[data-g]');
-    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ draft.g = this.getAttribute('data-g'); render(); });
-    var addBtn = document.getElementById('addBtn');
-    if(addBtn) addBtn.addEventListener('click', function(){
-      if(draft.qty <= 0){ toast('Укажите объём больше нуля'); return; }
-      var it = {id:++uid, c:draft.c, n:draft.n, u:draft.u, p:draft.p, f:draft.f, g:draft.g, qty:draft.qty, k:draft.k, fresh:true};
-      items.push(it);
-      log.push({t:draft.n, d:'сейчас'});
-      toast('Добавлено: ' + num(it.qty) + ' ' + it.u + ' — ' + money(it.qty*it.p*it.k) + ' ₽');
-      draft = null; render.q = ''; go('smeta');
-    });
-    var backBtn = document.getElementById('backBtn');
-    if(backBtn) backBtn.addEventListener('click', function(){ draft = null; go('add'); });
-
     var m = viewMeasure.m;
     ['mname','ml','mw','mh','mo'].forEach(function(id){
       var el = document.getElementById(id);
       if(!el) return;
       el.addEventListener('input', function(){
-        if(id === 'mname') m.name = this.value;
-        else { var key = {ml:'l', mw:'w', mh:'hgt', mo:'op'}[id]; m[key] = parseNum(this.value); }
-        if(id !== 'mname'){ var pos = this.selectionStart; render(); var again = document.getElementById(id); if(again){ again.focus(); try{ again.setSelectionRange(pos,pos); }catch(e){} } }
+        if(id === 'mname'){ m.name = this.value; return; }
+        m[{ml:'l', mw:'w', mh:'hgt', mo:'op'}[id]] = pnum(this.value);
+        var pos = this.selectionStart;
+        renderPhone();
+        var again = document.getElementById(id);
+        if(again){ again.focus(); try{ again.setSelectionRange(pos, pos); }catch(e){} }
       });
     });
-    els = body.querySelectorAll('[data-take]');
-    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
-      var v = Math.round(parseNum(this.getAttribute('data-take')) * 100) / 100;
-      draft = {pending: v};
-      render.q = '';
-      toast('Объём ' + num(v) + ' взят из замеров — выберите расценку');
-      go('add');
-    });
-
     els = body.querySelectorAll('[data-fmt]');
     for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
-      var p = body.querySelectorAll('[data-fmt]');
-      for(var k=0;k<p.length;k++) p[k].classList.remove('on');
+      var p = body.querySelectorAll('[data-fmt]'), j;
+      for(j=0;j<p.length;j++) p[j].classList.remove('on');
       this.classList.add('on');
-      var f = this.getAttribute('data-fmt');
-      document.getElementById('expFmt').textContent = '.' + f;
+      document.getElementById('expFmt').textContent = '.' + this.getAttribute('data-fmt');
     });
     var exp = document.getElementById('expBtn');
     if(exp) exp.addEventListener('click', function(){
       var bar = document.getElementById('bar'), res = document.getElementById('expRes');
-      var f = document.getElementById('expFmt').textContent;
-      var p = 0;
+      var fmt = document.getElementById('expFmt').textContent, p = 0;
       exp.disabled = true; res.innerHTML = '';
       var iv = setInterval(function(){
-        p += 25; bar.style.width = Math.min(p,100) + '%';
+        p += 25; bar.style.width = Math.min(p, 100) + '%';
         if(p >= 100){
           clearInterval(iv); exp.disabled = false;
-          res.innerHTML = '<div class="qbox" style="margin-top:12px"><div class="qh"><span>smeta_kv74_07-09-2026' + f + '</span>' +
-            '<span class="badge ok">готово</span></div><div class="ql">148 КБ · ' + items.length + ' позиций<br>Отправьте файл на компьютер любым способом</div></div>';
-          log = []; toast('Файл собран на устройстве — сеть не понадобилась');
+          res.innerHTML = '<div class="qbox" style="margin-top:10px"><div class="qh"><span>smeta_kv74_07-09-2026' + fmt +
+            '</span><span class="badge ok">готово</span></div><div class="ql">148 КБ · ' + items.length +
+            ' позиций<br>Отправьте файл на компьютер любым способом</div></div>';
+          log = []; renderPC(); toast('Файл собран на устройстве — сеть не понадобилась');
         }
-      }, 220);
+      }, 200);
+    });
+    els = toolbar.querySelectorAll('[data-act]');
+    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
+      var a = this.getAttribute('data-act'), j;
+      if(a === 'add'){ query = ''; go('add'); }
+      else if(a === 'del'){
+        for(j=0;j<items.length;j++) if(items[j].id === selId){ toast('Удалено: ' + items[j].n); items.splice(j,1); break; }
+        selId = null; renderAll();
+      }
+      else if(a === 'k115'){
+        for(j=0;j<items.length;j++) if(items[j].id === selId){
+          items[j].k = items[j].k === 1.15 ? 1 : 1.15;
+          toast(items[j].k === 1 ? 'Коэффициент снят' : 'К 1,15 · стеснённые условия');
+        }
+        renderAll();
+      }
+      else if(a === 'sect'){ curSect = curSect % SECT.length + 1; renderAll(); toast('Текущий раздел: ' + sectTitle(curSect)); }
+      else go(a);
     });
   }
-  function refreshSum(){
-    var b = document.getElementById('addBtn');
-    if(b) b.querySelector('span').textContent = money(draft.qty * draft.p * (draft.k || 1)) + ' ₽';
+  function bindPC(){
+    var win = document.getElementById('pcwin'), els, i;
+    bindTable(win);
+    els = win.querySelectorAll('.tree [data-sect]');
+    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
+      curSect = +this.getAttribute('data-sect'); renderAll();
+    });
+    els = win.querySelectorAll('[data-toastpc]');
+    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ toast(this.getAttribute('data-toastpc')); });
+    var a = win.querySelector('[data-pcadd]');
+    if(a) a.addEventListener('click', function(){
+      query = ''; go('add');
+      document.getElementById('s1').scrollIntoView({behavior:'smooth'});
+      toast('Справочник открыт на телефоне — выберите расценку');
+    });
+    var d = win.querySelector('[data-pcdel]');
+    if(d) d.addEventListener('click', function(){
+      if(!selId){ toast('Сначала выберите строку в таблице'); return; }
+      for(var j=0;j<items.length;j++) if(items[j].id === selId){ toast('Удалено: ' + items[j].n); items.splice(j,1); break; }
+      selId = null; renderAll();
+    });
   }
 
   var outer = document.querySelectorAll('#steps [data-goto], #tabs [data-goto]');
   for(var z=0; z<outer.length; z++) outer[z].addEventListener('click', function(){ go(this.getAttribute('data-goto')); });
 
-  render();
+  renderAll();
 
   /* ---------- навигация по слайдам ---------- */
   var slides = document.querySelectorAll('.slide');
@@ -819,23 +989,19 @@ button{font:inherit; color:inherit; cursor:pointer}
     var io = new IntersectionObserver(function(es){
       es.forEach(function(e){
         if(!e.isIntersecting) return;
-        var id = e.target.id;
-        for(var i=0;i<links.length;i++) links[i].classList.toggle('on', links[i].getAttribute('href') === '#' + id);
+        for(var i=0;i<links.length;i++) links[i].classList.toggle('on', links[i].getAttribute('href') === '#' + e.target.id);
       });
     }, {rootMargin:'-45% 0px -45% 0px'});
     for(var s=0; s<slides.length; s++) io.observe(slides[s]);
   }
   document.addEventListener('keydown', function(e){
     if(e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
-    var dir = 0;
-    if(e.key === 'ArrowDown' || e.key === 'PageDown') dir = 1;
-    if(e.key === 'ArrowUp' || e.key === 'PageUp') dir = -1;
+    var dir = e.key === 'ArrowDown' || e.key === 'PageDown' ? 1 : (e.key === 'ArrowUp' || e.key === 'PageUp' ? -1 : 0);
     if(!dir) return;
     e.preventDefault();
     var cur = 0, i;
     for(i=0;i<slides.length;i++) if(slides[i].getBoundingClientRect().top <= window.innerHeight * .5) cur = i;
-    var next = Math.max(0, Math.min(slides.length - 1, cur + dir));
-    slides[next].scrollIntoView({behavior:'smooth'});
+    slides[Math.max(0, Math.min(slides.length - 1, cur + dir))].scrollIntoView({behavior:'smooth'});
   });
 })();
 </script>
