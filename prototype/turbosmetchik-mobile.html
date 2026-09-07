@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>Турбо сметчик мобильный</title>
+<title>Турбосметчик мобильный</title>
 <style>
 :root{
   --desk:#C9CFD6; --win:#F0F0F0; --win2:#E4E4E4; --win3:#CFD3D8;
@@ -11,8 +11,8 @@
   --f:-apple-system,'Segoe UI',Roboto,Tahoma,'Helvetica Neue',Arial,sans-serif;
 }
 *{box-sizing:border-box}
-body{margin:0; background:var(--desk); color:var(--txt); font-family:var(--f);
-  font-size:16px; -webkit-font-smoothing:antialiased; overflow:hidden}
+body{margin:0; background:var(--desk); color:var(--txt); font-family:var(--f); font-size:16px;
+  -webkit-font-smoothing:antialiased; overflow:hidden}
 button{font:inherit; color:inherit; cursor:pointer; font-family:var(--f)}
 input{font-family:var(--f)}
 :focus-visible{outline:2px solid var(--sel); outline-offset:-2px}
@@ -22,62 +22,50 @@ input{font-family:var(--f)}
 .phone{width:394px; height:min(852px, calc(100svh - 28px)); background:var(--win3);
   border:1px solid #8C929A; border-radius:34px; padding:8px; display:flex;
   box-shadow:0 2px 6px rgba(20,28,40,.2), 0 34px 64px -30px rgba(20,28,40,.6)}
-.scr{flex:1; background:var(--sheet); border-radius:27px; overflow:hidden; display:flex;
-  flex-direction:column; position:relative}
+.scr{flex:1; background:var(--sheet); border-radius:27px; overflow:hidden; display:flex; flex-direction:column; position:relative}
 @media (max-width:520px), (max-height:700px){
   .stage{padding:0}
   .phone{width:100%; height:100svh; border:0; border-radius:0; padding:0; box-shadow:none}
   .scr{border-radius:0}
 }
-
 .status-os{display:flex; align-items:center; justify-content:space-between; padding:11px 17px 4px;
   background:var(--win); font-size:10px; color:var(--txt3); flex:none; font-variant-numeric:tabular-nums}
 .offline{display:inline-flex; align-items:center; gap:4px; color:var(--warn); background:var(--warnbg);
   border:1px solid #E4CFA4; border-radius:2px; padding:1px 6px; font-size:9px}
 .offline i{width:5px; height:5px; border-radius:50%; background:var(--warn)}
-
-/* заголовок окна */
 .titlebar{display:flex; align-items:center; gap:7px; padding:4px 8px 5px 10px; background:var(--win);
   border-bottom:1px solid var(--win2); flex:none}
 .titlebar .ico{width:16px; height:16px; flex:none; border-radius:2px; background:linear-gradient(160deg,#4C87D0,#1F4E96);
   display:grid; place-items:center; color:#fff; font-size:9px; font-weight:700; line-height:1}
 .titlebar .tt{flex:1; min-width:0; font-size:11.5px; color:var(--txt2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .titlebar .tt b{color:var(--txt); font-weight:600}
-
-/* строка меню */
-.menubar{display:flex; gap:0; padding:0 4px; background:var(--win); border-bottom:1px solid var(--win2);
+.menubar{display:flex; padding:0 4px; background:var(--win); border-bottom:1px solid var(--win2);
   overflow-x:auto; scrollbar-width:none; flex:none}
 .menubar::-webkit-scrollbar{display:none}
-.menubar button{border:0; background:none; padding:5px 9px; font-size:12px; color:var(--txt); white-space:nowrap; border-radius:2px}
-.menubar button:active, .menubar button.on{background:var(--sel); color:#fff}
-
-/* панель инструментов */
+.menubar button{border:0; background:none; padding:5px 9px; font-size:12px; white-space:nowrap; border-radius:2px}
+.menubar button:active{background:var(--sel); color:#fff}
 .toolbar{display:flex; gap:3px; padding:5px 6px; background:var(--win); border-bottom:1px solid var(--edge);
   overflow-x:auto; scrollbar-width:none; flex:none}
 .toolbar::-webkit-scrollbar{display:none}
 .tbtn{display:flex; align-items:center; gap:4px; white-space:nowrap; border:1px solid transparent;
   background:none; border-radius:3px; padding:5px 8px; font-size:11.5px; color:var(--txt2)}
 .tbtn:hover{border-color:#B6BCC4; background:#FAFAFA}
-.tbtn:active{background:var(--selsoft); border-color:var(--sel)}
+.tbtn.on{border-color:var(--sel); background:var(--selsoft); color:var(--blue-d)}
 .tbtn:disabled{color:#AEB2B7; cursor:default}
 .tbtn:disabled:hover{border-color:transparent; background:none}
 .tbtn b{font-weight:600; color:var(--blue-d)}
 .tsep{width:1px; background:var(--win2); margin:3px 2px; flex:none}
-
-/* полоса контекста */
 .ctx{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:4px 10px;
   background:var(--win2); border-bottom:1px solid var(--grid); font-size:10.5px; color:var(--txt2);
   white-space:nowrap; flex:none}
 .ctx .l{overflow:hidden; text-overflow:ellipsis}
 .ctx b{color:var(--blue-d)}
 .ctx .sum{font-variant-numeric:tabular-nums; font-weight:600; color:var(--blue-d)}
-
 .body{flex:1; overflow:auto; overscroll-behavior:contain; background:var(--sheet); -webkit-overflow-scrolling:touch}
 .body::-webkit-scrollbar{width:9px; height:9px}
 .body::-webkit-scrollbar-track{background:var(--win)}
 .body::-webkit-scrollbar-thumb{background:#BFC4CA; border:1px solid var(--win2)}
 
-/* сетка */
 .gw{overflow-x:auto}
 .gw::-webkit-scrollbar{height:9px}
 .gw::-webkit-scrollbar-track{background:var(--win)}
@@ -88,16 +76,20 @@ table.g th{position:sticky; top:0; z-index:3; background:var(--win); color:var(-
   font-size:10.5px; text-align:left; padding:4px 5px; border-bottom:1px solid var(--edge);
   border-right:1px solid var(--grid); white-space:nowrap}
 table.g td{padding:4px 5px; border-bottom:1px solid var(--grid2); border-right:1px solid var(--grid2);
-  vertical-align:top; line-height:1.28; white-space:nowrap; color:var(--txt)}
+  vertical-align:top; line-height:1.28; white-space:nowrap}
 body.comp table.g td{padding:1px 5px}
 table.g .r{text-align:right}
 table.g .nm{white-space:normal}
 table.g tr.d td{background:var(--sheet)}
 table.g tr.d:hover td{background:#F2F6FB}
 table.g tr.d.sel td{background:var(--sel); color:#fff}
-table.g tr.d.sel td.k{color:#FFE0A8}
+table.g tr.d.sel td.kk{color:#FFE0A8}
 table.g tr.d.new td{animation:fl 1.6s ease}
 @keyframes fl{0%{background:var(--selsoft)}100%{background:var(--sheet)}}
+table.g tr.sr td{background:#FBFCFD; color:var(--txt2); font-size:10px}
+table.g tr.sr td.i{padding-left:14px; color:var(--txt3)}
+table.g tr.sr:hover td{background:#F2F6FB}
+table.g tr.sr td .u{color:#9AA0A6}
 table.g tr.b1 td{background:var(--blue); color:#fff; font-weight:600; border-bottom:1px solid var(--blue-d)}
 table.g tr.b2 td{background:var(--band3); font-weight:600}
 table.g tr.b3 td{background:var(--band); font-weight:600}
@@ -106,6 +98,7 @@ table.g tr.tot td{background:var(--win2); font-weight:600; border-bottom:1px sol
 table.g .stub{position:sticky; left:0; z-index:2; background:var(--win); border-right:1px solid var(--grid);
   color:var(--txt3); font-size:10px; text-align:right}
 table.g tr.d.sel .stub{background:var(--sel); color:#fff}
+table.g tr.sr .stub{background:#F4F6F8}
 table.g tr.b1 .stub{background:var(--blue); color:#fff}
 table.g tr.b2 .stub{background:var(--band3); color:var(--txt2)}
 table.g tr.b3 .stub{background:var(--band); color:var(--txt2)}
@@ -115,10 +108,9 @@ table.g .ed{cursor:text}
 table.g .ed:hover{outline:1px solid var(--sel); outline-offset:-1px}
 table.g input.ce{width:100%; border:1px solid var(--sel); padding:1px 3px; font:inherit; font-size:11px;
   text-align:right; background:#fff; color:var(--txt); font-variant-numeric:tabular-nums}
-table.g .k{color:var(--warn)}
-.empty{padding:26px 20px; text-align:center; color:var(--txt3); font-size:12px; line-height:1.7}
+table.g .kk{color:var(--warn)}
+.empty{padding:24px 20px; text-align:center; color:var(--txt3); font-size:12px; line-height:1.7}
 
-/* итоги */
 .itogi{border-top:1px solid var(--edge); background:var(--win)}
 .itogi .ih{display:flex; align-items:center; justify-content:space-between; width:100%; border:0;
   background:var(--win2); padding:4px 10px; font-size:10.5px; font-weight:600; color:var(--txt2);
@@ -127,10 +119,11 @@ table.g .k{color:var(--warn)}
 .itogi .il{display:flex; justify-content:space-between; gap:12px; font-size:11px; color:var(--txt2);
   padding:1.5px 0; font-variant-numeric:tabular-nums}
 .itogi .il b{color:var(--txt); font-weight:600}
+.itogi .il.sub{padding-left:10px; color:var(--txt3); font-size:10.5px}
 .itogi .il.g{border-top:1px solid var(--grid); margin-top:5px; padding-top:6px; font-size:12.5px; color:var(--txt)}
 .itogi .il.g b{color:var(--blue-d); font-size:14px}
+.itogi .il.hd{border-top:1px solid var(--grid); margin-top:5px; padding-top:6px; font-weight:600; color:var(--txt)}
 
-/* списки и формы */
 .grp{padding:9px 12px 4px; background:var(--sheet); font-size:10.5px; font-weight:600; color:var(--txt3);
   display:flex; justify-content:space-between; border-bottom:1px solid var(--grid2)}
 .lrow{display:grid; grid-template-columns:1fr auto; gap:1px 10px; width:100%; text-align:left;
@@ -158,7 +151,7 @@ table.g .k{color:var(--warn)}
 .panel .cl button{border:1px solid var(--edge); background:var(--win2); padding:3px 8px; font-size:10.5px; border-radius:2px}
 .panel .cl button:hover{border-color:var(--sel); color:var(--blue-d)}
 .btn{width:100%; border:1px solid var(--edge); background:var(--win2); padding:9px; font-size:12.5px;
-  border-radius:2px; display:flex; justify-content:center; align-items:center; gap:8px}
+  border-radius:2px; display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:8px}
 .btn:hover{border-color:var(--sel)}
 .btn.pri{background:var(--sel); border-color:var(--blue-d); color:#fff; font-weight:600}
 .btn:disabled{opacity:.55; cursor:default}
@@ -172,35 +165,29 @@ table.g .k{color:var(--warn)}
 .pill{border:1px solid var(--edge); background:var(--win2); padding:6px 10px; font-size:11.5px; border-radius:2px}
 .pill.on{border-color:var(--blue-d); background:var(--sel); color:#fff; font-weight:600}
 .hint{font-size:11px; color:var(--txt3); line-height:1.55}
-
-/* поиск */
+.chk{display:flex; align-items:center; gap:8px; padding:7px 2px; font-size:12.5px; border-bottom:1px solid var(--grid2);
+  width:100%; text-align:left; background:none; border-left:0; border-right:0; border-top:0}
+.chk i{width:14px; height:14px; border:1px solid var(--edge); background:#fff; display:grid; place-items:center;
+  font-size:10px; font-style:normal; color:var(--blue-d); flex:none}
 .search{padding:5px 6px; background:var(--win); border-bottom:1px solid var(--grid); flex:none; display:flex; gap:5px}
 .search input{flex:1; min-width:0; padding:6px 8px; border:1px solid var(--edge); background:#fff; font-size:12px; border-radius:2px}
-
-/* вкладки каталогов */
-.subtabs{display:flex; gap:0; background:var(--win2); border-top:1px solid var(--edge); flex:none;
+.subtabs{display:flex; background:var(--win2); border-top:1px solid var(--edge); flex:none;
   overflow-x:auto; scrollbar-width:none; padding:0 4px}
 .subtabs::-webkit-scrollbar{display:none}
 .subtabs button{border:1px solid var(--grid); border-bottom:0; background:var(--win); padding:5px 9px;
   font-size:10.5px; white-space:nowrap; color:var(--txt2); margin-top:3px; border-radius:3px 3px 0 0}
 .subtabs button.on{background:#fff; font-weight:700; color:var(--blue-d); border-color:var(--edge); margin-top:0; padding-top:8px}
-
-/* статусная строка */
 .statusline{display:flex; align-items:center; gap:8px; padding:3px 10px; background:var(--win);
   border-top:1px solid var(--grid); font-size:10px; color:var(--txt3); flex:none; white-space:nowrap}
 .statusline .sl{overflow:hidden; text-overflow:ellipsis; flex:1}
 .statusline .sr{font-variant-numeric:tabular-nums}
-
-/* нижние вкладки */
 .tabbar{display:grid; grid-template-columns:repeat(5,1fr); border-top:1px solid var(--edge);
   background:var(--win); flex:none; padding-bottom:env(safe-area-inset-bottom)}
 .tabbar button{display:flex; flex-direction:column; align-items:center; gap:2px; padding:6px 0 9px;
   border:0; background:none; font-size:9px; color:var(--txt3); position:relative}
 .tabbar button svg{width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round}
 .tabbar button.on{color:var(--blue-d); background:#fff; box-shadow:inset 0 2px 0 var(--sel)}
-.tabbar .dot{position:absolute; top:5px; right:calc(50% - 14px); width:6px; height:6px; border-radius:50%; background:#C4761A}
-
-/* всплывающие окна */
+.tabbar .dot{position:absolute; top:5px; right:calc(50% - 15px); width:6px; height:6px; border-radius:50%; background:#C4761A}
 .toast{position:absolute; left:10px; right:10px; bottom:66px; background:#FFFFE1; color:var(--txt);
   border:1px solid #C9B98A; padding:7px 10px; font-size:11px; line-height:1.45;
   box-shadow:0 3px 10px rgba(0,0,0,.22); opacity:0; transform:translateY(5px);
@@ -213,8 +200,8 @@ table.g .k{color:var(--warn)}
 .mrow{display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; text-align:left;
   background:var(--win); border:0; padding:9px 12px; font-size:12.5px; border-bottom:1px solid var(--win2)}
 .mrow:hover{background:var(--sel); color:#fff}
-.mrow:hover .kk, .mrow:hover .sub{color:#D8E6F8}
-.mrow .kk{font-size:10.5px; color:var(--txt3)}
+.mrow:hover .kb, .mrow:hover .sub{color:#D8E6F8}
+.mrow .kb{font-size:10.5px; color:var(--txt3)}
 .mrow .sub{display:block; font-size:10.5px; color:var(--txt3); margin-top:1px}
 .mrow[disabled]{color:#AEB2B7; cursor:default}
 .mrow[disabled]:hover{background:var(--win); color:#AEB2B7}
@@ -238,193 +225,171 @@ table.g .k{color:var(--warn)}
   <div class="statusline"><span class="sl" id="slL"></span><span class="sr" id="slR"></span></div>
   <div class="toast" id="toast"></div>
   <div class="tabbar" id="tabs">
-    <button data-tab="docs"><svg viewBox="0 0 24 24"><path d="M4 5h6l2 2h8v12H4z"/></svg>Сметы</button>
+    <button data-tab="list"><svg viewBox="0 0 24 24"><path d="M4 5h6l2 2h8v12H4z"/></svg>Сметы</button>
     <button data-tab="smeta" class="on"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16"/><path d="M3 9h18M10 9v11M16 9v11"/></svg>Смета</button>
-    <button data-tab="cat"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H4zM13 4h7v7h-7zM13 13h7v7h-7z"/></svg>Источники</button>
-    <button data-tab="rooms"><svg viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="8"/><path d="M7 8v3M11 8v4M15 8v3M19 8v4"/></svg>Замеры</button>
-    <button data-tab="sync"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.6-5.7L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-13.6 5.7L4 16"/><path d="M4 20v-4h4"/></svg>Обмен</button>
+    <button data-tab="base"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H4zM13 4h7v7h-7zM13 13h7v7h-7z"/></svg>База</button>
+    <button data-tab="docs"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M10 12h7M10 16h7M10 8h3"/></svg>Документы</button>
+    <button data-tab="exch"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.6-5.7L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-13.6 5.7L4 16"/><path d="M4 20v-4h4"/></svg>Обмен</button>
   </div>
 </div></div></div>
 
 <script>
 (function(){
   "use strict";
-  /* ===================== справочник источников ===================== */
-  function R(c,n,u,o,p){ return {c:c, n:n, u:u, o:o, p:p}; }
-  var CATS = {
-    trud:{t:'Трудозатраты', kind:'trud', books:[
-      {c:'Книга 61', t:'Затраты труда рабочих-строителей', parts:[
-        {c:'Часть 61.1', t:'Строительные и специальные строительные работы', secs:[
-          {c:'Раздел 61.1.01', t:'Затраты труда рабочих по разрядам', grps:[
-            {c:'Группа 61.1.01.01', t:'Рабочие-строители', rows:[
-              R('61.1.01-0020','Затраты труда рабочих, средний разряд работы 2,0','чел.-ч',268.14,275.10),
-              R('61.1.01-0035','Затраты труда рабочих, средний разряд работы 3,5','чел.-ч',312.66,320.78),
-              R('61.1.01-0048','Затраты труда рабочих, средний разряд работы 4,8','чел.-ч',358.92,368.24)]},
-            {c:'Группа 61.1.01.02', t:'Машинисты строительных машин', rows:[
-              R('61.2.01-0004','Затраты труда машинистов','чел.-ч',341.20,350.05)]}]}]}]}]},
-    mech:{t:'Каталог механизмов', kind:'mech', books:[
-      {c:'Книга 91', t:'Машины и механизмы', parts:[
-        {c:'Часть 91.05', t:'Машины грузоподъёмные', secs:[
-          {c:'Раздел 91.05.05', t:'Краны башенные', grps:[
-            {c:'Группа 91.05.05.01', t:'Краны башенные грузоподъёмностью до 8 т', rows:[
-              R('91.05.05-014','Кран башенный, грузоподъёмность 8 т','маш.-ч',1284.50,1318.90)]}]}]},
-        {c:'Часть 91.06', t:'Машины землеройные', secs:[
-          {c:'Раздел 91.06.03', t:'Экскаваторы', grps:[
-            {c:'Группа 91.06.03.02', t:'Экскаваторы одноковшовые дизельные', rows:[
-              R('91.06.03-011','Экскаватор одноковшовый дизельный, ковш 0,65 м³','маш.-ч',986.20,1012.70)]}]}]},
-        {c:'Часть 91.14', t:'Машины и оборудование отделочные', secs:[
-          {c:'Раздел 91.14.02', t:'Подъёмники', grps:[
-            {c:'Группа 91.14.02.01', t:'Подъёмники мачтовые строительные', rows:[
-              R('91.14.02-001','Подъёмник мачтовый строительный, 0,5 т','маш.-ч',214.60,220.35)]}]},
-          {c:'Раздел 91.14.05', t:'Машины и оборудование штукатурные', grps:[
-            {c:'Группа 91.14.05.03', t:'Станции штукатурные', rows:[
-              R('91.14.05-013','Станция штукатурная передвижная','маш.-ч',468.90,481.50)]}]}]}]}]},
-    mat:{t:'Каталог материалов и оборудования', kind:'mat', books:[
-      {c:'Книга 01', t:'Материалы для строительных и дорожных работ', parts:[
-        {c:'Часть 01.3', t:'ГСМ, газы, химическая продукция', secs:[
-          {c:'Раздел 01.3.01', t:'ГСМ, смазки', grps:[
-            {c:'Группа 01.3.01.01', t:'Бензины', rows:[
-              R('01.3.01.01-0002','Бензин автомобильный АИ-98, АИ-95','т',46958.33,48493.06)]},
-            {c:'Группа 01.3.01.06', t:'Смазки', rows:[
-              R('01.3.01.06-0041','Смазка Литол-24','кг',352.15,359.74)]},
-            {c:'Группа 01.3.01.08', t:'Топливо', rows:[
-              R('01.3.01.08-0001','Топливо дизельное','т',49166.67,50594.85)]}]},
-          {c:'Раздел 01.3.04', t:'Масла', grps:[
-            {c:'Группа 01.3.04.01', t:'Масла гидравлические', rows:[
-              R('01.3.04.01-0009','Масло гидравлическое ИГП-30','т',111924.35,114642.23)]},
-            {c:'Группа 01.3.04.02', t:'Масла дизельные моторные', rows:[
-              R('01.3.04.02-0004','Масло дизельное моторное М-10ДМ','кг',116.65,119.46)]},
-            {c:'Группа 01.3.04.03', t:'Масла индустриальные', rows:[
-              R('01.3.04.03-0003','Масло индустриальное И-20А','л',79.25,81.26),
-              R('01.3.04.03-0004','Масло индустриальное И-30А','л',105.35,107.94),
-              R('01.3.04.03-0005','Масло индустриальное И-40А','л',79.25,81.26)]}]}]},
-        {c:'Часть 01.5', t:'Средства организации дорожного движения', secs:[
-          {c:'Раздел 01.5.01', t:'Материалы для дорожной разметки', grps:[
-            {c:'Группа 01.5.01.02', t:'Пластики для дорожных работ', rows:[
-              R('01.5.01.02-0062','Пластик холодный для дорожной разметки, цвет белый','кг',153.00,156.54),
-              R('01.5.01.02-0063','Пластик холодный для дорожной разметки, цветной','кг',158.15,161.79)]},
-            {c:'Группа 01.5.01.03', t:'Термопластики', rows:[
-              R('01.5.01.03-0011','Термопластик для дорожной разметки, белый','кг',178.40,182.53)]}]}]}]},
-      {c:'Книга 03', t:'Цементы, гипс, известь', parts:[
-        {c:'Часть 03.1', t:'Цементы', secs:[
-          {c:'Раздел 03.1.01', t:'Портландцементы', grps:[
-            {c:'Группа 03.1.01.01', t:'Портландцемент общестроительный', rows:[
-              R('03.1.01.01-0016','Портландцемент бездобавочный ЦЕМ I 42,5Н','т',6850.00,7040.15),
-              R('03.1.01.01-0022','Портландцемент с минеральными добавками ЦЕМ II/А-Ш 32,5Б','т',6120.00,6289.90)]}]},
-          {c:'Раздел 03.1.04', t:'Смеси сухие строительные', grps:[
-            {c:'Группа 03.1.04.02', t:'Смеси штукатурные', rows:[
-              R('03.1.04.02-0031','Смесь сухая штукатурная гипсовая','т',9480.00,9743.30)]},
-            {c:'Группа 03.1.04.05', t:'Смеси для устройства стяжек', rows:[
-              R('03.1.04.05-0008','Смесь сухая для устройства стяжек, М-200','т',7240.00,7441.20)]}]}]}]},
-      {c:'Книга 06', t:'Изделия керамические', parts:[
-        {c:'Часть 06.2', t:'Плитка керамическая', secs:[
-          {c:'Раздел 06.2.01', t:'Плитка для полов', grps:[
-            {c:'Группа 06.2.01.03', t:'Керамогранит', rows:[
-              R('06.2.01.03-0014','Керамогранит неглазурованный 600×600 мм','м²',984.30,1011.65)]}]},
-          {c:'Раздел 06.2.03', t:'Плитка облицовочная', grps:[
-            {c:'Группа 06.2.03.01', t:'Плитка для внутренней облицовки стен', rows:[
-              R('06.2.03.01-0007','Плитка керамическая глазурованная 300×600 мм','м²',712.80,732.60)]}]}]}]},
-      {c:'Книга 08', t:'Изделия металлические', parts:[
-        {c:'Часть 08.2', t:'Изделия из чёрных металлов', secs:[
-          {c:'Раздел 08.2.01', t:'Гвозди, метизы', grps:[
-            {c:'Группа 08.2.01.02', t:'Гвозди строительные', rows:[
-              R('08.2.01.02-0011','Гвозди строительные 4,0×100 мм','т',62340.00,64020.50)]}]},
-          {c:'Раздел 08.2.03', t:'Сетка', grps:[
-            {c:'Группа 08.2.03.01', t:'Сетка сварная', rows:[
-              R('08.2.03.01-0007','Сетка сварная 100×100×4 мм','м²',168.40,172.95)]}]}]}]},
-      {c:'Книга 14', t:'Материалы лакокрасочные', parts:[
-        {c:'Часть 14.1', t:'Краски и эмали', secs:[
-          {c:'Раздел 14.1.02', t:'Краски водно-дисперсионные', grps:[
-            {c:'Группа 14.1.02.01', t:'Краски для внутренних работ', rows:[
-              R('14.1.02.01-0009','Краска водно-дисперсионная для внутренних работ','т',78400.00,80512.00)]}]},
-          {c:'Раздел 14.1.05', t:'Грунтовки', grps:[
-            {c:'Группа 14.1.05.02', t:'Грунтовки акриловые', rows:[
-              R('14.1.05.02-0016','Грунтовка акриловая глубокого проникновения','т',34120.00,35038.40)]}]}]}]},
-      {c:'Книга 21', t:'Продукция кабельная', parts:[
-        {c:'Часть 21.1', t:'Кабели силовые', secs:[
-          {c:'Раздел 21.1.01', t:'Кабели с медными жилами', grps:[
-            {c:'Группа 21.1.01.03', t:'Кабели ВВГнг', rows:[
-              R('21.1.01.03-0021','Кабель ВВГнг(А)-LS 3×2,5','км',78950.00,81095.20)]}]}]}]},
-      {c:'Книга 23', t:'Трубы и трубопроводная арматура', parts:[
-        {c:'Часть 23.1', t:'Трубы стальные', secs:[
-          {c:'Раздел 23.1.02', t:'Трубы водогазопроводные', grps:[
-            {c:'Группа 23.1.02.01', t:'Трубы ВГП оцинкованные', rows:[
-              R('23.1.02.01-0014','Труба стальная водогазопроводная оцинкованная Ду 25 мм','м',386.50,396.90)]}]}]}]}]},
-    perev:{t:'Перевозки, погрузка/разгрузка', kind:'perev', books:[
-      {c:'Книга 66', t:'Перевозка грузов', parts:[
-        {c:'Часть 66.1', t:'Перевозка автомобильным транспортом', secs:[
-          {c:'Раздел 66.1.01', t:'Перевозка грузов I класса', grps:[
-            {c:'Группа 66.1.01.01', t:'На расстояние до 30 км', rows:[
-              R('66.1.01.01-0012','Перевозка грузов I класса на расстояние 15 км','т',186.40,191.20),
-              R('66.1.01.01-0021','Перевозка грузов I класса на расстояние 30 км','т',248.30,254.80)]}]},
-          {c:'Раздел 66.1.02', t:'Погрузочно-разгрузочные работы', grps:[
-            {c:'Группа 66.1.02.01', t:'Погрузка вручную', rows:[
-              R('66.1.02.01-0003','Погрузка строительного мусора вручную','т',348.70,357.80)]}]}]}]}]}
-  };
-  var CATORDER = ['trud','mech','mat','perev'];
-  var ALL = {};
-  (function(){
-    for(var k in CATS){ var c = CATS[k], b, p, s, g, i, j, m, n, q;
-      for(i=0;i<c.books.length;i++){ b = c.books[i];
-        for(j=0;j<b.parts.length;j++){ p = b.parts[j];
-          for(m=0;m<p.secs.length;m++){ s = p.secs[m];
-            for(n=0;n<s.grps.length;n++){ g = s.grps[n];
-              for(q=0;q<g.rows.length;q++){ g.rows[q].kind = c.kind; ALL[g.rows[q].c] = g.rows[q]; } } } } } }
-  })();
+  /* ============ нормативная база ============ */
+  function S(k,c,n,u,q,p,pb,usl){ return {k:k, c:c, n:n, u:u, q:q, p:p, pb:pb, usl:!!usl}; }
+  function N(c,n,u,nr,sp,res){ return {c:c, n:n, u:u, nr:nr, sp:sp, res:res}; }
+  var BASE = [
+    {c:'Сборник 46', t:'Работы при реконструкции зданий и сооружений', o:[
+      {c:'Отдел 04', t:'Разборка конструкций', tb:[
+        {c:'Таблица 46-04-001', t:'Разборка стен и перегородок', p:[
+          N('ФЕР46-04-001-01','Разборка кирпичных стен','1 м3',90,50,[
+            S('t','1-100-25','Затраты труда рабочих, средний разряд работы 2,5','чел.-ч',5.62,320.78,12.40),
+            S('m','91.05.05-014','Кран башенный, грузоподъёмность 8 т','маш.-ч',0.12,1318.90,118.40),
+            S('z','2-100-40','Затраты труда машинистов','чел.-ч',0.12,350.05,14.20)])]},
+        {c:'Таблица 46-04-013', t:'Разборка покрытий полов', p:[
+          N('ФЕР46-04-013-02','Разборка покрытий полов из керамических плиток','100 м2',90,50,[
+            S('t','1-100-22','Затраты труда рабочих, средний разряд работы 2,2','чел.-ч',32.40,275.10,10.80),
+            S('r','66.1.02.01-0003','Погрузка строительного мусора вручную','т',1.80,357.80,32.10)])]}]}]},
+    {c:'Сборник 08', t:'Электротехнические установки', o:[
+      {c:'Отдел 02', t:'Кабельные линии', tb:[
+        {c:'Таблица 08-02-395', t:'Прокладка кабеля в готовых каналах', p:[
+          N('ФЕР08-02-395-01','Прокладка кабеля до 35 кВ в готовых каналах и трубах','100 м',95,65,[
+            S('t','1-100-32','Затраты труда рабочих, средний разряд работы 3,2','чел.-ч',12.60,312.66,11.20),
+            S('r','21.1.01.03-0021','Кабель ВВГнг(А)-LS 3×2,5','км',0.102,81095.20,6840.00),
+            S('r','23.4.02.01-0009','Труба гофрированная ПВХ, Ду 25 мм','м',102.00,34.20,3.10)])]}]}]},
+    {c:'Сборник 10', t:'Деревянные конструкции', o:[
+      {c:'Отдел 01', t:'Заполнение проёмов', tb:[
+        {c:'Таблица 10-01-039', t:'Установка блоков в дверных проёмах', p:[
+          N('ФЕР10-01-039-01','Установка блоков во внутренних дверных проёмах','100 м2 проёмов',118,63,[
+            S('t','1-100-35','Затраты труда рабочих, средний разряд работы 3,5','чел.-ч',96.20,312.66,10.60),
+            S('r','10.2.03.01-0012','Блоки дверные внутренние','м2',102.00,6840.00,540.00)])]}]}]},
+    {c:'Сборник 11', t:'Полы', o:[
+      {c:'Отдел 01', t:'Полы', tb:[
+        {c:'Таблица 11-01-011', t:'Устройство стяжек цементных', p:[
+          N('ФЕР11-01-011-01','Устройство стяжек цементных толщиной 20 мм','100 м2',105,55,[
+            S('t','1-100-32','Затраты труда рабочих, средний разряд работы 3,2','чел.-ч',24.80,312.66,9.80),
+            S('m','91.14.05-013','Станция штукатурная передвижная','маш.-ч',2.40,481.50,42.60),
+            S('z','2-100-40','Затраты труда машинистов','чел.-ч',2.40,350.05,13.10),
+            S('r','03.1.04.05-0008','Смесь сухая для устройства стяжек, М-200','т',4.28,7441.20,620.40),
+            S('r','01.7.15.06-0001','Вода','м3',0.86,38.20,2.90,true)]),
+          N('ФЕР11-01-011-02','На каждые 5 мм изменения толщины стяжки добавлять','100 м2',105,55,[
+            S('t','1-100-32','Затраты труда рабочих, средний разряд работы 3,2','чел.-ч',2.10,312.66,9.80),
+            S('r','03.1.04.05-0008','Смесь сухая для устройства стяжек, М-200','т',1.07,7441.20,620.40)])]},
+        {c:'Таблица 11-01-036', t:'Устройство покрытий из плит', p:[
+          N('ФЕР11-01-036-01','Устройство покрытий из керамогранитных плит','100 м2',105,55,[
+            S('t','1-100-40','Затраты труда рабочих, средний разряд работы 4,0','чел.-ч',78.40,358.92,12.40),
+            S('r','06.2.01.03-0014','Керамогранит неглазурованный 600×600 мм','м2',102.00,1011.65,84.20),
+            S('r','03.1.06.02-0004','Смесь сухая клеевая для плитки','т',0.62,12480.00,980.00),
+            S('r','01.7.15.06-0001','Вода','м3',0.42,38.20,2.90,true)])]}]}]},
+    {c:'Сборник 15', t:'Отделочные работы', o:[
+      {c:'Отдел 02', t:'Штукатурные работы', tb:[
+        {c:'Таблица 15-02-016', t:'Штукатурка поверхностей внутри здания', p:[
+          N('ФЕР15-02-016-03','Штукатурка по камню и бетону стен улучшенная','100 м2',105,55,[
+            S('t','1-100-35','Затраты труда рабочих, средний разряд работы 3,5','чел.-ч',87.40,312.66,10.20),
+            S('m','91.14.05-013','Станция штукатурная передвижная','маш.-ч',4.20,481.50,42.60),
+            S('z','2-100-40','Затраты труда машинистов','чел.-ч',4.20,350.05,13.10),
+            S('r','03.1.04.02-0031','Смесь сухая штукатурная гипсовая','т',1.86,9743.30,810.20),
+            S('r','08.2.03.01-0007','Сетка сварная 100×100×4 мм','м2',102.00,172.95,14.80),
+            S('r','01.7.15.06-0001','Вода','м3',1.24,38.20,2.90,true)])]}]},
+      {c:'Отдел 04', t:'Малярные работы', tb:[
+        {c:'Таблица 15-04-005', t:'Окраска водоэмульсионными составами', p:[
+          N('ФЕР15-04-005-04','Окраска водоэмульсионными составами улучшенная по штукатурке стен','100 м2',105,55,[
+            S('t','1-100-22','Затраты труда рабочих, средний разряд работы 2,2','чел.-ч',32.60,275.10,9.10),
+            S('r','14.1.02.01-0009','Краска водно-дисперсионная для внутренних работ','т',0.042,80512.00,6420.00),
+            S('r','14.1.05.02-0016','Грунтовка акриловая глубокого проникновения','т',0.021,35038.40,2810.00)])]}]}]}
+  ];
+  var NORM = {};
+  (function(){ var i,j,m,q,b,o,tb;
+    for(i=0;i<BASE.length;i++){ b = BASE[i];
+      for(j=0;j<b.o.length;j++){ o = b.o[j];
+        for(m=0;m<o.tb.length;m++){ tb = o.tb[m];
+          for(q=0;q<tb.p.length;q++) NORM[tb.p[q].c] = tb.p[q]; } } } })();
 
-  /* ===================== сметы ===================== */
+  /* ============ методы расчёта и базы ============ */
+  var METHODS = {
+    rim:{t:'Ресурсно-индексный (РИМ)', ozp:32.15, em:12.84, mat:'cur'},
+    res:{t:'Ресурсный', ozp:'cur', em:'cur', mat:'cur'},
+    bi:{t:'Базисно-индексный', ozp:32.15, em:12.84, mat:9.72}
+  };
+  var SNB = ['ФСНБ-2022 (ФЕР) ред. 2024','ФЕР-2001','ТЕР-2001 Московская область','ТСН-2001','СН-2012','СБЦП (ПИР)'];
+  var method = 'rim', snb = 'ФСНБ-2022 (ФЕР) ред. 2024';
+  var CJ = {reg:'Московская область', zone:'Ценовая зона 1'};
+
+  /* ============ сметы ============ */
   var uid = 0;
-  function P(code, qty, sect, k){
-    var s = ALL[code];
-    return {id:++uid, c:s.c, n:s.n, u:s.u, p:s.p, kind:s.kind, qty:qty, k:k || 1, sect:sect};
+  function pos(code, qty, sect, k){
+    var nn = NORM[code], r = [], i;
+    for(i=0;i<nn.res.length;i++) r.push({k:nn.res[i].k, c:nn.res[i].c, n:nn.res[i].n, u:nn.res[i].u,
+      q:nn.res[i].q, p:nn.res[i].p, pb:nn.res[i].pb, usl:nn.res[i].usl});
+    return {id:++uid, c:nn.c, n:nn.n, u:nn.u, nr:nn.nr, sp:nn.sp, qty:qty, k:k || 1, sect:sect, res:r};
   }
   var DOCS = [
-    {id:'d1', name:'Ремонт кв. 74', code:'ЛСР-02-01', addr:'ЖК «Северный», корп. 3', cust:'Ковалёв А. И.',
-     date:'07.09.2026', changes:3,
-     sects:[{id:1,t:'Демонтажные работы'},{id:2,t:'Стены и перегородки'},{id:3,t:'Полы'},{id:4,t:'Отделочные работы'}],
-     items:[P('61.1.01-0035',42.6,1), P('66.1.02.01-0003',3.2,1), P('66.1.01.01-0012',3.2,1),
-            P('61.1.01-0035',168.4,2,1.15), P('91.14.05-013',12.4,2), P('03.1.04.02-0031',1.86,2),
-            P('08.2.03.01-0007',96.2,2),
-            P('61.1.01-0020',38.5,3), P('03.1.04.05-0008',2.14,3), P('06.2.01.03-0014',18.4,3)],
-     rooms:[{id:1,name:'Гостиная',l:5.2,w:3.8,h:2.7,op:3.4},{id:2,name:'Кухня',l:3.6,w:3.1,h:2.7,op:2.6}]},
-    {id:'d2', name:'Офис на Гагарина, 2 этаж', code:'ЛСР-05-03', addr:'ул. Гагарина, 14', cust:'ООО «Ветразь»',
-     date:'02.09.2026', changes:0,
+    {id:'d1', name:'Ремонт кв. 74', code:'02-01-01', addr:'ЖК «Северный», корп. 3', cust:'Ковалёв А. И.',
+     date:'07.09.2026', changes:3, nds:20,
+     sects:[{id:1,t:'Демонтажные работы'},{id:2,t:'Отделочные работы'},{id:3,t:'Полы'}],
+     items:[pos('ФЕР46-04-013-02',0.184,1), pos('ФЕР46-04-001-01',2.6,1),
+            pos('ФЕР15-02-016-03',0.962,2,1.15), pos('ФЕР15-04-005-04',0.962,2),
+            pos('ФЕР11-01-011-01',0.428,3), pos('ФЕР11-01-036-01',0.184,3)],
+     rooms:[{id:1,name:'Гостиная',l:5.2,w:3.8,h:2.7,op:3.4},{id:2,name:'Кухня',l:3.6,w:3.1,h:2.7,op:2.6}],
+     acts:[], vor:[]},
+    {id:'d2', name:'Офис на Гагарина, 2 этаж', code:'05-03-01', addr:'ул. Гагарина, 14', cust:'ООО «Ветразь»',
+     date:'02.09.2026', changes:0, nds:20,
      sects:[{id:1,t:'Демонтаж и перепланировка'},{id:2,t:'Отделка'},{id:3,t:'Электромонтажные работы'}],
-     items:[P('61.1.01-0035',214,1), P('66.1.02.01-0003',12.8,1),
-            P('61.1.01-0048',318,2,1.15), P('14.1.02.01-0009',0.086,2), P('14.1.05.02-0016',0.042,2),
-            P('61.1.01-0035',96,3), P('21.1.01.03-0021',0.64,3)],
-     rooms:[{id:1,name:'Опенспейс',l:12.4,w:8.2,h:3.2,op:14.8}]},
-    {id:'d3', name:'Склад, кровля', code:'ЛСР-01-02', addr:'Промзона, участок 7', cust:'ИП Демидов',
-     date:'28.08.2026', changes:0,
-     sects:[{id:1,t:'Кровельные работы'},{id:2,t:'Механизированные работы'}],
-     items:[P('61.1.01-0048',486,1), P('03.1.01.01-0016',4.2,1), P('08.2.01.02-0011',0.28,1),
-            P('91.05.05-014',36.5,2), P('61.2.01-0004',36.5,2)],
-     rooms:[]}
+     items:[pos('ФЕР46-04-013-02',2.14,1), pos('ФЕР15-02-016-03',3.18,2,1.15),
+            pos('ФЕР15-04-005-04',3.18,2), pos('ФЕР08-02-395-01',6.4,3)],
+     rooms:[{id:1,name:'Опенспейс',l:12.4,w:8.2,h:3.2,op:14.8}], acts:[], vor:[]},
+    {id:'d3', name:'Школа № 12, актовый зал', code:'01-02-01', addr:'ул. Мира, 3', cust:'МКУ «Управление образования»',
+     date:'28.08.2026', changes:0, nds:20,
+     sects:[{id:1,t:'Полы'},{id:2,t:'Заполнение проёмов'}],
+     items:[pos('ФЕР11-01-011-01',4.86,1), pos('ФЕР11-01-036-01',4.86,1), pos('ФЕР10-01-039-01',0.42,2)],
+     rooms:[], acts:[], vor:[]}
   ];
-  var SRC = '10/23 ФГИСЦС Московская область';
-  var CFG = {nr:89, sp:65, nds:20};
-  var VIEW = {itogi:true, opt:false, comp:false};
   var doc = DOCS[0];
-  var screen = 'smeta', catKey = 'mat', selId = null, curSect = 2;
-  var query = '', filter = '', showFilter = false, pending = null, roomId = null, expFmt = 'smt';
-  var collapsed = {};
-  var hint = 'Готово';
+  var screen = 'smeta', selId = null, curSect = 2, actId = null, roomId = null;
+  var query = '', filter = '', showFilter = false, pending = null;
+  var VIEW = {f9:false, cf9:false, itogi:true, comp:false};
+  var collapsed = {}, hint = 'Готово', expFmt = 'xlsx';
+  var PKG = {smeta:true, ks2:true, ks3:true, m29:false};
 
+  /* ============ расчёт ============ */
   function money(n){ return n.toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2}); }
-  function num(n){ return n.toLocaleString('ru-RU',{maximumFractionDigits:3}); }
+  function num(n){ return n.toLocaleString('ru-RU',{maximumFractionDigits:4}); }
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function pnum(s){ var v = parseFloat(String(s).replace(',','.').replace(/[^\d.]/g,'')); return isNaN(v) ? 0 : v; }
-  function sm(it){ return it.qty * it.p * it.k; }
-  function totals(d){
-    d = d || doc;
-    var ot = 0, em = 0, mt = 0, i, v, it;
-    for(i=0;i<d.items.length;i++){
-      it = d.items[i]; v = sm(it);
-      if(it.kind === 'trud') ot += v; else if(it.kind === 'mech') em += v; else mt += v;
+  function isBI(){ return method === 'bi'; }
+  function resPrice(r){
+    var m = METHODS[method], idx = r.k === 'r' ? m.mat : (r.k === 'm' || r.k === 'z' ? m.em : m.ozp);
+    if(idx === 'cur') return r.p;
+    return r.pb * idx;
+  }
+  function resIdx(r){
+    var m = METHODS[method], idx = r.k === 'r' ? m.mat : (r.k === 'm' || r.k === 'z' ? m.em : m.ozp);
+    return idx === 'cur' ? null : idx;
+  }
+  function resSum(it, r){ return r.usl ? 0 : r.q * it.qty * it.k * resPrice(r); }
+  function posCost(it){
+    var ozp = 0, em = 0, zpm = 0, mat = 0, i, r, v;
+    for(i=0;i<it.res.length;i++){
+      r = it.res[i]; v = resSum(it, r);
+      if(r.k === 't') ozp += v; else if(r.k === 'm') em += v; else if(r.k === 'z'){ em += v; zpm += v; } else mat += v;
     }
-    var pz = ot + em + mt, nr = ot * CFG.nr / 100, sp = ot * CFG.sp / 100;
-    var itg = pz + nr + sp, nds = itg * CFG.nds / 100;
-    return {ot:ot, em:em, mt:mt, pz:pz, nr:nr, sp:sp, itg:itg, nds:nds, all:itg + nds};
+    var pz = ozp + em + mat, fot = ozp + zpm;
+    var nr = fot * it.nr / 100, sp = fot * it.sp / 100;
+    return {ozp:ozp, em:em, zpm:zpm, mat:mat, pz:pz, fot:fot, nr:nr, sp:sp, all:pz + nr + sp};
+  }
+  function totals(d, list){
+    d = d || doc;
+    var src = list || d.items;
+    var a = {ozp:0, em:0, zpm:0, mat:0, pz:0, fot:0, nr:0, sp:0, all:0}, i, c;
+    for(i=0;i<src.length;i++){
+      c = posCost(src[i]);
+      a.ozp += c.ozp; a.em += c.em; a.zpm += c.zpm; a.mat += c.mat;
+      a.pz += c.pz; a.fot += c.fot; a.nr += c.nr; a.sp += c.sp; a.all += c.all;
+    }
+    a.nds = a.all * d.nds / 100;
+    a.total = a.all + a.nds;
+    return a;
   }
   function inSect(id){ var r = [], i; for(i=0;i<doc.items.length;i++) if(doc.items[i].sect === id) r.push(doc.items[i]); return r; }
   function sectT(id){ for(var i=0;i<doc.sects.length;i++) if(doc.sects[i].id === id) return doc.sects[i].t; return '—'; }
@@ -436,26 +401,19 @@ table.g .k{color:var(--warn)}
   var ctxbar = document.getElementById('ctxbar'), searchbar = document.getElementById('searchbar');
   var subtabs = document.getElementById('subtabs'), tabs = document.getElementById('tabs');
   var menubar = document.getElementById('menubar'), toastEl = document.getElementById('toast');
-  var scr = document.querySelector('.scr');
-  var toastT = null;
-  function toast(m){
-    toastEl.textContent = m; toastEl.classList.add('show');
-    if(toastT) clearTimeout(toastT);
-    toastT = setTimeout(function(){ toastEl.classList.remove('show'); }, 2600);
-  }
+  var scr = document.querySelector('.scr'), toastT = null;
+  function toast(m){ toastEl.textContent = m; toastEl.classList.add('show');
+    if(toastT) clearTimeout(toastT); toastT = setTimeout(function(){ toastEl.classList.remove('show'); }, 2700); }
   function say(m){ hint = m; var e = document.getElementById('slL'); if(e) e.textContent = m; }
 
-  /* ===================== диалоги ===================== */
+  /* ============ диалоги ============ */
   function close(){ var o = scr.querySelector('.ov'); if(o) o.parentNode.removeChild(o); }
   function dlg(html, bind){
     close();
     var o = document.createElement('div');
-    o.className = 'ov';
-    o.innerHTML = '<div class="dlg">' + html + '</div>';
+    o.className = 'ov'; o.innerHTML = '<div class="dlg">' + html + '</div>';
     o.addEventListener('click', function(e){ if(e.target === o) close(); });
-    scr.appendChild(o);
-    if(bind) bind(o);
-    return o;
+    scr.appendChild(o); if(bind) bind(o); return o;
   }
   function ask(title, label, value, ok){
     dlg('<h3>' + esc(title) + '</h3><div class="db"><div class="field"><label>' + esc(label) +
@@ -463,211 +421,381 @@ table.g .k{color:var(--warn)}
       '<div class="dact"><button data-x>Отмена</button><button class="ok" data-ok>ОК</button></div>',
       function(o){
         var i = o.querySelector('#v'); i.focus(); i.select();
-        function go2(){ var v = i.value.trim(); close(); if(v) ok(v); }
+        function g(){ var v = i.value.trim(); close(); if(v) ok(v); }
         o.querySelector('[data-x]').addEventListener('click', close);
-        o.querySelector('[data-ok]').addEventListener('click', go2);
-        i.addEventListener('keydown', function(e){ if(e.key === 'Enter') go2(); });
+        o.querySelector('[data-ok]').addEventListener('click', g);
+        i.addEventListener('keydown', function(e){ if(e.key === 'Enter') g(); });
       });
   }
-
-  /* ===================== меню ===================== */
-  var MENUS = [
-    {t:'Файл', items:[{t:'Создать смету…', a:'newdoc'}, {t:'Открыть…', k:'Ctrl+O', a:'docs'},
-      {t:'Сохранить', k:'Ctrl+S', a:'save'}, {sep:1},
-      {t:'Экспорт в XLSX…', a:'sync'}, {t:'Печать…', k:'Ctrl+P', a:'print'}]},
-    {t:'Редактор', items:[{t:'Вставить позицию', k:'Ins', a:'add'}, {t:'Удалить строку', k:'Del', a:'del'}, {sep:1},
-      {t:'Коэффициент к позиции', k:'Ctrl+K', a:'coef'}, {t:'Перенести в раздел…', a:'move'},
-      {t:'Добавить раздел…', a:'newsect'}]},
-    {t:'Документы', items:[{t:'Локальная смета', a:'smeta', ck:1}, {t:'Ресурсная ведомость', a:'wip'},
-      {t:'Акт КС-2', a:'wip'}, {t:'Справка КС-3', a:'wip'}, {sep:1}, {t:'Реквизиты сметы…', a:'props'}]},
-    {t:'Источники', items:[{t:'Открыть…', k:'Ctrl+B', a:'cat'}, {t:'Создать…', a:'wip'},
-      {t:'Создать каталог', a:'wip'}, {t:'Импортировать ФГИС ЦС…', a:'import'}, {sep:1},
-      {t:'Рассчитать индексы', dis:1}, {t:'Пересчитать сборник', dis:1}, {t:'Добавить техчасть…', dis:1},
-      {t:'Выбрать дополнение…', dis:1}, {sep:1},
-      {t:'Найти источник', k:'Shift+Ctrl+F', a:'find'}, {t:'Найти коэффициенты', k:'Ctrl+G', a:'wip'}, {sep:1},
-      {t:'1984 г.', a:'src'}, {t:'ГЭСН 2001', a:'src'}, {t:'ФЕР 2001', a:'src'}, {t:'ТСН 2001', a:'src'},
-      {t:'ПИР', a:'src'}, {t:'10/23 ФГИСЦС Московская область', a:'src'}]},
-    {t:'Поиск', items:[{t:'Найти в смете', k:'Ctrl+F', a:'filter'},
-      {t:'Найти источник', k:'Shift+Ctrl+F', a:'find'}, {t:'Найти коэффициенты', k:'Ctrl+G', a:'wip'}]},
-    {t:'Сервис', items:[{t:'Нормативы расчёта…', a:'cfg'}, {t:'Замеры помещений', a:'rooms'},
-      {t:'Обмен с ПК…', a:'sync'}]},
-    {t:'Вид', items:[{t:'Итоги по смете', a:'v_itogi'}, {t:'Колонка «ОптЦена»', a:'v_opt'},
-      {t:'Компактные строки', a:'v_comp'}]},
-    {t:'Помощь', items:[{t:'О программе', a:'about'}]}
-  ];
-  function openMenu(mi){
-    var m = MENUS[mi], h = '<h3>' + esc(m.t) + '</h3>', i, it, ck;
-    for(i=0;i<m.items.length;i++){
-      it = m.items[i];
-      if(it.sep){ h += '<div class="msep"></div>'; continue; }
-      ck = '';
-      if(it.a === 'src') ck = it.t === SRC ? '✓' : '';
-      else if(it.a === 'v_itogi') ck = VIEW.itogi ? '✓' : '';
-      else if(it.a === 'v_opt') ck = VIEW.opt ? '✓' : '';
-      else if(it.a === 'v_comp') ck = VIEW.comp ? '✓' : '';
-      else if(it.ck) ck = '✓';
-      h += '<button class="mrow" data-i="' + i + '"' + (it.dis ? ' disabled' : '') + '>' +
-        '<span style="display:flex;gap:6px;align-items:baseline"><span class="ck">' + ck + '</span>' + esc(it.t) + '</span>' +
-        '<span class="kk">' + esc(it.k || '') + '</span></button>';
+  function menuList(title, items, onPick, actions){
+    var h = '<h3>' + esc(title) + '</h3>', i;
+    for(i=0;i<items.length;i++){
+      if(items[i].sep){ h += '<div class="msep"></div>'; continue; }
+      h += '<button class="mrow" data-i="' + i + '"' + (items[i].dis ? ' disabled' : '') + '>' +
+        '<span style="display:flex;gap:6px;align-items:baseline"><span class="ck">' + (items[i].ck ? '✓' : '') + '</span>' +
+        '<span>' + esc(items[i].t) + (items[i].sub ? '<span class="sub">' + esc(items[i].sub) + '</span>' : '') + '</span></span>' +
+        '<span class="kb">' + esc(items[i].kb || '') + '</span></button>';
     }
-    h += '<div class="dact"><button data-x>Закрыть</button></div>';
-    dlg(h, function(o){
+    h += '<div class="dact"><button data-x>Закрыть</button>' +
+      (actions ? '<button class="ok" data-extra>' + esc(actions) + '</button>' : '') + '</div>';
+    return dlg(h, function(o){
       var b = o.querySelectorAll('[data-i]'), j;
       for(j=0;j<b.length;j++) b[j].addEventListener('click', function(){
-        var it2 = m.items[+this.getAttribute('data-i')];
-        close(); menuAct(it2);
+        var it = items[+this.getAttribute('data-i')]; close(); onPick(it);
       });
       o.querySelector('[data-x]').addEventListener('click', close);
+      var e = o.querySelector('[data-extra]');
+      if(e) e.addEventListener('click', function(){ close(); onPick({extra:true}); });
     });
   }
-  function menuAct(it){
-    var a = it.a;
-    if(!a) return;
-    if(a === 'src'){ SRC = it.t; render(); say('Источник: ' + SRC); toast('Активный источник: ' + SRC); return; }
-    if(a === 'v_itogi'){ VIEW.itogi = !VIEW.itogi; render(); return; }
-    if(a === 'v_opt'){ VIEW.opt = !VIEW.opt; render(); return; }
-    if(a === 'v_comp'){ VIEW.comp = !VIEW.comp; document.body.classList.toggle('comp', VIEW.comp); render(); return; }
-    if(a === 'import'){ say('Для импорта индексов выполните «Импортировать ФГИС ЦС» в меню «Источники»');
-      toast('Импорт ФГИС ЦС выполняется при подключении к сети'); return; }
-    if(a === 'save'){ toast('Смета сохранена на устройстве'); say('Сохранено'); return; }
-    if(a === 'print'){ toast('Печатные формы формируются после выгрузки на ПК'); return; }
-    if(a === 'wip'){ toast('Команда недоступна для текущего источника'); return; }
-    if(a === 'about'){
-      dlg('<h3>О программе</h3><div class="db"><p style="margin:0 0 8px;font-size:13px"><b>Турбо сметчик</b> · мобильная версия</p>' +
-        '<p class="hint" style="margin:0">Сборка 0.9.4 · работа без подключения к сети<br>Источник: ' + esc(SRC) +
-        '<br>Нормативы: НР ' + num(CFG.nr) + ' % · СП ' + num(CFG.sp) + ' % · НДС ' + num(CFG.nds) + ' %</p></div>' +
-        '<div class="dact"><button class="ok" data-x>ОК</button></div>',
-        function(o){ o.querySelector('[data-x]').addEventListener('click', close); });
-      return;
-    }
-    if(a === 'find'){ go('cat'); setTimeout(function(){ var q = document.getElementById('q'); if(q) q.focus(); }, 60); return; }
-    if(a === 'filter'){ if(screen !== 'smeta') go('smeta'); showFilter = true; render('fl'); return; }
-    if(a === 'newdoc'){ newDoc(); return; }
-    if(a === 'newsect'){ addSect(); return; }
-    if(a === 'add' || a === 'del' || a === 'coef' || a === 'move'){ act(a); return; }
-    go(a);
+
+  /* ============ универсальная таблица ============ */
+  function grid(cols, rows){
+    var h = '<table class="g"><colgroup>', i;
+    for(i=0;i<cols.length;i++) h += '<col style="width:' + cols[i].w + 'px">';
+    h += '</colgroup><thead><tr>';
+    for(i=0;i<cols.length;i++)
+      h += '<th class="' + (i === 0 ? 'stub' : '') + (cols[i].r ? ' r' : '') + '">' + cols[i].t + '</th>';
+    h += '</tr></thead><tbody>';
+    rows.forEach(function(rw){
+      h += '<tr class="' + rw.cls + '"' + (rw.attr || '') + '>';
+      if(rw.span !== undefined){
+        h += '<td class="stub">' + (rw.stub || '') + '</td><td colspan="' + (cols.length - 1) + '">' + rw.span + '</td>';
+      } else {
+        rw.cells.forEach(function(c, j){
+          var o = (typeof c === 'object' && c !== null) ? c : {v:c};
+          h += '<td class="' + (j === 0 ? 'stub' : '') + (cols[j] && cols[j].r ? ' r' : '') +
+            (cols[j] && cols[j].nm ? ' nm' : '') + (o.cls ? ' ' + o.cls : '') + '"' + (o.attr || '') + '>' +
+            (o.v === undefined ? '' : o.v) + '</td>';
+        });
+      }
+      h += '</tr>';
+    });
+    return '<div class="gw">' + h + '</tbody></table></div>';
   }
 
-  /* ===================== сетка сметы ===================== */
-  function smetaGrid(){
-    var f = filter.trim().toLowerCase();
-    var h = '<table class="g"><colgroup><col style="width:26px"><col style="width:106px"><col style="width:174px">' +
-      '<col style="width:48px"><col style="width:58px"><col style="width:38px"><col style="width:76px"><col style="width:86px"></colgroup>' +
-      '<thead><tr><th class="stub">№</th><th>Код ресурса</th><th>Наименование работ и затрат</th><th>Ед.изм.</th>' +
-      '<th class="r">Кол-во</th><th class="r">К</th><th class="r">Цена</th><th class="r">Всего</th></tr></thead><tbody>';
-    var n = 0, si, i, list, st, shown = 0;
+  /* ============ экран: смета ============ */
+  function smetaCols(){
+    var c = [{t:'№', w:24}, {t:'Обоснование', w:96}, {t:'Наименование работ и затрат', w:148, nm:1},
+      {t:'Ед.изм.', w:50}, {t:'Кол-во', w:60, r:1}, {t:'К', w:34, r:1}];
+    if(isBI()) c.push({t:'Баз. цена', w:70, r:1}, {t:'Индекс', w:46, r:1});
+    else c.push({t:'Цена ед.', w:76, r:1});
+    c.push({t:'Всего, ₽', w:88, r:1});
+    return c;
+  }
+  function vSmeta(){
+    var cols = smetaCols(), rows = [], f = filter.trim().toLowerCase();
+    var n = 0, si, i, list, st, shown = 0, W = cols.length;
     for(si=0; si<doc.sects.length; si++){
       var sid = doc.sects[si].id;
       list = inSect(sid);
       if(f) list = list.filter(function(x){ return x.n.toLowerCase().indexOf(f) >= 0 || x.c.toLowerCase().indexOf(f) >= 0; });
       if(!list.length && (f || sid !== curSect)) continue;
-      h += '<tr class="b1" data-sect="' + sid + '"><td class="stub">*</td><td colspan="7">Раздел ' + (si+1) + '. ' +
-        esc(doc.sects[si].t) + '</td></tr>';
-      if(!list.length){ h += '<tr class="d"><td class="stub"></td><td colspan="7" style="color:#8A8F95">— раздел пуст —</td></tr>'; continue; }
+      rows.push({cls:'b1', stub:'*', span:'Раздел ' + (si+1) + '. ' + esc(doc.sects[si].t), attr:' data-sect="' + sid + '"'});
+      if(!list.length){ rows.push({cls:'d', stub:'', span:'<span style="color:#8A8F95">— раздел пуст —</span>'}); continue; }
       st = 0;
       for(i=0;i<list.length;i++){
-        n++; shown++; st += sm(list[i]);
-        h += '<tr class="d' + (list[i].id === selId ? ' sel' : '') + (list[i].fresh ? ' new' : '') + '" data-row="' + list[i].id + '">' +
-          '<td class="stub">' + n + '</td><td>' + esc(list[i].c) + '</td><td class="nm">' + esc(list[i].n) + '</td>' +
-          '<td>' + esc(list[i].u) + '</td>' +
-          '<td class="r ed" data-ed="qty" data-id="' + list[i].id + '">' + num(list[i].qty) + '</td>' +
-          '<td class="r ed' + (list[i].k !== 1 ? ' k' : '') + '" data-ed="k" data-id="' + list[i].id + '">' + num(list[i].k) + '</td>' +
-          '<td class="r ed" data-ed="p" data-id="' + list[i].id + '">' + money(list[i].p) + '</td>' +
-          '<td class="r">' + money(sm(list[i])) + '</td></tr>';
-        list[i].fresh = false;
+        var it = list[i], c = posCost(it);
+        n++; shown++; st += c.all;
+        var cells = [n, esc(it.c), esc(it.n), esc(it.u),
+          {v:num(it.qty), cls:'ed', attr:' data-ed="qty" data-id="' + it.id + '"'},
+          {v:num(it.k), cls:'ed' + (it.k !== 1 ? ' kk' : ''), attr:' data-ed="k" data-id="' + it.id + '"'}];
+        if(isBI()) cells.push('', '');
+        else cells.push('');
+        cells.push(money(c.all));
+        rows.push({cls:'d' + (it.id === selId ? ' sel' : '') + (it.fresh ? ' new' : ''),
+          attr:' data-row="' + it.id + '"', cells:cells});
+        it.fresh = false;
+        if(!VIEW.f9){
+          for(var j=0;j<it.res.length;j++){
+            var r = it.res[j];
+            if(r.usl && VIEW.cf9) continue;
+            var rc = [{v:'', cls:''}, {v:esc(r.c), cls:'i'},
+              {v:esc(r.n) + (r.usl ? ' <span class="u">(усл. учтён)</span>' : '')}, esc(r.u),
+              num(Math.round(r.q * it.qty * it.k * 10000) / 10000), ''];
+            if(isBI()) rc.push(money(r.pb), num(resIdx(r)));
+            else rc.push({v:money(r.p), cls:'ed', attr:' data-rp="' + it.id + ':' + j + '"'});
+            rc.push(r.usl ? '—' : money(resSum(it, r)));
+            rows.push({cls:'sr', cells:rc});
+          }
+          rows.push({cls:'sr', cells:(function(){
+            var a = [{v:''}, {v:''}, {v:'<span style="color:#5A6270">НР ' + num(it.nr) + ' % · СП ' + num(it.sp) +
+              ' % от ФОТ ' + money(c.fot) + '</span>'}, '', '', ''];
+            if(isBI()) a.push('', ''); else a.push('');
+            a.push(money(c.nr + c.sp));
+            return a;
+          })()});
+        }
       }
-      h += '<tr class="tot"><td class="stub"></td><td colspan="6">Итого по разделу ' + (si+1) + '</td><td class="r">' + money(st) + '</td></tr>';
+      var tc = [{v:''}, {v:'Итого по разделу ' + (si+1)}];
+      while(tc.length < W - 1) tc.push('');
+      tc.push(money(st));
+      rows.push({cls:'tot', cells:tc});
     }
-    h += '</tbody></table>';
     if(f && !shown) return '<div class="empty">По запросу «' + esc(filter) + '» в смете ничего не найдено</div>';
-    if(!doc.items.length) return '<div class="empty">Смета пуста.<br>«Вставить» — выбор ресурса из источника.</div>';
-    return '<div class="gw">' + h + '</div>';
+    if(!doc.items.length) return '<div class="empty">Смета пуста.<br>«Вставить» — выбор расценки из базы.</div>';
+    return grid(cols, rows) + itogiBlock();
   }
   function itogiBlock(){
     if(!VIEW.itogi) return '';
     var t = totals();
-    return '<div class="itogi"><button class="ih" id="itg"><span>Итоги по смете</span><span>−</span></button><div class="ib">' +
-      '<div class="il"><span>Оплата труда рабочих</span><b>' + money(t.ot) + '</b></div>' +
+    var h = '<div class="itogi"><button class="ih" id="itg"><span>Итоги по смете · ' + esc(METHODS[method].t) +
+      '</span><span>−</span></button><div class="ib">' +
+      '<div class="il"><span>Оплата труда рабочих</span><b>' + money(t.ozp) + '</b></div>' +
       '<div class="il"><span>Эксплуатация машин</span><b>' + money(t.em) + '</b></div>' +
-      '<div class="il"><span>Материалы и перевозки</span><b>' + money(t.mt) + '</b></div>' +
-      '<div class="il"><span>Итого прямые затраты</span><b>' + money(t.pz) + '</b></div>' +
-      '<div class="il"><span>Накладные расходы, ' + num(CFG.nr) + ' %</span><b>' + money(t.nr) + '</b></div>' +
-      '<div class="il"><span>Сметная прибыль, ' + num(CFG.sp) + ' %</span><b>' + money(t.sp) + '</b></div>' +
-      '<div class="il"><span>Итого по смете</span><b>' + money(t.itg) + '</b></div>' +
-      '<div class="il"><span>НДС ' + num(CFG.nds) + ' %</span><b>' + money(t.nds) + '</b></div>' +
-      '<div class="il g"><span>Всего по смете</span><b>' + money(t.all) + ' ₽</b></div></div></div>';
+      '<div class="il sub"><span>в т. ч. оплата труда машинистов</span><b>' + money(t.zpm) + '</b></div>' +
+      '<div class="il"><span>Материалы</span><b>' + money(t.mat) + '</b></div>' +
+      '<div class="il hd"><span>Итого прямые затраты</span><b>' + money(t.pz) + '</b></div>' +
+      '<div class="il"><span>Накладные расходы</span><b>' + money(t.nr) + '</b></div>' +
+      '<div class="il"><span>Сметная прибыль</span><b>' + money(t.sp) + '</b></div>' +
+      '<div class="il hd"><span>Итого с НР и СП</span><b>' + money(t.all) + '</b></div>' +
+      '<div class="il"><span>НДС ' + num(doc.nds) + ' %</span><b>' + money(t.nds) + '</b></div>' +
+      '<div class="il g"><span>ВСЕГО по смете</span><b>' + money(t.total) + ' ₽</b></div>';
+    if(isBI()) h += '<div class="il sub" style="margin-top:5px"><span>Индексы: ОЗП ' + num(METHODS.bi.ozp) +
+      ' · ЭМ ' + num(METHODS.bi.em) + ' · МАТ ' + num(METHODS.bi.mat) + '</span></div>';
+    return h + '</div></div>';
   }
 
-  /* ===================== сетка источника ===================== */
-  function catGrid(){
-    var c = CATS[catKey], q = query.trim().toLowerCase();
-    var cols = VIEW.opt
-      ? '<col style="width:26px"><col style="width:112px"><col style="width:186px"><col style="width:48px"><col style="width:76px"><col style="width:76px">'
-      : '<col style="width:26px"><col style="width:112px"><col style="width:214px"><col style="width:48px"><col style="width:82px">';
-    var h = '<table class="g"><colgroup>' + cols + '</colgroup><thead><tr><th class="stub">№</th><th>Код ресурса</th>' +
-      '<th>Наименование материалов, конструкций и изделий</th><th>Ед.изм.</th>' +
-      (VIEW.opt ? '<th class="r">ОптЦена</th>' : '') + '<th class="r">Цена</th></tr></thead><tbody>';
-    var span = VIEW.opt ? 5 : 4, n = 0, found = 0;
-    var bi, pi, si, gi, ri, b, p, s, g, r, key;
-    for(bi=0; bi<c.books.length; bi++){
-      b = c.books[bi];
-      var bRows = [], bHtml = '';
-      for(pi=0; pi<b.parts.length; pi++){
-        p = b.parts[pi];
-        var pHtml = '', pAny = 0;
-        for(si=0; si<p.secs.length; si++){
-          s = p.secs[si];
-          var sHtml = '', sAny = 0;
-          for(gi=0; gi<s.grps.length; gi++){
-            g = s.grps[gi];
-            var gHtml = '', gAny = 0;
-            for(ri=0; ri<g.rows.length; ri++){
-              r = g.rows[ri];
-              if(q && r.c.toLowerCase().indexOf(q) < 0 && r.n.toLowerCase().indexOf(q) < 0) continue;
-              n++; gAny++; found++;
-              gHtml += '<tr class="d" data-res="' + esc(r.c) + '"><td class="stub">' + n + '</td>' +
-                '<td>' + esc(r.c) + '</td><td class="nm">' + esc(r.n) + '</td><td>' + esc(r.u) + '</td>' +
-                (VIEW.opt ? '<td class="r">' + money(r.o) + '</td>' : '') +
-                '<td class="r">' + money(r.p) + '</td></tr>';
-            }
-            if(!gAny) continue;
-            key = g.c; sAny += gAny;
-            sHtml += '<tr class="b4" data-node="' + esc(key) + '"><td class="stub">****</td><td colspan="' + span + '">' +
-              esc(g.c) + ' ' + esc(g.t) + '</td></tr>' + (collapsed[key] ? '' : gHtml);
+  /* ============ экран: нормативная база ============ */
+  function vBase(){
+    var q = query.trim().toLowerCase();
+    var cols = [{t:'№', w:26}, {t:'Обоснование', w:112}, {t:'Наименование', w:206, nm:1},
+      {t:'Ед.изм.', w:74}, {t:'Ресурсов', w:56, r:1}];
+    var rows = [], n = 0, found = 0, bi, oi, ti, pi, b, o, tb, p, key;
+    for(bi=0; bi<BASE.length; bi++){
+      b = BASE[bi];
+      var bRows = [], bAny = 0;
+      for(oi=0; oi<b.o.length; oi++){
+        o = b.o[oi];
+        var oRows = [], oAny = 0;
+        for(ti=0; ti<o.tb.length; ti++){
+          tb = o.tb[ti];
+          var tRows = [], tAny = 0;
+          for(pi=0; pi<tb.p.length; pi++){
+            p = tb.p[pi];
+            if(q && p.c.toLowerCase().indexOf(q) < 0 && p.n.toLowerCase().indexOf(q) < 0) continue;
+            n++; tAny++; found++;
+            tRows.push({cls:'d', attr:' data-norm="' + esc(p.c) + '"',
+              cells:[n, esc(p.c), esc(p.n), esc(p.u), p.res.length]});
           }
-          if(!sAny) continue;
-          key = s.c; pAny += sAny;
-          pHtml += '<tr class="b3" data-node="' + esc(key) + '"><td class="stub">***</td><td colspan="' + span + '">' +
-            esc(s.c) + ' ' + esc(s.t) + '</td></tr>' + (collapsed[key] ? '' : sHtml);
+          if(!tAny) continue;
+          key = tb.c; oAny += tAny;
+          oRows.push({cls:'b4', stub:'***', span:esc(tb.c) + ' ' + esc(tb.t), attr:' data-node="' + esc(key) + '"'});
+          if(!collapsed[key]) oRows = oRows.concat(tRows);
         }
-        if(!pAny) continue;
-        key = p.c;
-        bHtml += '<tr class="b2" data-node="' + esc(key) + '"><td class="stub">**</td><td colspan="' + span + '">' +
-          esc(p.c) + ' ' + esc(p.t) + '</td></tr>' + (collapsed[key] ? '' : pHtml);
-        bRows.push(1);
+        if(!oAny) continue;
+        key = b.c + o.c; bAny += oAny;
+        bRows.push({cls:'b3', stub:'**', span:esc(o.c) + ' ' + esc(o.t), attr:' data-node="' + esc(key) + '"'});
+        if(!collapsed[key]) bRows = bRows.concat(oRows);
       }
-      if(!bRows.length) continue;
-      key = b.c + c.t;
-      h += '<tr class="b1" data-node="' + esc(key) + '"><td class="stub">*</td><td colspan="' + span + '">' +
-        esc(b.c) + ' ' + esc(b.t) + '</td></tr>' + (collapsed[key] ? '' : bHtml);
+      if(!bAny) continue;
+      key = b.c;
+      rows.push({cls:'b1', stub:'*', span:esc(b.c) + ' ' + esc(b.t), attr:' data-node="' + esc(key) + '"'});
+      if(!collapsed[key]) rows = rows.concat(bRows);
     }
-    h += '</tbody></table>';
-    if(!found) return '<div class="empty">По запросу «' + esc(query) + '»<br>в источнике ничего не найдено</div>';
-    return '<div class="gw">' + h + '</div>';
+    if(!found) return '<div class="empty">По запросу «' + esc(query) + '»<br>в базе ' + esc(snb) + ' ничего не найдено</div>';
+    return grid(cols, rows);
   }
 
-  /* ===================== прочие экраны ===================== */
-  function vDocs(){
+  /* ============ экран: список смет ============ */
+  function vList(){
     var h = '<div class="grp"><span>Сметы на устройстве</span><span>' + DOCS.length + '</span></div>', i, d, t;
     for(i=0;i<DOCS.length;i++){
       d = DOCS[i]; t = totals(d);
       h += '<button class="lrow' + (d.id === doc.id ? ' act' : '') + '" data-doc="' + d.id + '">' +
-        '<span class="t">' + esc(d.name) + '</span><span class="a">' + esc(d.code) + ' · ' + d.items.length +
-        ' поз. · ' + (d.changes ? 'не выгружено' : 'выгружено') + '</span>' +
-        '<span class="s">' + money(t.all) + '</span></button>';
+        '<span class="t">' + esc(d.name) + '</span><span class="a">ЛСР № ' + esc(d.code) + ' · ' + d.items.length +
+        ' поз. · ' + d.acts.length + ' актов · ' + (d.changes ? 'не выгружено' : 'выгружено') + '</span>' +
+        '<span class="s">' + money(t.total) + '</span></button>';
     }
     return h + '<div class="pad"><button class="btn" id="newDoc">Создать смету…</button></div>';
   }
+
+  /* ============ экран: документы ============ */
+  function vDocsList(){
+    var t = totals();
+    var h = '<div class="grp"><span>Документы сметы</span><span>ЛСР № ' + esc(doc.code) + '</span></div>' +
+      '<button class="lrow act" data-open="smeta"><span class="t">Локальная смета</span>' +
+      '<span class="a">Методика 421/пр · ' + esc(METHODS[method].t) + '</span>' +
+      '<span class="s">' + money(t.total) + '</span></button>';
+    var i, a, at;
+    for(i=0;i<doc.acts.length;i++){
+      a = doc.acts[i]; at = totals(doc, a.items);
+      h += '<button class="lrow" data-act="' + a.id + '"><span class="t">Акт КС-2 № ' + a.no + '</span>' +
+        '<span class="a">отчётный период: ' + esc(a.per) + ' · выполнено ' + num(a.pct) + ' %</span>' +
+        '<span class="s">' + money(at.total) + '</span></button>';
+    }
+    h += '<div class="grp"><span>Сводные и вспомогательные</span></div>' +
+      '<button class="lrow" data-open="ks3"><span class="t">Справка КС-3</span>' +
+      '<span class="a">о стоимости выполненных работ и затрат</span>' +
+      '<span class="s">' + (doc.acts.length ? money(ks3().work) : '—') + '</span></button>' +
+      '<button class="lrow" data-open="m29"><span class="t">Отчёт М-29</span>' +
+      '<span class="a">о расходе основных материалов</span><span class="s">' +
+      (doc.acts.length ? m29().length + ' поз.' : '—') + '</span></button>' +
+      '<button class="lrow" data-open="vor"><span class="t">Ведомость объёмов работ</span>' +
+      '<span class="a">ВОР · экспорт XML для экспертизы</span><span class="s">' + doc.vor.length + ' поз.</span></button>' +
+      '<button class="lrow" data-open="rv"><span class="t">Ресурсная ведомость</span>' +
+      '<span class="a">свод ресурсов по смете</span><span class="s">' + resVed().length + ' поз.</span></button>' +
+      '<button class="lrow" data-open="ka"><span class="t">Конъюнктурный анализ</span>' +
+      '<span class="a">' + esc(CJ.reg) + ' · ' + esc(CJ.zone) + '</span><span class="s">' + kaRows().length + ' поз.</span></button>' +
+      '<div class="pad"><button class="btn pri" id="mkAct">Создать акт…</button>' +
+      '<button class="btn" id="pkg">Печать пакета документов…</button></div>';
+    return h;
+  }
+
+  /* ---- акт КС-2 ---- */
+  function vAct(){
+    var a = null, i;
+    for(i=0;i<doc.acts.length;i++) if(doc.acts[i].id === actId) a = doc.acts[i];
+    if(!a) return '<div class="empty">Акт не найден</div>';
+    var cols = [{t:'№', w:26}, {t:'Обоснование', w:104}, {t:'Наименование работ', w:186, nm:1},
+      {t:'Ед.изм.', w:58}, {t:'Выполнено', w:66, r:1}, {t:'Всего, ₽', w:88, r:1}];
+    var rows = [], n = 0, si, list, st;
+    for(si=0; si<doc.sects.length; si++){
+      list = a.items.filter(function(x){ return x.sect === doc.sects[si].id; });
+      if(!list.length) continue;
+      rows.push({cls:'b1', stub:'*', span:'Раздел ' + (si+1) + '. ' + esc(doc.sects[si].t)});
+      st = 0;
+      for(i=0;i<list.length;i++){
+        var c = posCost(list[i]); n++; st += c.all;
+        rows.push({cls:'d', cells:[n, esc(list[i].c), esc(list[i].n), esc(list[i].u), num(list[i].qty), money(c.all)]});
+      }
+      rows.push({cls:'tot', cells:['', 'Итого по разделу ' + (si+1), '', '', '', money(st)]});
+    }
+    var t = totals(doc, a.items);
+    return grid(cols, rows) + '<div class="itogi"><div class="ib">' +
+      '<div class="il"><span>Итого прямые затраты</span><b>' + money(t.pz) + '</b></div>' +
+      '<div class="il"><span>Накладные расходы и сметная прибыль</span><b>' + money(t.nr + t.sp) + '</b></div>' +
+      '<div class="il"><span>НДС ' + num(doc.nds) + ' %</span><b>' + money(t.nds) + '</b></div>' +
+      '<div class="il g"><span>Всего по акту № ' + a.no + '</span><b>' + money(t.total) + ' ₽</b></div></div></div>';
+  }
+
+  /* ---- КС-3 ---- */
+  function ks3(){
+    var work = 0, i;
+    for(i=0;i<doc.acts.length;i++) work += totals(doc, doc.acts[i].items).total;
+    return {work:work, smeta:totals().total};
+  }
+  function vKs3(){
+    if(!doc.acts.length) return '<div class="empty">Актов пока нет.<br>Создайте акт КС-2 — справка соберётся автоматически.</div>';
+    var cols = [{t:'№', w:26}, {t:'Наименование работ и затрат', w:210, nm:1},
+      {t:'С начала работ', w:100, r:1}, {t:'С начала года', w:100, r:1}, {t:'За период', w:96, r:1}];
+    var rows = [], i, a, t, cum = 0, last = 0;
+    for(i=0;i<doc.acts.length;i++){
+      a = doc.acts[i]; t = totals(doc, a.items); cum += t.total; last = t.total;
+      rows.push({cls:'d', cells:[i+1, 'Акт КС-2 № ' + a.no + ' · ' + esc(a.per), money(cum), money(cum), money(t.total)]});
+    }
+    rows.push({cls:'tot', cells:['', 'Всего с учётом НДС', money(cum), money(cum), money(last)]});
+    var k = ks3();
+    return grid(cols, rows) + '<div class="itogi"><div class="ib">' +
+      '<div class="il"><span>Стоимость по смете</span><b>' + money(k.smeta) + '</b></div>' +
+      '<div class="il"><span>Выполнено по актам</span><b>' + money(k.work) + '</b></div>' +
+      '<div class="il g"><span>Остаток к выполнению</span><b>' + money(k.smeta - k.work) + ' ₽</b></div></div></div>';
+  }
+
+  /* ---- М-29 ---- */
+  function m29(){
+    var map = {}, i, j, a, it, r, key, q;
+    for(i=0;i<doc.acts.length;i++){
+      a = doc.acts[i];
+      for(j=0;j<a.items.length;j++){
+        it = a.items[j];
+        for(var m=0;m<it.res.length;m++){
+          r = it.res[m];
+          if(r.k !== 'r' || r.usl) continue;
+          key = r.c; q = r.q * it.qty * it.k;
+          if(!map[key]) map[key] = {c:r.c, n:r.n, u:r.u, norm:0, fact:0};
+          map[key].norm += q; map[key].fact += q;
+        }
+      }
+    }
+    var out = [];
+    for(key in map) out.push(map[key]);
+    return out;
+  }
+  function vM29(){
+    var list = m29();
+    if(!list.length) return '<div class="empty">Отчёт М-29 формируется по актам.<br>Создайте акт КС-2.</div>';
+    var cols = [{t:'№', w:26}, {t:'Код', w:112}, {t:'Наименование материала', w:186, nm:1},
+      {t:'Ед.изм.', w:52}, {t:'Норма', w:74, r:1}, {t:'Факт', w:74, r:1}, {t:'Откл.', w:60, r:1}];
+    var rows = list.map(function(x, i){
+      return {cls:'d', cells:[i+1, esc(x.c), esc(x.n), esc(x.u), num(Math.round(x.norm*1000)/1000),
+        num(Math.round(x.fact*1000)/1000), '0']};
+    });
+    return grid(cols, rows);
+  }
+
+  /* ---- ВОР ---- */
+  function vVor(){
+    var cols = [{t:'№', w:26}, {t:'Наименование работ', w:206, nm:1}, {t:'Ед.изм.', w:62},
+      {t:'Кол', w:70, r:1}, {t:'Комментарий', w:140, nm:1}];
+    var rows = doc.vor.map(function(x, i){
+      return {cls:'d', cells:[i+1, esc(x.n), esc(x.u),
+        {v:num(x.q), cls:'ed', attr:' data-vor="' + i + '"'}, esc(x.cm || '')]};
+    });
+    var g = doc.vor.length ? grid(cols, rows) : '<div class="empty">Ведомость пуста.<br>Заполните вручную или из сметы.</div>';
+    return g + '<div class="pad"><button class="btn" id="vorFromSmeta">Заполнить из сметы</button>' +
+      '<button class="btn" id="vorAdd">Добавить строку…</button>' +
+      '<p class="hint">ВОР выгружается в XML для передачи в экспертизу и в форму Excel Главгосэкспертизы.</p></div>';
+  }
+
+  /* ---- ресурсная ведомость ---- */
+  function resVed(){
+    var map = {}, i, j, it, r, key, q;
+    for(i=0;i<doc.items.length;i++){
+      it = doc.items[i];
+      for(j=0;j<it.res.length;j++){
+        r = it.res[j];
+        key = r.k + '|' + r.c; q = r.q * it.qty * it.k;
+        if(!map[key]) map[key] = {k:r.k, c:r.c, n:r.n, u:r.u, q:0, p:resPrice(r), usl:r.usl};
+        map[key].q += q;
+      }
+    }
+    var out = [];
+    for(key in map) out.push(map[key]);
+    var ord = {t:0, z:1, m:2, r:3};
+    out.sort(function(a, b){ return ord[a.k] - ord[b.k] || a.c.localeCompare(b.c); });
+    return out;
+  }
+  function vResVed(){
+    var list = resVed();
+    var cols = [{t:'№', w:26}, {t:'Код ресурса', w:112}, {t:'Наименование', w:186, nm:1},
+      {t:'Ед.изм.', w:56}, {t:'Кол-во', w:72, r:1}, {t:'Цена', w:76, r:1}, {t:'Сумма, ₽', w:86, r:1}];
+    var TT = {t:'Затраты труда рабочих', z:'Затраты труда машинистов', m:'Машины и механизмы', r:'Материалы и изделия'};
+    var rows = [], last = '', n = 0, i, x, s;
+    for(i=0;i<list.length;i++){
+      x = list[i];
+      if(x.k !== last){ last = x.k; rows.push({cls:'b3', stub:'*', span:esc(TT[x.k])}); }
+      n++; s = x.usl ? 0 : x.q * x.p;
+      rows.push({cls:'d', cells:[n, esc(x.c), esc(x.n) + (x.usl ? ' <span class="u">(усл.)</span>' : ''), esc(x.u),
+        num(Math.round(x.q * 10000) / 10000), money(x.p), x.usl ? '—' : money(s)]});
+    }
+    return grid(cols, rows);
+  }
+
+  /* ---- конъюнктурный анализ ---- */
+  function kaRows(){
+    var list = resVed().filter(function(x){ return x.k === 'r' && !x.usl; });
+    return list.map(function(x){
+      var o1 = x.p * 1.08, o2 = x.p, o3 = x.p * 0.96;
+      return {c:x.c, n:x.n, u:x.u, q:x.q, o1:o1, o2:o2, o3:o3, acc:Math.min(o1, o2, o3)};
+    });
+  }
+  function vKa(){
+    var list = kaRows();
+    var cols = [{t:'№', w:26}, {t:'Код ресурса', w:110}, {t:'Наименование', w:176, nm:1}, {t:'Ед.изм.', w:52},
+      {t:'Предл. 1', w:78, r:1}, {t:'Предл. 2', w:78, r:1}, {t:'Предл. 3', w:78, r:1}, {t:'Принято', w:80, r:1}];
+    var rows = list.map(function(x, i){
+      return {cls:'d', cells:[i+1, esc(x.c), esc(x.n), esc(x.u), money(x.o1), money(x.o2), money(x.o3),
+        {v:money(x.acc), cls:'kk'}]};
+    });
+    return '<div class="pad" style="padding-bottom:0"><div class="g2">' +
+      '<div class="field"><label>Субъект Российской Федерации</label><input id="kaReg" type="text" value="' + esc(CJ.reg) + '" style="font-size:12.5px"></div>' +
+      '<div class="field"><label>Ценовая зона</label><input id="kaZone" type="text" value="' + esc(CJ.zone) + '" style="font-size:12.5px"></div>' +
+      '</div></div>' + grid(cols, rows) +
+      '<div class="pad"><p class="hint">Принимается минимальное из трёх ценовых предложений. Печатная форма «[30/пр] Конъюнктурный анализ» и выгрузка в Excel — на вкладке «Обмен».</p></div>';
+  }
+
+  /* ============ замеры ============ */
   function vRooms(){
     var h = '<div class="grp"><span>Помещения</span><span>' + doc.rooms.length + '</span></div>', i, r;
     for(i=0;i<doc.rooms.length;i++){
@@ -694,109 +822,135 @@ table.g .k{color:var(--warn)}
       '<div class="cl"><span>Потолок</span><b>' + num(z(fl)) + ' м²</b><button data-take="' + fl + '">в смету</button></div>' +
       '<div class="cl"><span>Стены за вычетом проёмов</span><b>' + num(z(wl)) + ' м²</b><button data-take="' + wl + '">в смету</button></div>' +
       '<div class="cl"><span>Периметр</span><b>' + num(z(pr)) + ' м</b><button data-take="' + pr + '">в смету</button></div></div>' +
+      '<p class="hint">Для расценок с измерителем «100 м2» объём пересчитывается автоматически.</p>' +
       '<button class="btn" id="delRoom">Удалить помещение</button></div>';
   }
-  function vSync(){
-    var t = totals(), s = {}, ns = 0, i;
-    for(i=0;i<doc.items.length;i++) if(!s[doc.items[i].sect]){ s[doc.items[i].sect] = 1; ns++; }
-    return '<div class="pad"><div class="panel"><h4>Состояние обмена</h4>' +
-      '<div class="cl"><span>Изменений не выгружено</span><b>' + doc.changes + '</b></div>' +
-      '<div class="cl"><span>Последняя выгрузка</span><b>' + (doc.changes ? '—' : 'сегодня, 14:32') + '</b></div>' +
-      '<div class="cl"><span>Подключение</span><span class="tag w">офлайн</span></div></div>' +
-      '<div class="field"><label>Формат файла</label><div class="pills">' +
-      '<button class="pill' + (expFmt === 'smt' ? ' on' : '') + '" data-fmt="smt">Смета .smt</button>' +
-      '<button class="pill' + (expFmt === 'xlsx' ? ' on' : '') + '" data-fmt="xlsx">XLSX</button>' +
-      '<button class="pill' + (expFmt === 'pdf' ? ' on' : '') + '" data-fmt="pdf">PDF</button></div></div>' +
-      '<div class="panel"><h4>Содержимое выгрузки</h4>' +
-      '<div class="cl"><span>Позиций</span><b>' + doc.items.length + '</b></div>' +
-      '<div class="cl"><span>Разделов</span><b>' + ns + '</b></div>' +
-      '<div class="cl"><span>Источник</span><b style="font-size:10.5px">' + esc(SRC) + '</b></div>' +
-      '<div class="cl"><span>Всего по смете</span><b>' + money(t.all) + ' ₽</b></div></div>' +
-      '<div class="bar"><i id="bar"></i></div>' +
-      '<button class="btn pri" id="expBtn">Сформировать файл .' + expFmt + '</button><div id="expRes"></div></div>';
-  }
-  function vProps(){
-    var h = '<div class="pad"><div class="field"><label>Наименование объекта</label><input id="pName" type="text" value="' + esc(doc.name) + '"></div>' +
-      '<div class="field"><label>Шифр сметы</label><input id="pCode" type="text" value="' + esc(doc.code) + '"></div>' +
-      '<div class="field"><label>Адрес объекта</label><input id="pAddr" type="text" value="' + esc(doc.addr) + '"></div>' +
-      '<div class="field"><label>Заказчик</label><input id="pCust" type="text" value="' + esc(doc.cust) + '"></div>' +
-      '<div class="field"><label>Дата составления</label><input id="pDate" type="text" value="' + esc(doc.date) + '"></div>' +
-      '<div class="panel"><h4>Разделы сметы</h4>', i;
-    for(i=0;i<doc.sects.length;i++)
-      h += '<div class="cl"><span>Раздел ' + (i+1) + '. ' + esc(doc.sects[i].t) + '</span>' +
-        '<button data-ren="' + doc.sects[i].id + '">имя</button></div>';
-    return h + '</div><button class="btn" id="addSect">Добавить раздел…</button></div>';
-  }
-  function vCfg(){
+
+  /* ============ обмен ============ */
+  function vExch(){
     var t = totals();
-    return '<div class="pad"><div class="g2">' +
-      '<div class="field"><label>Накладные расходы, %</label><input class="n" id="cNr" type="text" inputmode="decimal" value="' + num(CFG.nr) + '"></div>' +
-      '<div class="field"><label>Сметная прибыль, %</label><input class="n" id="cSp" type="text" inputmode="decimal" value="' + num(CFG.sp) + '"></div></div>' +
-      '<div class="field"><label>НДС, %</label><input class="n" id="cNds" type="text" inputmode="decimal" value="' + num(CFG.nds) + '"></div>' +
-      '<div class="panel"><h4>Пересчёт текущей сметы</h4>' +
-      '<div class="cl"><span>Накладные расходы</span><b>' + money(t.nr) + '</b></div>' +
-      '<div class="cl"><span>Сметная прибыль</span><b>' + money(t.sp) + '</b></div>' +
-      '<div class="cl"><span>НДС</span><b>' + money(t.nds) + '</b></div>' +
-      '<div class="cl"><span>Всего по смете</span><b>' + money(t.all) + ' ₽</b></div></div>' +
-      '<p class="hint">Накладные расходы и сметная прибыль начисляются на оплату труда рабочих.</p></div>';
+    var FM = {xlsx:'Excel (XLSX)', arps:'АРПС 1.10', xml:'XML Главгосэкспертизы', smt:'Файл сметы .smt'};
+    return '<div class="pad"><div class="panel"><h4>Состояние</h4>' +
+      '<div class="cl"><span>Изменений не выгружено</span><b>' + doc.changes + '</b></div>' +
+      '<div class="cl"><span>Метод расчёта</span><b style="font-size:11px">' + esc(METHODS[method].t) + '</b></div>' +
+      '<div class="cl"><span>Нормативная база</span><b style="font-size:11px">' + esc(snb) + '</b></div>' +
+      '<div class="cl"><span>Подключение</span><span class="tag w">офлайн</span></div></div>' +
+      '<div class="field"><label>Формат обмена</label><div class="pills">' +
+      '<button class="pill' + (expFmt === 'xlsx' ? ' on' : '') + '" data-fmt="xlsx">Excel</button>' +
+      '<button class="pill' + (expFmt === 'arps' ? ' on' : '') + '" data-fmt="arps">АРПС</button>' +
+      '<button class="pill' + (expFmt === 'xml' ? ' on' : '') + '" data-fmt="xml">XML ГГЭ</button>' +
+      '<button class="pill' + (expFmt === 'smt' ? ' on' : '') + '" data-fmt="smt">.smt</button></div></div>' +
+      '<div class="panel"><h4>' + esc(FM[expFmt]) + '</h4>' +
+      '<div class="cl"><span>Позиций / разделов</span><b>' + doc.items.length + ' / ' + doc.sects.length + '</b></div>' +
+      '<div class="cl"><span>Актов КС-2</span><b>' + doc.acts.length + '</b></div>' +
+      '<div class="cl"><span>Всего по смете</span><b>' + money(t.total) + ' ₽</b></div></div>' +
+      '<div class="bar"><i id="bar"></i></div>' +
+      '<button class="btn pri" id="expBtn">Выгрузить</button><div id="expRes"></div>' +
+      '<p class="hint">Файл собирается на устройстве — сеть нужна только чтобы его отправить.</p></div>';
   }
 
-  /* ===================== оболочка ===================== */
-  var TITLE = {smeta:null, docs:'Сметы на устройстве', cat:null, rooms:'Замеры помещений', room:'Помещение',
-    sync:'Обмен с ПК', props:'Реквизиты сметы', cfg:'Нормативы расчёта'};
+  /* ============ параметры ============ */
+  function vParams(){
+    var t = totals();
+    return '<div class="pad">' +
+      '<div class="field"><label>Наименование объекта</label><input id="pName" type="text" value="' + esc(doc.name) + '"></div>' +
+      '<div class="g2"><div class="field"><label>Номер ЛСР</label><input id="pCode" type="text" value="' + esc(doc.code) + '"></div>' +
+      '<div class="field"><label>Дата</label><input id="pDate" type="text" value="' + esc(doc.date) + '"></div></div>' +
+      '<div class="field"><label>Адрес объекта</label><input id="pAddr" type="text" value="' + esc(doc.addr) + '"></div>' +
+      '<div class="field"><label>Заказчик</label><input id="pCust" type="text" value="' + esc(doc.cust) + '"></div>' +
+      '<div class="field"><label>НДС, %</label><input class="n" id="pNds" type="text" inputmode="decimal" value="' + num(doc.nds) + '"></div>' +
+      '<div class="panel"><h4>Метод расчёта</h4>' +
+      '<div class="cl"><span>' + esc(METHODS[method].t) + '</span><button id="chMethod">сменить</button></div>' +
+      '<div class="cl"><span>Нормативная база</span><button id="chSnb">' + esc(snb) + '</button></div></div>' +
+      (isBI() || method === 'rim' ? '<div class="panel"><h4>Индексы пересчёта</h4>' +
+        '<div class="cl"><span>К оплате труда (ОЗП)</span><b>' + num(METHODS[method].ozp) + '</b></div>' +
+        '<div class="cl"><span>К эксплуатации машин (ЭМ)</span><b>' + num(METHODS[method].em) + '</b></div>' +
+        '<div class="cl"><span>К материалам (МАТ)</span><b>' + (METHODS[method].mat === 'cur' ? 'по ФГИС ЦС' : num(METHODS[method].mat)) + '</b></div></div>' : '') +
+      '<div class="panel"><h4>Разделы сметы</h4>' + (function(){
+        var h = '', i;
+        for(i=0;i<doc.sects.length;i++)
+          h += '<div class="cl"><span>Раздел ' + (i+1) + '. ' + esc(doc.sects[i].t) + '</span>' +
+            '<button data-ren="' + doc.sects[i].id + '">имя</button></div>';
+        return h;
+      })() + '</div><button class="btn" id="addSect">Добавить раздел…</button>' +
+      '<div class="panel"><h4>Контроль</h4><div class="cl"><span>Всего по смете</span><b>' + money(t.total) + ' ₽</b></div></div></div>';
+  }
+
+  /* ============ оболочка ============ */
+  var TITLE = {smeta:null, list:'Сметы на устройстве', base:null, docs:'Документы сметы', act:'Акт КС-2',
+    ks3:'Справка КС-3', m29:'Отчёт М-29', vor:'Ведомость объёмов работ', rv:'Ресурсная ведомость',
+    ka:'Конъюнктурный анализ', rooms:'Замеры помещений', room:'Помещение', exch:'Обмен и выгрузка',
+    params:'Параметры сметы'};
   function head(){
     var t = document.getElementById('tt');
-    if(screen === 'cat') t.innerHTML = '<b>Турбо сметчик</b> — ' + esc(SRC);
-    else if(screen === 'smeta') t.innerHTML = '<b>Турбо сметчик</b> — [' + esc(doc.name) + ' · ' + esc(doc.code) + ']';
-    else t.innerHTML = '<b>Турбо сметчик</b> — ' + esc(TITLE[screen] || doc.name);
+    if(screen === 'base') t.innerHTML = '<b>Турбосметчик</b> — ' + esc(snb);
+    else if(screen === 'smeta') t.innerHTML = '<b>Турбосметчик</b> — [' + esc(doc.name) + ' · ЛСР ' + esc(doc.code) + ']';
+    else t.innerHTML = '<b>Турбосметчик</b> — ' + esc(TITLE[screen] || doc.name);
   }
   function tbHTML(){
     if(screen === 'smeta')
       return '<button class="tbtn" data-a="add"><b>+</b> Вставить</button>' +
         '<button class="tbtn" data-a="del"' + (selId ? '' : ' disabled') + '>Удалить</button><div class="tsep"></div>' +
-        '<button class="tbtn" data-a="coef"' + (selId ? '' : ' disabled') + '>Коэффициент</button>' +
+        '<button class="tbtn" data-a="coef"' + (selId ? '' : ' disabled') + '>Коэффициенты</button>' +
         '<button class="tbtn" data-a="move"' + (selId ? '' : ' disabled') + '>В раздел</button>' +
         '<button class="tbtn" data-a="sect">Разделы</button><div class="tsep"></div>' +
-        '<button class="tbtn" data-a="filter">Найти</button>';
-    if(screen === 'cat')
+        '<button class="tbtn' + (VIEW.f9 ? ' on' : '') + '" data-a="f9">F9 подчинённые</button>' +
+        '<button class="tbtn' + (VIEW.cf9 ? ' on' : '') + '" data-a="cf9">Ctrl+F9 условные</button><div class="tsep"></div>' +
+        '<button class="tbtn" data-a="rooms">Замер</button><button class="tbtn" data-a="filter">Найти</button>';
+    if(screen === 'base')
       return '<button class="tbtn" data-a="smeta">← Смета</button><div class="tsep"></div>' +
         '<button class="tbtn" data-a="sect">Раздел вставки</button>' +
-        '<button class="tbtn" data-a="expand">Развернуть всё</button>' +
-        '<button class="tbtn" data-a="collapse">Свернуть всё</button>';
+        '<button class="tbtn" data-a="expand">Развернуть</button><button class="tbtn" data-a="collapse">Свернуть</button>';
     if(screen === 'room')
       return '<button class="tbtn" data-a="rooms">← Помещения</button><button class="tbtn" data-a="smeta">Смета</button>';
+    if(screen === 'act' || screen === 'ks3' || screen === 'm29' || screen === 'vor' || screen === 'rv' || screen === 'ka')
+      return '<button class="tbtn" data-a="docs">← Документы</button><div class="tsep"></div>' +
+        '<button class="tbtn" data-a="print">Печать</button><button class="tbtn" data-a="exch">Выгрузить</button>';
+    if(screen === 'docs')
+      return '<button class="tbtn" data-a="smeta">← Смета</button><button class="tbtn" data-a="mkact"><b>+</b> Акт КС-2</button>';
     return '<button class="tbtn" data-a="smeta">← Смета</button>';
   }
   function ctxHTML(){
     if(screen === 'smeta')
       return '<div class="ctx"><span class="l">Вставка в: <b>Р.' + sectN(curSect) + ' ' + esc(sectT(curSect)) +
-        '</b></span><span class="sum">' + money(totals().all) + ' ₽</span></div>';
-    if(screen === 'cat')
+        '</b></span><span class="sum">' + money(totals().total) + ' ₽</span></div>';
+    if(screen === 'base')
       return '<div class="ctx"><span class="l">Вставка в: <b>Р.' + sectN(curSect) + ' ' + esc(sectT(curSect)) + '</b></span>' +
         (pending !== null ? '<span class="sum">объём ' + num(pending) + '</span>' : '') + '</div>';
     return '';
   }
   function searchHTML(){
-    if(screen === 'cat')
-      return '<div class="search"><input id="q" type="search" placeholder="Код ресурса или наименование" value="' + esc(query) + '" autocomplete="off"></div>';
+    if(screen === 'base')
+      return '<div class="search"><input id="q" type="search" placeholder="Обоснование или наименование расценки" value="' + esc(query) + '" autocomplete="off"></div>';
     if(screen === 'smeta' && showFilter)
       return '<div class="search"><input id="fl" type="search" placeholder="Найти в смете" value="' + esc(filter) + '" autocomplete="off">' +
         '<button class="tbtn" id="flX" style="border-color:#B6BCC4">✕</button></div>';
     return '';
   }
   function subHTML(){
-    if(screen !== 'cat') return '';
+    if(screen !== 'base') return '';
     var h = '<div class="subtabs">', i;
-    for(i=0;i<CATORDER.length;i++)
-      h += '<button data-ct="' + CATORDER[i] + '"' + (catKey === CATORDER[i] ? ' class="on"' : '') + '>' +
-        esc(CATS[CATORDER[i]].t) + '</button>';
+    for(i=0;i<SNB.length;i++)
+      h += '<button data-snb="' + esc(SNB[i]) + '"' + (snb === SNB[i] ? ' class="on"' : '') + '>' + esc(SNB[i]) + '</button>';
     return h + '</div>';
   }
 
   function render(focus){
-    var v = screen === 'docs' ? vDocs() : screen === 'cat' ? catGrid() : screen === 'rooms' ? vRooms() :
-      screen === 'room' ? vRoom() : screen === 'sync' ? vSync() : screen === 'props' ? vProps() :
-      screen === 'cfg' ? vCfg() : (smetaGrid() + itogiBlock());
+    var v;
+    if(screen === 'list') v = vList();
+    else if(screen === 'base') v = vBase();
+    else if(screen === 'docs') v = vDocsList();
+    else if(screen === 'act') v = vAct();
+    else if(screen === 'ks3') v = vKs3();
+    else if(screen === 'm29') v = vM29();
+    else if(screen === 'vor') v = vVor();
+    else if(screen === 'rv') v = vResVed();
+    else if(screen === 'ka') v = vKa();
+    else if(screen === 'rooms') v = vRooms();
+    else if(screen === 'room') v = vRoom();
+    else if(screen === 'exch') v = vExch();
+    else if(screen === 'params') v = vParams();
+    else v = vSmeta();
     body.innerHTML = v;
     toolbar.innerHTML = tbHTML();
     ctxbar.innerHTML = ctxHTML();
@@ -804,15 +958,16 @@ table.g .k{color:var(--warn)}
     subtabs.innerHTML = subHTML();
     head();
     var it = selId ? byId(selId) : null;
-    document.getElementById('slL').textContent = it ? (it.c + ' · ' + it.u) : hint;
-    document.getElementById('slR').textContent = screen === 'cat' ? CATS[catKey].t :
-      (doc.items.length + ' поз. · ' + doc.sects.length + ' разд.');
-    var map = {docs:'docs', smeta:'smeta', props:'smeta', cfg:'smeta', cat:'cat', rooms:'rooms', room:'rooms', sync:'sync'};
+    document.getElementById('slL').textContent = it ? (it.c + ' · ' + it.u + ' · НР ' + num(it.nr) + ' % СП ' + num(it.sp) + ' %') : hint;
+    document.getElementById('slR').textContent = screen === 'base' ? esc(snb) :
+      (doc.items.length + ' поз. · ' + doc.sects.length + ' разд. · ' + doc.acts.length + ' актов');
+    var map = {list:'list', smeta:'smeta', params:'smeta', rooms:'smeta', room:'smeta', base:'base',
+      docs:'docs', act:'docs', ks3:'docs', m29:'docs', vor:'docs', rv:'docs', ka:'docs', exch:'exch'};
     var tb = tabs.children, i;
     for(i=0;i<tb.length;i++){
       tb[i].classList.toggle('on', tb[i].getAttribute('data-tab') === map[screen]);
       var dot = tb[i].querySelector('.dot');
-      if(tb[i].getAttribute('data-tab') === 'sync'){
+      if(tb[i].getAttribute('data-tab') === 'exch'){
         if(doc.changes && !dot){ var d = document.createElement('span'); d.className = 'dot'; tb[i].appendChild(d); }
         if(!doc.changes && dot) dot.parentNode.removeChild(dot);
       }
@@ -823,21 +978,107 @@ table.g .k{color:var(--warn)}
   }
   function go(s){ screen = s; body.scrollTop = 0; render(); }
 
-  /* ===================== действия ===================== */
+  /* ============ меню ============ */
+  var MENUS = [
+    {t:'Файл', f:function(){ return [
+      {t:'Создать смету…', a:'newdoc'}, {t:'Открыть…', kb:'Ctrl+O', a:'list'}, {t:'Сохранить', kb:'Ctrl+S', a:'save'},
+      {sep:1}, {t:'Печать пакета документов…', kb:'Ctrl+P', a:'pkg'},
+      {t:'Экспорт в Excel', a:'exp_xlsx'}, {t:'Экспорт в АРПС', a:'exp_arps'}, {t:'Экспорт в XML (ГГЭ)', a:'exp_xml'}]; }},
+    {t:'Редактор', f:function(){ return [
+      {t:'Вставить расценку', kb:'Ins', a:'add'}, {t:'Удалить строку', kb:'Del', a:'del'}, {sep:1},
+      {t:'Поправочные коэффициенты…', kb:'Ctrl+K', a:'coef'}, {t:'Перенести в раздел…', a:'move'},
+      {t:'Добавить раздел…', a:'newsect'}]; }},
+    {t:'Документы', f:function(){ return [
+      {t:'Локальная смета', a:'smeta', ck:1}, {t:'Создать акт КС-2…', a:'mkact'},
+      {t:'Справка КС-3', a:'ks3', sub:doc.acts.length ? doc.acts.length + ' актов' : 'нет актов'},
+      {t:'Отчёт М-29', a:'m29'}, {sep:1},
+      {t:'Ведомость объёмов работ (ВОР)', a:'vor'}, {t:'Ресурсная ведомость', a:'rv'},
+      {t:'Конъюнктурный анализ', a:'ka'}, {sep:1},
+      {t:'Все документы сметы', a:'docs'}]; }},
+    {t:'Источники', f:function(){
+      var l = [{t:'Открыть…', kb:'Ctrl+B', a:'base'}, {t:'Импортировать ФГИС ЦС…', a:'import'}, {sep:1},
+        {t:'Рассчитать индексы', dis:1}, {t:'Пересчитать сборник', dis:1}, {t:'Добавить техчасть…', dis:1}, {sep:1},
+        {t:'Найти расценку', kb:'Shift+Ctrl+F', a:'find'}, {t:'Найти коэффициенты', kb:'Ctrl+G', a:'coef'}, {sep:1}], i;
+      for(i=0;i<SNB.length;i++) l.push({t:SNB[i], a:'snb', ck:snb === SNB[i]});
+      return l; }},
+    {t:'Поиск', f:function(){ return [
+      {t:'Найти в смете', kb:'Ctrl+F', a:'filter'}, {t:'Найти расценку', kb:'Shift+Ctrl+F', a:'find'},
+      {t:'Найти коэффициенты', kb:'Ctrl+G', a:'coef'}]; }},
+    {t:'Сервис', f:function(){ return [
+      {t:'Метод расчёта…', a:'method', sub:METHODS[method].t}, {t:'Параметры сметы…', a:'params'},
+      {sep:1}, {t:'Замеры помещений', a:'rooms'}, {t:'Обмен с ПК…', a:'exch'}]; }},
+    {t:'Вид', f:function(){ return [
+      {t:'Скрыть подчинённые строки', kb:'F9', a:'f9', ck:VIEW.f9},
+      {t:'Скрыть условно учтённые ресурсы', kb:'Ctrl+F9', a:'cf9', ck:VIEW.cf9}, {sep:1},
+      {t:'Итоги по смете', a:'v_itogi', ck:VIEW.itogi}, {t:'Компактные строки', a:'v_comp', ck:VIEW.comp}]; }},
+    {t:'Помощь', f:function(){ return [{t:'О программе', a:'about'}]; }}
+  ];
+  function openMenu(mi){
+    var m = MENUS[mi];
+    menuList(m.t, m.f(), function(it){ if(it.a) menuAct(it); });
+  }
+  function menuAct(it){
+    var a = it.a;
+    if(a === 'snb'){ snb = it.t; render(); toast('Нормативная база: ' + snb); return; }
+    if(a === 'f9' || a === 'cf9' || a === 'v_itogi' || a === 'v_comp'){ act(a); return; }
+    if(a === 'import'){ toast('Импорт каталогов ФГИС ЦС выполняется при подключении к сети'); return; }
+    if(a === 'save'){ toast('Смета сохранена на устройстве'); say('Сохранено'); return; }
+    if(a === 'about'){
+      dlg('<h3>О программе</h3><div class="db"><p style="margin:0 0 8px;font-size:13px"><b>Турбосметчик</b> · мобильная версия</p>' +
+        '<p class="hint" style="margin:0">Сборка 0.9.4 · работа без подключения к сети<br>' +
+        'Нормативная база: ' + esc(snb) + '<br>Метод расчёта: ' + esc(METHODS[method].t) + '<br>' +
+        'Печатные формы по Методике 421/пр и МДС-35<br>Обмен: Excel, АРПС, XML Главгосэкспертизы</p></div>' +
+        '<div class="dact"><button class="ok" data-x>ОК</button></div>',
+        function(o){ o.querySelector('[data-x]').addEventListener('click', close); });
+      return;
+    }
+    if(a === 'method'){
+      var l = [], k;
+      for(k in METHODS) l.push({t:METHODS[k].t, a:'m_' + k, ck:method === k,
+        sub:k === 'rim' ? 'ФСНБ-2022 + текущие цены ФГИС ЦС' : k === 'bi' ? 'базисные цены × индексы' : 'все ресурсы в текущих ценах'});
+      menuList('Метод расчёта', l, function(x){
+        if(!x.a) return;
+        method = x.a.slice(2); touch(); render();
+        toast('Метод расчёта: ' + METHODS[method].t);
+      });
+      return;
+    }
+    if(a && a.indexOf('exp_') === 0){ expFmt = a.slice(4); go('exch'); return; }
+    if(a === 'find'){ go('base'); setTimeout(function(){ var q = document.getElementById('q'); if(q) q.focus(); }, 60); return; }
+    if(a === 'filter'){ if(screen !== 'smeta') go('smeta'); showFilter = true; render('fl'); return; }
+    if(a === 'newdoc'){ newDoc(); return; }
+    if(a === 'newsect'){ addSect(); return; }
+    if(a === 'mkact'){ mkAct(); return; }
+    if(a === 'pkg'){ pkgPrint(); return; }
+    if(a === 'add' || a === 'del' || a === 'coef' || a === 'move'){ act(a); return; }
+    go(a);
+  }
+
+  /* ============ действия ============ */
   function editCell(td){
     if(td.querySelector('input')) return;
-    var it = byId(+td.getAttribute('data-id')), fld = td.getAttribute('data-ed');
-    if(!it) return;
-    selId = it.id;
-    var cur = fld === 'qty' ? it.qty : fld === 'k' ? it.k : it.p;
+    var idA = td.getAttribute('data-id'), fld = td.getAttribute('data-ed');
+    var rp = td.getAttribute('data-rp'), vi = td.getAttribute('data-vor');
+    var cur, setv;
+    if(vi !== null && vi !== undefined){
+      var vr = doc.vor[+vi]; cur = vr.q;
+      setv = function(v){ vr.q = v; };
+    } else if(rp){
+      var pr = rp.split(':'), pit = byId(+pr[0]);
+      if(!pit) return;
+      var rr = pit.res[+pr[1]]; cur = rr.p; selId = pit.id;
+      setv = function(v){ rr.p = v; };
+    } else {
+      var it = byId(+idA); if(!it) return;
+      selId = it.id; cur = fld === 'qty' ? it.qty : it.k;
+      setv = function(v){ if(fld === 'qty') it.qty = v; else it.k = v > 0 ? v : 1; };
+    }
     td.innerHTML = '<input class="ce" type="text" inputmode="decimal" value="' + num(cur) + '">';
     var inp = td.firstChild, done = false;
     inp.focus(); inp.select();
     function commit(){
       if(done) return; done = true;
-      var v = pnum(inp.value);
-      if(fld === 'qty') it.qty = v; else if(fld === 'k') it.k = v > 0 ? v : 1; else it.p = v;
-      touch(); say('Изменено: ' + it.c); render();
+      setv(pnum(inp.value)); touch(); render();
     }
     inp.addEventListener('blur', commit);
     inp.addEventListener('keydown', function(e){
@@ -845,13 +1086,19 @@ table.g .k{color:var(--warn)}
       else if(e.key === 'Escape'){ done = true; render(); }
     });
   }
-  function insertRes(code){
-    var s = ALL[code];
-    var it = {id:++uid, c:s.c, n:s.n, u:s.u, p:s.p, kind:s.kind, k:1, sect:curSect, fresh:true,
-      qty: pending !== null ? Math.round(pending * 100) / 100 : 0};
+  function insertNorm(code){
+    var nn = NORM[code];
+    var q = 0;
+    if(pending !== null){
+      q = pending;
+      if(nn.u.indexOf('100 ') === 0) q = q / 100;
+      q = Math.round(q * 10000) / 10000;
+    }
+    var it = pos(code, q, curSect);
+    it.fresh = true;
     doc.items.push(it);
     selId = it.id; pending = null; query = ''; filter = ''; showFilter = false;
-    touch(); say('Вставлено: ' + s.c);
+    touch(); say('Вставлена расценка ' + nn.c);
     go('smeta');
     setTimeout(function(){
       var td = body.querySelector('.ed[data-ed="qty"][data-id="' + it.id + '"]');
@@ -860,99 +1107,141 @@ table.g .k{color:var(--warn)}
   }
   function newDoc(){
     ask('Создать смету', 'Наименование объекта', '', function(v){
-      var d = {id:'n' + (++uid), name:v, code:'ЛСР-00-0' + (DOCS.length + 1), addr:'', cust:'', date:'07.09.2026',
-        changes:1, sects:[{id:1,t:'Основные работы'}], items:[], rooms:[]};
-      DOCS.push(d); doc = d; curSect = 1; selId = null;
-      go('smeta'); toast('Смета создана');
+      var d = {id:'n' + (++uid), name:v, code:'00-0' + (DOCS.length + 1) + '-01', addr:'', cust:'',
+        date:'07.09.2026', changes:1, nds:20, sects:[{id:1,t:'Основные работы'}], items:[], rooms:[], acts:[], vor:[]};
+      DOCS.push(d); doc = d; curSect = 1; selId = null; go('smeta'); toast('Смета создана');
     });
   }
   function addSect(){
     ask('Добавить раздел', 'Наименование раздела', '', function(v){
       var mx = 0, j;
       for(j=0;j<doc.sects.length;j++) mx = Math.max(mx, doc.sects[j].id);
-      doc.sects.push({id:mx + 1, t:v}); curSect = mx + 1; touch();
-      go('smeta'); toast('Раздел добавлен');
+      doc.sects.push({id:mx + 1, t:v}); curSect = mx + 1; touch(); go('smeta'); toast('Раздел добавлен');
     });
   }
-  function setAllNodes(state){
-    var c = CATS[catKey], bi, pi, si, gi, b, p, s;
-    for(bi=0;bi<c.books.length;bi++){
-      b = c.books[bi];
-      if(state) collapsed[b.c + c.t] = 1; else delete collapsed[b.c + c.t];
-      for(pi=0;pi<b.parts.length;pi++){
-        p = b.parts[pi];
-        if(state) collapsed[p.c] = 1; else delete collapsed[p.c];
-        for(si=0;si<p.secs.length;si++){
-          s = p.secs[si];
-          if(state) collapsed[s.c] = 1; else delete collapsed[s.c];
-          for(gi=0;gi<s.grps.length;gi++){ if(state) collapsed[s.grps[gi].c] = 1; else delete collapsed[s.grps[gi].c]; }
-        }
+  function mkAct(){
+    if(!doc.items.length){ toast('Смета пуста — акт создавать не из чего'); return; }
+    var no = doc.acts.length + 1;
+    var months = ['сентябрь 2026','октябрь 2026','ноябрь 2026'];
+    var per = months[Math.min(doc.acts.length, 2)];
+    dlg('<h3>Создать акт КС-2</h3><div class="db">' +
+      '<div class="g2"><div class="field"><label>Номер акта</label><input id="aNo" type="text" value="' + no + '"></div>' +
+      '<div class="field"><label>Отчётный период</label><input id="aPer" type="text" value="' + esc(per) + '" style="font-size:12.5px"></div></div>' +
+      '<div class="field"><label>Принять к выполнению, %</label><input class="n" id="aPct" type="text" inputmode="decimal" value="100"></div>' +
+      '<p class="hint">Акт создаётся на основании сметы: все позиции переносятся с указанным процентом выполнения.</p></div>' +
+      '<div class="dact"><button data-x>Отмена</button><button class="ok" data-ok>ОК</button></div>',
+      function(o){
+        o.querySelector('[data-x]').addEventListener('click', close);
+        o.querySelector('[data-ok]').addEventListener('click', function(){
+          var pct = pnum(o.querySelector('#aPct').value) || 100;
+          var a = {id:++uid, no:o.querySelector('#aNo').value.trim() || no, per:o.querySelector('#aPer').value.trim() || per,
+            pct:pct, items:doc.items.map(function(x){
+              var cp = JSON.parse(JSON.stringify(x));
+              cp.qty = Math.round(x.qty * pct / 100 * 10000) / 10000;
+              return cp;
+            })};
+          doc.acts.push(a); actId = a.id; touch(); close(); go('act');
+          toast('Акт КС-2 № ' + a.no + ' создан');
+        });
+      });
+  }
+  function pkgPrint(){
+    dlg('<h3>Печать пакета документов</h3><div class="db">' +
+      '<button class="chk" data-p="smeta"><i>' + (PKG.smeta ? '✓' : '') + '</i>Локальная смета</button>' +
+      '<button class="chk" data-p="ks2"><i>' + (PKG.ks2 ? '✓' : '') + '</i>Акты КС-2 (' + doc.acts.length + ')</button>' +
+      '<button class="chk" data-p="ks3"><i>' + (PKG.ks3 ? '✓' : '') + '</i>Справка КС-3</button>' +
+      '<button class="chk" data-p="m29"><i>' + (PKG.m29 ? '✓' : '') + '</i>Отчёт М-29</button>' +
+      '<p class="hint" style="margin-top:10px">Печатные формы по Методике 421/пр. Пакет формируется одним файлом.</p></div>' +
+      '<div class="dact"><button data-x>Отмена</button><button class="ok" data-ok>Сформировать</button></div>',
+      function(o){
+        var b = o.querySelectorAll('[data-p]'), i;
+        for(i=0;i<b.length;i++) b[i].addEventListener('click', function(){
+          var k = this.getAttribute('data-p');
+          PKG[k] = !PKG[k];
+          this.querySelector('i').textContent = PKG[k] ? '✓' : '';
+        });
+        o.querySelector('[data-x]').addEventListener('click', close);
+        o.querySelector('[data-ok]').addEventListener('click', function(){
+          var n = 0, k;
+          for(k in PKG) if(PKG[k]) n++;
+          close(); toast('Пакет из ' + n + ' документов сформирован на устройстве');
+          say('Пакет документов готов');
+        });
+      });
+  }
+  function setAll(state){
+    var bi, oi, ti, b, o;
+    for(bi=0;bi<BASE.length;bi++){
+      b = BASE[bi];
+      if(state) collapsed[b.c] = 1; else delete collapsed[b.c];
+      for(oi=0;oi<b.o.length;oi++){
+        o = b.o[oi];
+        if(state) collapsed[b.c + o.c] = 1; else delete collapsed[b.c + o.c];
+        for(ti=0;ti<o.tb.length;ti++){ if(state) collapsed[o.tb[ti].c] = 1; else delete collapsed[o.tb[ti].c]; }
       }
     }
     render();
   }
   function act(a){
     var j, it;
-    if(a === 'add'){ query = ''; go('cat'); return; }
-    if(a === 'smeta' || a === 'rooms'){ go(a); return; }
+    if(a === 'add'){ query = ''; go('base'); return; }
+    if(a === 'f9'){ VIEW.f9 = !VIEW.f9; if(screen !== 'smeta') go('smeta'); else render();
+      say(VIEW.f9 ? 'Подчинённые строки скрыты' : 'Подчинённые строки показаны'); return; }
+    if(a === 'cf9'){ VIEW.cf9 = !VIEW.cf9; if(screen !== 'smeta') go('smeta'); else render();
+      say(VIEW.cf9 ? 'Условно учтённые ресурсы скрыты' : 'Условно учтённые ресурсы показаны'); return; }
+    if(a === 'v_itogi'){ VIEW.itogi = !VIEW.itogi; render(); return; }
+    if(a === 'v_comp'){ VIEW.comp = !VIEW.comp; document.body.classList.toggle('comp', VIEW.comp); render(); return; }
     if(a === 'filter'){ showFilter = !showFilter; if(!showFilter) filter = ''; render(showFilter ? 'fl' : null); return; }
-    if(a === 'expand'){ setAllNodes(0); return; }
-    if(a === 'collapse'){ setAllNodes(1); return; }
+    if(a === 'expand'){ setAll(0); return; }
+    if(a === 'collapse'){ setAll(1); return; }
+    if(a === 'mkact'){ mkAct(); return; }
+    if(a === 'print'){ pkgPrint(); return; }
     if(a === 'del'){
       it = byId(selId); if(!it) return;
       for(j=0;j<doc.items.length;j++) if(doc.items[j].id === selId){ doc.items.splice(j,1); break; }
-      selId = null; touch(); say('Строка удалена'); render(); toast('Удалено: ' + it.n);
-      return;
+      selId = null; touch(); say('Строка удалена'); render(); toast('Удалено: ' + it.n); return;
     }
     if(a === 'coef'){
       it = byId(selId); if(!it) return;
-      dlg('<h3>Коэффициент к позиции</h3>' +
-        '<button class="mrow" data-k="1"><span>Без коэффициента<span class="sub">К = 1,00</span></span></button>' +
-        '<button class="mrow" data-k="1.15"><span>Стеснённые условия производства работ<span class="sub">К = 1,15</span></span></button>' +
-        '<button class="mrow" data-k="1.2"><span>Производство работ в зимнее время<span class="sub">К = 1,20</span></span></button>' +
-        '<button class="mrow" data-k="1.35"><span>Работы вблизи действующего оборудования<span class="sub">К = 1,35</span></span></button>' +
-        '<button class="mrow" data-k="0.85"><span>Повторное применение<span class="sub">К = 0,85</span></span></button>' +
-        '<div class="dact"><button data-x>Отмена</button></div>',
-        function(o){
-          var b = o.querySelectorAll('[data-k]'), i;
-          for(i=0;i<b.length;i++) b[i].addEventListener('click', function(){
-            it.k = parseFloat(this.getAttribute('data-k'));
-            close(); touch(); render(); toast(it.k === 1 ? 'Коэффициент снят' : 'Применён К ' + num(it.k));
-          });
-          o.querySelector('[data-x]').addEventListener('click', close);
-        });
+      menuList('Поправочные коэффициенты', [
+        {t:'Без коэффициента', sub:'К = 1,00', a:'k1'},
+        {t:'Стеснённые условия производства работ', sub:'К = 1,15 · избранный', a:'k115'},
+        {t:'Работы в зимнее время', sub:'К = 1,20 · избранный', a:'k12'},
+        {t:'Работы вблизи действующего оборудования', sub:'К = 1,35', a:'k135'},
+        {t:'Ремонтные работы (МДС 81-38)', sub:'К = 1,25', a:'k125'},
+        {t:'Повторное применение конструкций', sub:'К = 0,85', a:'k085'}
+      ], function(x){
+        if(!x.a) return;
+        var m = {k1:1, k115:1.15, k12:1.2, k135:1.35, k125:1.25, k085:0.85};
+        it.k = m[x.a]; touch(); render();
+        toast(it.k === 1 ? 'Коэффициент снят' : 'Применён К ' + num(it.k));
+      }, 'Показать избранные');
       return;
     }
     if(a === 'move' || a === 'sect'){
-      var move = a === 'move';
-      it = move ? byId(selId) : null;
-      if(move && !it) return;
-      var h = '<h3>' + (move ? 'Перенести в раздел' : 'Разделы сметы') + '</h3>', i, list, sm2;
+      var mv = a === 'move';
+      it = mv ? byId(selId) : null;
+      if(mv && !it) return;
+      var l = [], i, list;
       for(i=0;i<doc.sects.length;i++){
         list = inSect(doc.sects[i].id);
-        sm2 = list.reduce(function(x, y){ return x + sm(y); }, 0);
-        h += '<button class="mrow" data-s="' + doc.sects[i].id + '"><span>Раздел ' + (i+1) + '. ' + esc(doc.sects[i].t) +
-          '<span class="sub">' + list.length + ' поз. · ' + money(sm2) + ' ₽</span></span>' +
-          (doc.sects[i].id === curSect && !move ? '<span class="tag s">текущий</span>' : '') + '</button>';
+        l.push({t:'Раздел ' + (i+1) + '. ' + doc.sects[i].t, a:'s' + doc.sects[i].id,
+          sub:list.length + ' поз. · ' + money(totals(doc, list).all) + ' ₽', ck:!mv && doc.sects[i].id === curSect});
       }
-      h += '<div class="dact"><button data-x>Закрыть</button>' + (move ? '' : '<button class="ok" data-new>Добавить раздел…</button>') + '</div>';
-      dlg(h, function(o){
-        var b = o.querySelectorAll('[data-s]'), i2;
-        for(i2=0;i2<b.length;i2++) b[i2].addEventListener('click', function(){
-          var sid = +this.getAttribute('data-s');
-          close();
-          if(move){ it.sect = sid; curSect = sid; touch(); toast('Перенесено в «' + sectT(sid) + '»'); }
-          else curSect = sid;
-          render();
-        });
-        o.querySelector('[data-x]').addEventListener('click', close);
-        var nb = o.querySelector('[data-new]');
-        if(nb) nb.addEventListener('click', function(){ close(); addSect(); });
-      });
+      menuList(mv ? 'Перенести в раздел' : 'Разделы сметы', l, function(x){
+        if(x.extra){ addSect(); return; }
+        if(!x.a) return;
+        var sid = +x.a.slice(1);
+        if(mv){ it.sect = sid; curSect = sid; touch(); toast('Перенесено в «' + sectT(sid) + '»'); }
+        else curSect = sid;
+        render();
+      }, mv ? null : 'Добавить раздел…');
+      return;
     }
+    go(a);
   }
 
-  /* ===================== привязка ===================== */
+  /* ============ привязка ============ */
   function bind(){
     var i, els;
     els = body.querySelectorAll('.ed');
@@ -963,18 +1252,16 @@ table.g .k{color:var(--warn)}
       var it = byId(selId); if(it) curSect = it.sect;
       render();
     });
-    els = body.querySelectorAll('tr.b1[data-sect]');
-    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
-      curSect = +this.getAttribute('data-sect'); render();
-    });
+    els = body.querySelectorAll('[data-sect]');
+    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ curSect = +this.getAttribute('data-sect'); render(); });
     els = body.querySelectorAll('[data-node]');
     for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
       var k = this.getAttribute('data-node');
       if(collapsed[k]) delete collapsed[k]; else collapsed[k] = 1;
       render();
     });
-    els = body.querySelectorAll('[data-res]');
-    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ insertRes(this.getAttribute('data-res')); });
+    els = body.querySelectorAll('[data-norm]');
+    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ insertNorm(this.getAttribute('data-norm')); });
     var itg = document.getElementById('itg');
     if(itg) itg.addEventListener('click', function(){ VIEW.itogi = false; render(); });
 
@@ -984,9 +1271,28 @@ table.g .k{color:var(--warn)}
       for(j=0;j<DOCS.length;j++) if(DOCS[j].id === id) doc = DOCS[j];
       selId = null; filter = ''; showFilter = false;
       curSect = doc.sects.length ? doc.sects[0].id : 0;
-      say('Открыто: ' + doc.code); go('smeta');
+      say('Открыто: ЛСР ' + doc.code); go('smeta');
     });
     var nd = document.getElementById('newDoc'); if(nd) nd.addEventListener('click', newDoc);
+
+    els = body.querySelectorAll('[data-open]');
+    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ go(this.getAttribute('data-open')); });
+    els = body.querySelectorAll('[data-act]');
+    for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ actId = +this.getAttribute('data-act'); go('act'); });
+    var ma = document.getElementById('mkAct'); if(ma) ma.addEventListener('click', mkAct);
+    var pk = document.getElementById('pkg'); if(pk) pk.addEventListener('click', pkgPrint);
+
+    var vf = document.getElementById('vorFromSmeta');
+    if(vf) vf.addEventListener('click', function(){
+      doc.vor = doc.items.map(function(x){ return {n:x.n, u:x.u, q:x.qty, cm:'из сметы, ' + x.c}; });
+      touch(); render(); toast('ВОР заполнена из сметы: ' + doc.vor.length + ' строк');
+    });
+    var va = document.getElementById('vorAdd');
+    if(va) va.addEventListener('click', function(){
+      ask('Строка ВОР', 'Наименование работ', '', function(v){
+        doc.vor.push({n:v, u:'м2', q:0, cm:''}); touch(); render();
+      });
+    });
 
     els = body.querySelectorAll('[data-room]');
     for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ roomId = +this.getAttribute('data-room'); go('room'); });
@@ -997,8 +1303,8 @@ table.g .k{color:var(--warn)}
         doc.rooms.push(r); roomId = r.id; go('room');
       });
     });
-    var dl = document.getElementById('delRoom');
-    if(dl) dl.addEventListener('click', function(){
+    var dr = document.getElementById('delRoom');
+    if(dr) dr.addEventListener('click', function(){
       for(var j=0;j<doc.rooms.length;j++) if(doc.rooms[j].id === roomId){ doc.rooms.splice(j,1); break; }
       go('rooms'); toast('Помещение удалено');
     });
@@ -1011,14 +1317,19 @@ table.g .k{color:var(--warn)}
         if(id === 'rn'){ r.name = this.value; return; }
         r[{rl:'l', rw:'w', rh:'h', ro:'op'}[id]] = pnum(this.value);
         var p = this.selectionStart; render(id);
-        var again = document.getElementById(id);
-        if(again) try{ again.setSelectionRange(p, p); }catch(e){}
+        var ag = document.getElementById(id);
+        if(ag) try{ ag.setSelectionRange(p, p); }catch(e){}
       });
     });
     els = body.querySelectorAll('[data-take]');
     for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
       pending = Math.round(pnum(this.getAttribute('data-take')) * 100) / 100;
-      query = ''; go('cat'); toast('Объём ' + num(pending) + ' будет подставлен в «Кол-во»');
+      query = ''; go('base'); toast('Объём ' + num(pending) + ' м² будет подставлен в «Кол-во»');
+    });
+
+    ['kaReg','kaZone'].forEach(function(id){
+      var el = document.getElementById(id); if(!el) return;
+      el.addEventListener('input', function(){ CJ[id === 'kaReg' ? 'reg' : 'zone'] = this.value; });
     });
 
     els = body.querySelectorAll('[data-fmt]');
@@ -1026,13 +1337,14 @@ table.g .k{color:var(--warn)}
     var exp = document.getElementById('expBtn');
     if(exp) exp.addEventListener('click', function(){
       var bar = document.getElementById('bar'), res = document.getElementById('expRes'), p = 0;
+      var EXT = {xlsx:'xlsx', arps:'arp', xml:'xml', smt:'smt'};
       exp.disabled = true; res.innerHTML = ''; say('Формирование файла…');
       var iv = setInterval(function(){
         p += 25; bar.style.width = Math.min(p, 100) + '%';
         if(p >= 100){
           clearInterval(iv); doc.changes = 0; exp.disabled = false;
           res.innerHTML = '<div class="panel" style="margin-top:11px"><h4>Файл сформирован</h4>' +
-            '<div class="cl"><span>smeta_' + esc(doc.code.toLowerCase()) + '.' + expFmt + '</span><span class="tag o">148 КБ</span></div>' +
+            '<div class="cl"><span>lsr_' + esc(doc.code) + '.' + EXT[expFmt] + '</span><span class="tag o">готов</span></div>' +
             '<div class="cl"><span>Передать на компьютер</span><button>Отправить</button></div></div>';
           say('Файл сформирован на устройстве'); toast('Файл готов — сеть не потребовалась'); render();
         }
@@ -1043,6 +1355,20 @@ table.g .k{color:var(--warn)}
       var el = document.getElementById(pr[0]); if(!el) return;
       el.addEventListener('input', function(){ doc[pr[1]] = this.value; touch(); head(); });
     });
+    var pn = document.getElementById('pNds');
+    if(pn) pn.addEventListener('input', function(){
+      doc.nds = pnum(this.value);
+      var p = this.selectionStart; render('pNds');
+      var ag = document.getElementById('pNds');
+      if(ag) try{ ag.setSelectionRange(p, p); }catch(e){}
+    });
+    var cm = document.getElementById('chMethod');
+    if(cm) cm.addEventListener('click', function(){ menuAct({a:'method'}); });
+    var cs = document.getElementById('chSnb');
+    if(cs) cs.addEventListener('click', function(){
+      menuList('Нормативная база', SNB.map(function(x){ return {t:x, a:'snb', ck:snb === x}; }),
+        function(x){ if(x.a){ snb = x.t; render(); toast('Нормативная база: ' + snb); } });
+    });
     els = body.querySelectorAll('[data-ren]');
     for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
       var sid = +this.getAttribute('data-ren'), sc = null, j;
@@ -1051,16 +1377,6 @@ table.g .k{color:var(--warn)}
     });
     var as = document.getElementById('addSect'); if(as) as.addEventListener('click', addSect);
 
-    [['cNr','nr'],['cSp','sp'],['cNds','nds']].forEach(function(pr){
-      var el = document.getElementById(pr[0]); if(!el) return;
-      el.addEventListener('input', function(){
-        CFG[pr[1]] = pnum(this.value);
-        var p = this.selectionStart; render(pr[0]);
-        var again = document.getElementById(pr[0]);
-        if(again) try{ again.setSelectionRange(p, p); }catch(e){}
-      });
-    });
-
     var q = document.getElementById('q');
     if(q) q.addEventListener('input', function(){ query = this.value; render('q'); });
     var fl = document.getElementById('fl');
@@ -1068,15 +1384,15 @@ table.g .k{color:var(--warn)}
     var fx = document.getElementById('flX');
     if(fx) fx.addEventListener('click', function(){ filter = ''; showFilter = false; render(); });
 
-    els = subtabs.querySelectorAll('[data-ct]');
+    els = subtabs.querySelectorAll('[data-snb]');
     for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){
-      catKey = this.getAttribute('data-ct'); query = ''; body.scrollTop = 0; render();
+      snb = this.getAttribute('data-snb'); body.scrollTop = 0; render();
     });
     els = toolbar.querySelectorAll('[data-a]');
     for(i=0;i<els.length;i++) els[i].addEventListener('click', function(){ act(this.getAttribute('data-a')); });
   }
 
-  /* ===================== запуск ===================== */
+  /* ============ запуск ============ */
   (function(){
     var h = '', i;
     for(i=0;i<MENUS.length;i++) h += '<button data-m="' + i + '">' + esc(MENUS[i].t) + '</button>';
@@ -1086,7 +1402,11 @@ table.g .k{color:var(--warn)}
   })();
   var tb = tabs.children;
   for(var z=0; z<tb.length; z++) tb[z].addEventListener('click', function(){ go(this.getAttribute('data-tab')); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ close(); return; }
+    if(e.target && /INPUT/.test(e.target.tagName)) return;
+    if(e.key === 'F9'){ e.preventDefault(); act(e.ctrlKey ? 'cf9' : 'f9'); }
+  });
   render();
 })();
 </script>
